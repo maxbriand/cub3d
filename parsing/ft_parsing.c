@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/01 17:11:11 by mbriand          ###   ########.fr       */
+/*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
+/*   Updated: 2024/08/01 17:06:48 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# include "libft.h"
+int	ft_parsing(int ac, char **av)
+{
 
-// PARSING
-int	ft_parsing(int ac, char **av);
-
-
-#endif
+	return (0);
+}

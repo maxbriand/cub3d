@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:24:05 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/01 16:25:15 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/01 17:09:36 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	main(int ac, char **av)
 {
-	ft_printf("hello\n");
+	if (ft_parsing(ac, av))
+		return (1);
+
 
 	return (0);
 }
