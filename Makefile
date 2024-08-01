@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-# FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 LIBFT = libft/libft.a
 
 SRC = 	main.c \
@@ -12,7 +12,7 @@ OBJ = $(patsubst %.c, %.o, $(SRC))
 all : $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -Llibft -lft ./MLX42/build/libmlx42.a -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -Llibft -lft -lm ./MLX42/build/libmlx42.a -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(FLAGS) -g -c $< -o $@ -Iinclude -Ilibft/include 
