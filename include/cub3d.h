@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/02 01:21:47 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/02 01:37:54 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_pexit(char *msg);
 // PARSING
 void	ft_parsing(int ac, char **av);
 void	ft_arg_nbr(int ac);
-void	ft_path(char *path);
+void	ft_extension(char *path);
 
 #endif

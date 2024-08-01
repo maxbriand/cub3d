@@ -8,7 +8,7 @@ SRC = 	main.c \
 		\
 		parsing/ft_parsing.c \
 		parsing/ft_arg_nbr.c \
-		parsing/ft_path.c \
+		parsing/ft_extension.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
