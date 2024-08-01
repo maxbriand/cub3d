@@ -1,11 +1,14 @@
 NAME = cub3d
 CC = cc
-FLAGS = -Wall -Werror -Wextra
+# FLAGS = -Wall -Werror -Wextra
 LIBFT = libft/libft.a
 
 SRC = 	main.c \
+		ft_pexit.c \
 		\
 		parsing/ft_parsing.c \
+		parsing/ft_arg_nbr.c \
+		parsing/ft_path.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

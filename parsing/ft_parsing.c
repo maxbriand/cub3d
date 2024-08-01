@@ -6,16 +6,15 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/01 17:23:15 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/02 01:21:58 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_parsing(int ac, char **av)
+void	ft_parsing(int ac, char **av)
 {
-	ft_input(ac);
-	ft_path();
+	ft_arg_nbr(ac);
+	// ft_path(*av+1);
 
-	return (0);
 }
