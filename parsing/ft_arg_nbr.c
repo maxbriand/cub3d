@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arguments.c                                     :+:      :+:    :+:   */
+/*   ft_arg_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:14:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/02 01:21:27 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/02 01:45:52 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_arg_nbr(int ac)
 {
 	if (ac < 2)
-		ft_pexit("cub3d: too few arguments");
+		ft_pexit("too few arguments");
 	if (ac > 2)
-		ft_pexit("cub3d: too many arguments");
+		ft_pexit("too many arguments");
 }
