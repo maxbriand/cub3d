@@ -1,38 +1,33 @@
-NAME = cub3d
-CC = cc
-# FLAGS = -Wall -Werror -Wextra
-LIBFT = libft/libft.a
+NAME = cube
 
-SRC = 	main.c \
-		ft_pexit.c \
-		\
-		parsing/ft_parsing.c \
-		parsing/ft_arg_nbr.c \
-		parsing/ft_extension.c \
-		parsing/ft_get_map.c \
+SRCS = oui.c
 
-OBJ = $(patsubst %.c, %.o, $(SRC))
+OBJS=$(SRCS:.c=.o)
 
-all : $(NAME)
+RM=rm -f
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -Llibft -lft -lm ./MLX42/build/libmlx42.a -o $(NAME)
+CC= clang
+
+CFLAGS= -I./MLX42/include -g
+
+MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
+all: $(NAME)
+
+$(NAME) : $(OBJS)
+	make --directory ./MLX42/build
+	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) ./MLX42/build/libmlx42.a -o $@
+	@if [ $$? -eq 0 ]; then \
+		echo "\033[32;1mCompilation successful!\033[0m"; \
+	fi
 
 %.o: %.c
-	@$(CC) $(FLAGS) -g -c $< -o $@ -Iinclude -Ilibft/include 
-
-$(LIBFT):
-	@make --no-print-directory -C libft
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@make --no-print-directory clean -C libft
-	@rm -f */*.o
-	@rm -f *.o
-
+	$(RM) $(OBJS)
 fclean: clean
-	@make --no-print-directory fclean -C libft
-	@rm -f $(NAME)
+	$(RM) $(NAME)
 
-re: fclean all
+re: fclean $(NAME)
 
-.PHONY: all re fclean clean
+.PHONY: all clean fclean re
