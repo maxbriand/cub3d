@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/02 01:58:39 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/04 21:40:30 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@
 # include <errno.h>
 # include <sys/time.h>
 
+typedef struct s_data
+{
+    char    *no_path;
+    char    *so_path;
+    char    *we_path;
+    char    *ea_path;
+    int     floor_r;
+    int     floor_g;
+    int     floor_b;
+    int     ceil_r;
+    int     ceil_g;
+    int     ceil_b;
+} t_data;
+
 // ERROR
 void	ft_pexit(char *msg);
 
@@ -30,6 +44,6 @@ void	ft_pexit(char *msg);
 void	ft_parsing(int ac, char **av);
 void	ft_arg_nbr(int ac);
 void	ft_extension(char *path);
-char	*ft_get_map(char *path);
+char	*ft_get_text(char *path);
 
 #endif

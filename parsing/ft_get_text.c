@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:41:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/02 02:14:48 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/04 21:28:10 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_get_map(char *path)
 {
 	int		fd;
 	char	*buffer;
-	char	*full_text;
+	char	**full_text;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)

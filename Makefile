@@ -9,7 +9,7 @@ SRC = 	main.c \
 		parsing/ft_parsing.c \
 		parsing/ft_arg_nbr.c \
 		parsing/ft_extension.c \
-		parsing/ft_get_map.c \
+		parsing/ft_get_text.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

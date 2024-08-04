@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/02 02:11:18 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/04 21:31:32 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_parsing(int ac, char **av)
 
 	ft_arg_nbr(ac);
 	ft_extension(*(av+1));
-	// what about "wexw..cub"
-	map = ft_get_map(path);
+	text = ft_get_text(path);
 
 }
