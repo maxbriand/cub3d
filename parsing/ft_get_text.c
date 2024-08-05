@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_map.c                                       :+:      :+:    :+:   */
+/*   ft_get_text.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:41:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/04 21:28:10 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/05 20:36:20 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static char	*ft_new_full_text(char *full_text, char *buffer)
 	return (full_text);
 }
 
-char	*ft_get_map(char *path)
+char	*ft_get_text(char *path)
 {
 	int		fd;
 	char	*buffer;
-	char	**full_text;
+	char	*full_text;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
