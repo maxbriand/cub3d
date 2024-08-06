@@ -8,23 +8,23 @@
 int main(int argc, char **argv)
 {
 	//position du personnage, en partant du fait que 1 carre = 100 sur la map
-	float posX = 250;
-	float posY = 450; //x and y start position
-	int width = 1920;
-	int height = 1080;
+	float posX = 850;
+	float posY = 350; //x and y start position
+	float width = 1920;
+	float height = 1080;
 
 	float dirX;
 	float dirY;//initial direction vector en face du perso
-	float fov = 0.6;
-	float pi = 3.14159265359;
-	float or = 0;
+	float fov = 0.4 * M_PI;
+	float or = 1 * M_PI;
 
+	double angle;
 	double rayDirX; // la direction du rayon
 	double raydirY;
 
 	char map[6][11] = {"1111111111\0",
-					   "1000000001\0",
-					   "1011000001\0",
+					   "1000100011\0",
+					   "1000001001\0",
 					   "1000000001\0",
 					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
 					   "1111111111\0"};
@@ -39,18 +39,18 @@ int main(int argc, char **argv)
 		return (-1);
 	}
 
-	int i; // remplir limage avec le ciel
-	i = 0;
-	while (i < width)
-    {
-		int j = 0;
-        while (j < height)
-        {
-            mlx_put_pixel(image, i, j, 0x000000); // Noir pour le ciel
-			j++;
-        }
-		i++;
-    }
+	// int i; // remplir limage avec le ciel
+	// i = 0;
+	// while (i < width)
+    // {
+	// 	int j = 0;
+    //     while (j < height)
+    //     {
+    //         mlx_put_pixel(image, i, j, 0x0000FFFF); // Noir pour le ciel
+	// 		j++;
+    //     }
+	// 	i++;
+    // }
 
 	int Ex;
 	Ex = 0;
@@ -65,35 +65,45 @@ int main(int argc, char **argv)
 		y = posY;
 		x = posX;
 		//trouver la longueur du rayon
-		rayDirX = cos(or - (fov / 2) + (fov * Ex / width));
-		raydirY = sin(or - (fov / 2) + (fov * Ex / width));
+		angle = or - (fov / 2.0) + (fov * ((float)Ex / width));
+		rayDirX = cos(angle);
+		raydirY = sin(angle);
 		hit = 0;
 		while (map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == '0')
 		{
 			x += rayDirX * 0.1;
 			y += raydirY * 0.1;
-			 if (fabs(x - posX) > 1000 || fabs(y - posY) > 1000)
-			{
-				hit = 1;
-				break;
-			}
+			hit++;
+			//if (hit > 4000)
+				//break;
 		}
-		float distance = sqrt(pow(x - posX, 2) + pow(y - posY, 2));
-		int Wall_height = (int)(height / (distance * 0.1)); //ajuste en fonction taille ecran
+		float distance = sqrt(pow(x - posX, 2.0) + pow(y - posY, 2.0));
+		float Wall_height = (height / ((distance * cos(or - angle)) / 100.0)); //ajuste en fonction taille ecran
 
 		//dessiner le rayon :
-		 int drawStart = -Wall_height / 2 + height / 2;
-		int drawEnd = Wall_height / 2 + height / 2;
-		if (drawStart < 0) drawStart = 0;
-		if (drawEnd >= height) drawEnd = height - 1;
+		int drawStart = - Wall_height / 2.0 + height / 2.0;
+		int drawEnd = Wall_height / 2.0 + height / 2.0;
+		if (drawStart < 0) 
+			drawStart = 0;
+		if (drawEnd >= height)
+			drawEnd = height - 1.0;
 		
-		int k = drawStart;
-		while (k < drawEnd)
+		int k =0;
+		while (k < drawStart)
 		{
-			mlx_put_pixel(image, Ex, y, 0xB400B4); // Violet pour le mur
+			mlx_put_pixel(image, Ex, k, 0x0000B4FF); // Violet pour le mur
 			k++;
 		}
-
+		while (k < drawEnd)
+		{
+			mlx_put_pixel(image, Ex, k, 0xB400B4FF); // Violet pour le mur
+			k++;
+		}
+		while (k < height)
+		{
+			mlx_put_pixel(image, Ex, k, 0x000000FF); // Violet pour le mur
+			k++;
+		}
 		Ex++;
 	}
 	mlx_image_to_window(mlx, image, 0, 0);
