@@ -1,6 +1,6 @@
 NAME = cube
 
-SRCS = test.c
+SRCS = dev.c
 
 OBJS=$(SRCS:.c=.o)
 
