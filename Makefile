@@ -1,6 +1,6 @@
 NAME = cube
 
-SRCS = dev.c
+SRCS = ft_minimap.c
 
 OBJS=$(SRCS:.c=.o)
 
@@ -14,8 +14,9 @@ MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have b
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	make --directory ./libft
-	make --directory ./MLX42/build
+	@make --directory=./libft
+	@cd MLX42 && cmake -B build
+	@cd MLX42 && cmake --build build -j4
 	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) ./libft/libft.a ./MLX42/build/libmlx42.a -o $@
 	@if [ $$? -eq 0 ]; then \
 		echo "\033[32;1mCompilation successful!\033[0m"; \
