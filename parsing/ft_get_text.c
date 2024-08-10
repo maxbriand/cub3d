@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:41:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/05 20:36:20 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/06 18:01:05 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_get_text(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_pexit("open function issue");
+		ft_pexit("open function issue", NULL);
 	full_text = NULL;
 	while (1)
 	{

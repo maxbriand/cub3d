@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:13:18 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/02 01:45:59 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/06 18:01:11 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	ft_extension(char *path)
 	l = ft_strlen(path);
 	if (path[l-1] != 'b' || path[l-2] != 'u' || path[l-3] != 'c' || \
 		path[l-4] != '.')
-		ft_pexit("the file extension isn't correct");
+		ft_pexit("the file extension isn't correct", NULL);
 }

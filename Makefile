@@ -10,6 +10,8 @@ SRC = 	main.c \
 		parsing/ft_arg_nbr.c \
 		parsing/ft_extension.c \
 		parsing/ft_get_text.c \
+		parsing/ft_init_data.c \
+		parsing/ft_catch_ids.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
