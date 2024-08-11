@@ -1,6 +1,6 @@
 NAME = cube
 
-SRCS = ft_minimap.c
+SRCS = dev.c
 
 OBJS=$(SRCS:.c=.o)
 
