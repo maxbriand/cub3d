@@ -13,7 +13,8 @@ SRC = 	main.c \
 		parsing/ft_init_data.c \
 		parsing/ft_catch_ids.c \
 		parsing/ft_store_map.c \
-		parsing/ft_good_path_orientation.c \
+		parsing/ft_ids_good_path.c \
+		parsing/ft_map_only_good_char.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
