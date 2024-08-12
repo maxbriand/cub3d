@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	int hit; //prevent infinit loop
 	while (Ex < width)
 	{
+		//define arg
 		y = posY;
 		x = posX;
 		//trouver la longueur du rayon
@@ -60,25 +61,18 @@ int main(int argc, char **argv)
 		rayDirY = sin(angle);
 		hit = 0;
 
-
-		// while (map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == '0')
-		// {
-		// 	x += rayDirX * 0.1;
-		// 	y += raydirY * 0.1;
-		// 	hit++;
-		// 	//protect infinit
-		// }
-
-
-
 		int mapX = (int)posX;
 		int mapY = (int)posY;
 
 		float sideDistX;
 		float sideDistY;
 
-		float deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		float deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+
+
+
+
+		float deltaDistX = sqrt(1.0 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+		float deltaDistY = sqrt(1.0 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
 
 
 
@@ -87,6 +81,7 @@ int main(int argc, char **argv)
 
 		int side;
 
+		//calcule des rayon
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -108,6 +103,9 @@ int main(int argc, char **argv)
 			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
 		}
 
+
+
+		//connaitre quel cote le mur est
 		while (hit == 0)
 		{
 			if (sideDistX < sideDistY)
@@ -127,7 +125,10 @@ int main(int argc, char **argv)
 			if (map[mapY][mapX] == '1')
 				hit = 1;
 		}
+		//fin
 
+
+		//calcule pour enlever le fishy
 		float perpWallDist;
 		if(side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
@@ -135,16 +136,18 @@ int main(int argc, char **argv)
 			perpWallDist = (sideDistY - deltaDistY);
 		// float distance = sqrt(pow(x - posX, 2.0) + pow(y - posY, 2.0));
 		// float Wall_height = (height / ((distance * cos(or - angle)) / 100.0));
-		float Wall_height = (height / perpWallDist);
+		float Wall_height = (height / (perpWallDist * cos(or - angle))); // change
+		Wall_height = floor(Wall_height * 10.0) / 10.0;
+		//fin
+
 
 		//dessiner le rayon :
-		int drawStart = - Wall_height / 2.0 + height / 2.0;
-		int drawEnd = Wall_height / 2.0 + height / 2.0;
+		int drawStart = - Wall_height / 2.0 + (float)height / 2.0;
+		int drawEnd = Wall_height / 2.0 + (float)height / 2.0;
 		if (drawStart < 0)
 			drawStart = 0;
 		if (drawEnd >= height)
 			drawEnd = height - 1.0;
-
 		int k =0;
 		int	color = 0xB400B4FF;
 		if (side)
@@ -159,15 +162,24 @@ int main(int argc, char **argv)
 			mlx_put_pixel(image, Ex, k, color); // Violet pour le mur
 			k++;
 		}
+		k -= 2;
 		while (k < height)
 		{
 			mlx_put_pixel(image, Ex, k, 0x000000FF); // Violet pour le mur
 			k++;
 		}
+		//end print
+
+
+
 		Ex++;
 	}
+
+
+
+
 	mlx_image_to_window(mlx, image, 0, 0);
-	mlx_loop_hook(mlx,)
+	//mlx_loop_hook(mlx, move_hook(), t_)
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, image);
 	mlx_terminate(mlx);
