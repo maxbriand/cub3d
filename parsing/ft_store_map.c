@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/11 21:16:26 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/12 18:56:17 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_store_map(t_data *data, char *text)
 {
-	char *c_line;
+	char	*c_line;
 
 	c_line = text;
 	while (*text)
@@ -24,7 +24,7 @@ void	ft_store_map(t_data *data, char *text)
 		if (*text == '\n')
 			c_line = text;
 		else if (!*text)
-			break ;	
+			break ;
 		else
 		{
 			data->map.map = ft_split(c_line, '\n');
