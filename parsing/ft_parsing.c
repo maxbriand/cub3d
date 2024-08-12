@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/08 00:09:17 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/11 21:27:21 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,26 @@ void	ft_parsing(t_data *data, int ac, char **av)
 	ft_extension(*(av+1));
 	data->text = ft_get_text(*(av+1));
 	ft_init_data(data);
-	
-	printf("the bool is : %d\n", data->map.ceil_r);
 	ft_catch_ids(data);
+	ft_good_path_orientation(data);
+	
+	
 	// check if all id are set
-	printf("%s\n", data->map.no_path);	
+
+	printf("%s\n", data->map.map[1]);
+	printf("%s\n", data->map.no_path);
+	printf("%s\n", data->map.so_path);
+	printf("%s\n", data->map.we_path);
+	printf("%s\n", data->map.ea_path);
+
+	printf("%d\n", data->map.floor_r);
+	printf("%d\n", data->map.floor_g);
+	printf("%d\n", data->map.floor_b);
+
+	printf("%d\n", data->map.ceil_r);
+	printf("%d\n", data->map.ceil_g);
+	printf("%d\n", data->map.ceil_b);
+
+
+
 }

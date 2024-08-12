@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/08 00:09:32 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/11 21:48:41 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_map
 	int		ceil_r;
 	int		ceil_g;
 	int		ceil_b;
+	int		len_counter;
 }	t_map;
 
 typedef struct s_data
@@ -65,7 +66,9 @@ void	ft_parsing(t_data *data, int ac, char **av);
 void	ft_arg_nbr(int ac);
 void	ft_extension(char *path);
 char	*ft_get_text(char *path);
-void    ft_catch_ids(t_data *data);
-void	ft_init_data(t_data *data);
+void 	ft_catch_ids(t_data *data);
+void 	ft_init_data(t_data *data);
+void	ft_store_map(t_data *data, char *text);
+void	ft_good_path_orientation(t_data *data);
 
 #endif

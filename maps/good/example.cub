@@ -1,10 +1,10 @@
 NO ./textures/titi.jpg
-SO ./textures/cow,jpg
-WE ./textures/spider.jpg
-EA ./textures/panda.jpg
+SO ./textures/cow.jpg
+		EA          ./textures/panda.jpg
 
 F 220,100,0
 C 225,30,0
+WE ./textures/spider;jpg
 
 		1111111111111111111111111
 		1000000000110000000000001
