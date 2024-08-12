@@ -8,7 +8,7 @@ RM=rm -f
 
 CC= clang
 
-CFLAGS= -I./MLX42/include -I./libft -g
+CFLAGS= -I./MLX42/include -I./libft -g -Wall -Werror -Wextra
 
 MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
 all: $(NAME)

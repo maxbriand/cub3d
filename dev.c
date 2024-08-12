@@ -1,9 +1,16 @@
-#include "MLX42/MLX42_Int.h"
-#include "MLX42/MLX42.h"
-#include <math.h>
-#include "libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dev.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
+/*   Updated: 2024/08/12 18:58:51 by gmersch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define TILE_SIZE 100
+#include "cube.h"
 
 int main(int argc, char **argv)
 {
@@ -47,64 +54,9 @@ int main(int argc, char **argv)
 	dirX = cos(or);
 	dirY = sin(or);
 
-	float y;
-	float x; //commence a etre egale a la pos du joueur, mais est le "trait" du rayon en soit
-	int hit; //prevent infinit loop
 	while (Ex < width)
 	{
-		//define arg
-		y = posY;
-		x = posX;
-		//trouver la longueur du rayon
-		angle = or - (fov / 2.0) + (fov * ((float)Ex / width));
-		rayDirX = cos(angle);
-		rayDirY = sin(angle);
-		hit = 0;
-
-		int mapX = (int)posX;
-		int mapY = (int)posY;
-
-		float sideDistX;
-		float sideDistY;
-
-
-
-
-
-		float deltaDistX = sqrt(1.0 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		float deltaDistY = sqrt(1.0 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-
-
-
-		int stepX;
-		int stepY;
-
-		int side;
-
-		//calcule des rayon
-		if (rayDirX < 0)
-		{
-			stepX = -1;
-			sideDistX = (posX - mapX) * deltaDistX;
-		}
-		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - posX) * deltaDistX;
-		}
-		if (rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (posY - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
-		}
-
-
-
+		ft_define_rc_arg()
 		//connaitre quel cote le mur est
 		while (hit == 0)
 		{
@@ -120,7 +72,7 @@ int main(int argc, char **argv)
 				mapY += stepY;
 				side = 1;
 			}
-			if (mapY < 0 || mapY >= 7 || mapX < 0 || mapX >= ft_strlen(map[mapY]))
+			if (mapY < 0 || mapY >= 7 || mapX < 0 || mapX >= (int)ft_strlen(map[mapY]))
 				hit = 1;
 			if (map[mapY][mapX] == '1')
 				hit = 1;
@@ -129,21 +81,21 @@ int main(int argc, char **argv)
 
 
 		//calcule pour enlever le fishy
-		float perpWallDist;
+		
 		if(side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
     	else
 			perpWallDist = (sideDistY - deltaDistY);
 		// float distance = sqrt(pow(x - posX, 2.0) + pow(y - posY, 2.0));
 		// float Wall_height = (height / ((distance * cos(or - angle)) / 100.0));
-		float Wall_height = (height / (perpWallDist * cos(or - angle))); // change
+		Wall_height = (height / (perpWallDist * cos(or - angle))); // change
 		Wall_height = floor(Wall_height * 10.0) / 10.0;
 		//fin
 
 
 		//dessiner le rayon :
-		int drawStart = - Wall_height / 2.0 + (float)height / 2.0;
-		int drawEnd = Wall_height / 2.0 + (float)height / 2.0;
+		drawStart = - Wall_height / 2.0 + (float)height / 2.0;
+		drawEnd = Wall_height / 2.0 + (float)height / 2.0;
 		if (drawStart < 0)
 			drawStart = 0;
 		if (drawEnd >= height)
