@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/12 19:01:22 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/13 00:30:04 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ void	ft_parsing(t_data *data, int ac, char **av);
 void	ft_arg_nbr(int ac);
 void	ft_extension(char *path);
 char	*ft_get_text(char *path);
-void 	ft_catch_ids(t_data *data);
+void 	ft_cut_text(t_data *data);
 void 	ft_init_data(t_data *data);
 void	ft_store_map(t_data *data, char *text);
 void	ft_ids_good_path(t_data *data);
 void	ft_map_only_good_char(t_data *data, char **map);
+void	ft_map_closed(t_data *data, char **map);
 
 #endif

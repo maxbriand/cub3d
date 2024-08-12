@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/11 21:17:04 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/13 00:29:42 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int	ft_identify_id(t_data *data, char *text, int *counter)
 }
 
 // iterate line by line until counter = 6 or end of text
-void	ft_catch_ids(t_data *data)
+void	ft_cut_text(t_data *data)
 {
 	int		i;
 	int		counter;
