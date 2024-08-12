@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/12 19:00:57 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/12 23:25:13 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_parsing(t_data *data, int ac, char **av)
 	ft_catch_ids(data);
 	ft_ids_good_path(data);
 	ft_map_only_good_char(data, data->map.map);
+	// ft_map_;
 
 	// check if all id are set
 	printf("%s\n", data->map.map[1]);
