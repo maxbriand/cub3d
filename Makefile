@@ -1,6 +1,10 @@
 NAME = cube
 
-SRCS = dev.c
+SRCS = 	main.c\
+		ft_define_rc.c\
+		ft_define_player.c\
+		ft_define_game.c\
+		ft_ultimate_free.c
 
 OBJS=$(SRCS:.c=.o)
 
@@ -8,7 +12,7 @@ RM=rm -f
 
 CC= clang
 
-CFLAGS= -I./MLX42/include -I./libft -g -Wall -Werror -Wextra
+CFLAGS= -I./MLX42/include -I./libft -g
 
 MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
 all: $(NAME)

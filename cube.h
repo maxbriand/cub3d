@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/12 19:09:47 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/13 18:04:18 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@
 #include <math.h>
 #include "libft/libft.h"
 
-typedef struct s_rayCasting
+typedef struct s_ray_casting
 {
+
+	float angle;//angle of the ray
+	
+	float rayDirX; // la direction du rayon
+	float rayDirY;
+
+
+	
 	float x; //commence a etre egale a la pos du joueur
 			//mais est le "trait" du rayon en soit
 	float y;
@@ -28,7 +36,7 @@ typedef struct s_rayCasting
 	int mapX;
 	int mapY;
 
-	//idk
+	//length of the ray from the player to the wall hit 
 	float sideDistX;
 	float sideDistY;
 
@@ -50,13 +58,46 @@ typedef struct s_rayCasting
 	float perpWallDist;
 
 	//height of the wall, calculated with the distance from player
-	float Wall_height
+	float wall_height;
 
 	//draw pixel in windows mlx
 	int drawStart;
 	int drawEnd;
 	
-}t_rayCasting;
+}t_ray_casting;
 
+
+typedef struct s_game
+{
+	mlx_t *mlx;
+	mlx_image_t* image;
+	
+	//size of the screen
+	int width;
+	int height;
+	
+}t_game;
+
+typedef struct s_player
+{
+	//pos of the player in map
+	float posX;
+	float posY;
+
+	//fov and orientation of the player look;
+	float fov;
+	float or;
+
+	t_ray_casting *rc;
+	t_game *game;
+
+}t_player;
+
+
+
+t_player	*ft_define_player();
+void		ft_define_rc(t_player *p, int ex);
+t_game		*ft_define_game();
+void		ft_ultimate_free(t_player *p);
 
 #endif
