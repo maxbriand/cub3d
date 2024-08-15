@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_define_rc.c                                     :+:      :+:    :+:   */
+/*   ft_define_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 15:01:15 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/13 17:59:32 by gmersch          ###   ########.fr       */
+/*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
+/*   Updated: 2024/08/14 15:34:00 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	ft_ray_calcul(t_player *p)
 
 void	ft_define_rc(t_player *p, int ex)
 {
-	p->rc = malloc(sizeof(*p->rc));
+	if (!p->rc)
+		p->rc = malloc(sizeof(*p->rc));
 	p->rc->y = p->posY;
 	p->rc->x = p->posX;
 	//trouver la longueur du rayon
@@ -57,4 +58,40 @@ void	ft_define_rc(t_player *p, int ex)
 
 	//calcule des rayon
 	ft_ray_calcul(p);
+}
+
+static t_game	*ft_define_game()
+{
+	t_game *game;
+
+	game = malloc(sizeof(*game));
+	game->width = 1920;
+	game->height = 1080;
+	game->mlx = mlx_init(game->width, game->height, "Cube3D", true);
+	game->image = mlx_new_image(game->mlx, game->width, game->height);
+	if (!game->image)
+	{
+		mlx_terminate(game->mlx);
+		return (NULL);
+	}
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	return (game);
+}
+
+t_player	*ft_define_player()
+{
+	//PLAYER NEED TO BE SET WITH PARSING, NOT LIKE THIS
+	t_player *p;
+	
+	p = malloc(sizeof(*p));
+	p->game = ft_define_game();
+		//if (!mlx_game) need to put pointer
+		//return (-1);
+	p->posX = 8.50;
+	p->posY = 3.50; //x and y start position
+
+	p->fov = 0.4 * M_PI;
+	p->or = 1 * M_PI;
+	p->rc = NULL; 
+	return (p);
 }

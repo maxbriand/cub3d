@@ -6,14 +6,14 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/13 18:04:18 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/14 15:47:21 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef CUBE_H
 #define CUBE_H
 
-#include "MLX42/MLX42_Int.h"
+//#include "MLX42/MLX42_Int.h"
 #include "MLX42/MLX42.h"
 #include <math.h>
 #include "libft/libft.h"
@@ -97,7 +97,8 @@ typedef struct s_player
 
 t_player	*ft_define_player();
 void		ft_define_rc(t_player *p, int ex);
-t_game		*ft_define_game();
 void		ft_ultimate_free(t_player *p);
+
+void		ft_ray_casting(t_player *p, char map[7][11]);
 
 #endif

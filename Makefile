@@ -1,10 +1,9 @@
 NAME = cube
 
 SRCS = 	main.c\
-		ft_define_rc.c\
-		ft_define_player.c\
-		ft_define_game.c\
-		ft_ultimate_free.c
+		ft_define_struct.c\
+		ft_ultimate_free.c\
+		ft_ray_casting.c
 
 OBJS=$(SRCS:.c=.o)
 
