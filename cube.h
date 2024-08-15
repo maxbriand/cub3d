@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/14 15:47:21 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/15 20:12:17 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_game
 
 typedef struct s_player
 {
+	char map[7][11];
 	//pos of the player in map
 	float posX;
 	float posY;
