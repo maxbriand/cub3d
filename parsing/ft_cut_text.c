@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_catch_ids.c                                     :+:      :+:    :+:   */
+/*   ft_cut_text.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/13 00:29:42 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/22 17:22:46 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ static int ft_set_orientation(t_data *data, char *text, int nbr)
 	int		len;
 	char	*info;
 
+	len = 0;
 	while (ft_isprint(text[len]) && text[len] != ' ')
 		len++;
 	info = malloc(len + 1);

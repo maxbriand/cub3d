@@ -1,15 +1,4 @@
 {
-  "files.associations": {
-    "cub3d.h": "c",
-    "array": "c",
-    "deque": "c",
-    "string": "c",
-    "unordered_map": "c",
-    "vector": "c",
-    "string_view": "c",
-    "initializer_list": "c",
-    "libft.h": "c"
-  },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",

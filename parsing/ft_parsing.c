@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/13 00:55:20 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/22 17:31:22 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ void	ft_parsing(t_data *data, int ac, char **av)
 	
 	ft_ids_good_path(data);
 	ft_map_only_good_char(data, data->map.map);
-	// ft_map_closed(data, data->map.map);
-	ft_arrprintf(data->map.map);
-
+	ft_map_closed(data, data->map.map);
 
 	// check if all id are set
-	printf("%s\n", data->map.map[1]);
+	ft_arrprintf(data->map.map);
 	printf("%s\n", data->map.no_path);
 	printf("%s\n", data->map.so_path);
 	printf("%s\n", data->map.we_path);
