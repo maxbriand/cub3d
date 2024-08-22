@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/15 20:12:17 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:01:37 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,22 @@ typedef struct s_game
 
 typedef struct s_player
 {
-	char map[7][11];
+	//char **map;
 	//pos of the player in map
 	float posX;
 	float posY;
 
+	float	move_speed;
+
 	//fov and orientation of the player look;
 	float fov;
 	float or;
+
+	bool player_move_f;
+	bool player_move_b;
+	bool player_move_r;
+	bool player_move_l;
+
 
 	t_ray_casting *rc;
 	t_game *game;
@@ -100,6 +108,8 @@ t_player	*ft_define_player();
 void		ft_define_rc(t_player *p, int ex);
 void		ft_ultimate_free(t_player *p);
 
-void		ft_ray_casting(t_player *p, char map[7][11]);
+void		ft_ray_casting(void *param);
+
+void	ft_move_hook(mlx_key_data_t keydata, void *param);
 
 #endif

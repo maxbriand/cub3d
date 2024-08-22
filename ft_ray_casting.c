@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/15 19:45:16 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/22 20:01:04 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,21 @@ static void	ft_find_side(t_player *p, char map[7][11])
 	}
 }
 
-void	ft_ray_casting(t_player *p, char map[7][11])
+void	ft_ray_casting(void *param)
 {
 	//ex is like ecran x (horizontal value of pixel of the screen)
+	
+	t_player *p;
 	int	ex;
+	char map[7][11] = {"1111111111\0",
+					"1000100011\0",
+					"1000000001\0",
+					"1000000001\0",
+					"1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
+					"1111111111\0",
+					""};
 
+	p = (t_player *)param;
 	ex = 0;
 	while (ex < p->game->width)
 	{

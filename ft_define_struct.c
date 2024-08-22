@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/14 15:34:00 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:02:15 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static t_game	*ft_define_game()
 	return (game);
 }
 
+
 t_player	*ft_define_player()
 {
 	//PLAYER NEED TO BE SET WITH PARSING, NOT LIKE THIS
@@ -90,6 +91,13 @@ t_player	*ft_define_player()
 	p->posX = 8.50;
 	p->posY = 3.50; //x and y start position
 
+	p->move_speed = 0.05;
+	p->player_move_f = false;
+	p->player_move_b = false;
+	p->player_move_l = false;
+	p->player_move_r = false;
+
+	
 	p->fov = 0.4 * M_PI;
 	p->or = 1 * M_PI;
 	p->rc = NULL; 

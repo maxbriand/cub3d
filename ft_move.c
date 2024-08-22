@@ -6,27 +6,105 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:01:46 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/15 20:19:43 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/23 00:00:31 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	*ft_move_hook(void *param)
+//sert a faire un truc kool
+void	ft_move_hook(mlx_key_data_t keydata, void *param)
 {
 	t_player *p;
-	
+	int newPosX;
+	int newPosY;
+
+	char map[7][11] = {"1111111111\0",
+					   "1000100011\0",
+					   "1000000001\0",
+					   "1000000001\0",
+					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
+					   "1111111111\0",
+					   ""};
 	p = (t_player *)param;
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-	{
-		//need to change map from map parsed
-		if(p->map[int(posX + dirX * moveSpeed)][int(posY)] == false)
-			p->posX += p->rc->x * moveSpeed;
-				
-				//p->rc->rayDirX = cos(p->rc->angle);
-				//p->rc->rayDirY = sin(p->rc->angle);
 	
-    	if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false)
-			posY += dirY * moveSpeed;
+	//move front
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		p->player_move_f = true;
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
+		p->player_move_f = false;
+
+	//move back
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+		p->player_move_b = true;
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
+		p->player_move_b = false;
+
+	//move left
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+		p->player_move_l = true;
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
+		p->player_move_l = false;
+	
+	//move left
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+		p->player_move_r = true;
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
+		p->player_move_r = false;
+
+
+
+
+
+	//move front
+	if (p->player_move_f)
+	{
+		//calcul if there is a wall front
+		newPosX = (int)(p->posX + cos(p->or) * p->move_speed);
+		newPosY = (int)(p->posY + sin(p->or) * p->move_speed);
+		
+		if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+		{
+			p->posX += cos(p->or) * p->move_speed;
+			p->posY += sin(p->or) * p->move_speed;
+		}
+	}
+	//move back
+	if (p->player_move_b)
+	{
+		//calcul if there is a wall behind
+		newPosX = (int)(p->posX - cos(p->or) * p->move_speed);
+		newPosY = (int)(p->posY - sin(p->or) * p->move_speed);
+		
+		if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+		{
+			p->posX -= cos(p->or) * p->move_speed;
+			p->posY -= sin(p->or) * p->move_speed;
+		}	
+	}
+	//move left
+	if (p->player_move_l)
+	{
+		//calcul if there is a wall on left
+		newPosX = (int)(p->posX + cos(p->or - (M_PI / 2)) * p->move_speed);
+		newPosY = (int)(p->posY + sin(p->or - (M_PI / 2)) * p->move_speed);
+		
+		if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+		{
+			p->posX += cos(p->or - (M_PI / 2)) * p->move_speed;
+			p->posY += sin(p->or - (M_PI / 2)) * p->move_speed;
+		}	
+	}
+	if (p->player_move_r)
+	{
+		//calcul if there is a wall on left
+		newPosX = (int)(p->posX + cos(p->or+ (M_PI / 2)) * p->move_speed);
+		newPosY = (int)(p->posY + sin(p->or + (M_PI / 2)) * p->move_speed);
+		
+		if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+		{
+			p->posX += cos(p->or + (M_PI / 2)) * p->move_speed;
+			p->posY += sin(p->or + (M_PI / 2)) * p->move_speed;
+		}
 	}
 }

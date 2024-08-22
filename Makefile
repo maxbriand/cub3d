@@ -3,7 +3,8 @@ NAME = cube
 SRCS = 	main.c\
 		ft_define_struct.c\
 		ft_ultimate_free.c\
-		ft_ray_casting.c
+		ft_ray_casting.c\
+		ft_move.c
 
 OBJS=$(SRCS:.c=.o)
 

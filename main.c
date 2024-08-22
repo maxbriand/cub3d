@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/15 21:12:17 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/22 22:59:30 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ int main(int argc, char **argv)
 					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
 					   "1111111111\0",
 					   ""};
-	p->map = map;
 
 	//ray casting and print on screen
-	ft_ray_casting(p, map); //map will be in struct set by pars ?
+	mlx_loop_hook(p->game->mlx, ft_ray_casting, p); //map will be in struct set by pars ?
 
 	mlx_image_to_window(p->game->mlx, p->game->image, 0, 0);
-	mlx_key_hook(p->game->mlx, ft_move_hook(), p);
+	mlx_key_hook(p->game->mlx, &ft_move_hook, p);
 	mlx_loop(p->game->mlx);
 	mlx_delete_image(p->game->mlx, p->game->image);
 	mlx_terminate(p->game->mlx);
