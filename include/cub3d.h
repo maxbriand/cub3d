@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/13 00:30:04 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/23 01:31:13 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	ft_store_map(t_data *data, char *text);
 void	ft_ids_good_path(t_data *data);
 void	ft_map_only_good_char(t_data *data, char **map);
 void	ft_map_closed(t_data *data, char **map);
+void	ft_cut_end_spaces_split(t_data *data, char **map);
 
 #endif
