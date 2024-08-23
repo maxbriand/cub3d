@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 04:01:26 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/23 22:58:41 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,70 @@
 static void	ft_print_ray(t_player *p, int ex)
 {
 	int i;
+	int texture_y;
+	int texture_x;
+	int pixel;
+	float wall_hit_position;
+	uint32_t color;
+
+	if (p->rc->side == 0) // Mur vertical (nord-sud)
+		wall_hit_position = p->rc->x - floor(p->rc->x);
+	else // Mur horizontal (est-ouest)
+		wall_hit_position = p->rc->y - floor(p->rc->y);
+
+	texture_x = (int)(wall_hit_position * p->game->north_texture->width);
+	if (texture_x < 0)\
+		texture_x = 0;
+	if (texture_x >= p->game->north_texture->width)
+		texture_x = p->game->north_texture->width - 1;
 
 	i = 0;
-	int	color = 0xB400B4FF;
-	if (p->rc->side)
-		color = (color / 2) | 0xFF;
 	while (i < p->rc->drawStart)
 	{
-		mlx_put_pixel(p->game->image, ex, i, 0x0000B4FF); // Violet pour le mur
+		mlx_put_pixel(p->game->image, ex, i, 0x0000B4FF); // Couleur du ciel
 		i++;
 	}
 	while (i < p->rc->drawEnd)
 	{
-		mlx_put_pixel(p->game->image, ex, i, color); // Violet pour le mur
+		// Calculer la position Y sur la texture en fonction de la hauteur du mur
+		texture_y = (int)((i - p->rc->drawStart) * (p->game->north_texture->height / (float)(p->rc->drawEnd - p->rc->drawStart)));
+		if (texture_y < 0)
+			texture_y = 0;
+		if (texture_y >= p->game->north_texture->height)
+			texture_y = p->game->north_texture->height - 1; //if point is too big or too small : resize to smaller point or bigger from the texture.
+
+		//Because pixel is store in a ray9* and not a ray of ray (**), we do :
+		//texture_y (wich is the y of pixel we want to put)
+		// * the weight of texture : like 6 * 64 (and the result is the line we want)
+		//AND we add texture x for being not at the start of the line, but in the correct x pos.
+		//Put it on escalidraw or come see me (or discord) if explaination needed
+		//so it gives us this line :
+		pixel = texture_y * p->game->north_texture->width + texture_x;
+
+		//verif if ok
+		if (pixel < 0)
+			pixel = 0;
+		if (pixel >= p->game->north_texture->width * p->game->north_texture->height)
+			pixel = p->game->north_texture->width * p->game->north_texture->height - 1;
+
+		//and now that we have the index of the pixel in our ray, lets get the color of it :
+		color = p->game->north_texture->pixels[pixel];
+
+		// Afficher le pixel sur l'image finale
+		mlx_put_pixel(p->game->image, ex, i, color);
 		i++;
 	}
-	//remove grain under wall ??? test other value like , or 3, or other idk
-	i -= 2;
+	// Afficher le sol en dessous du mur
 	while (i < p->game->height)
 	{
-		mlx_put_pixel(p->game->image, ex, i, 0x000000FF); // Violet pour le mur
+		mlx_put_pixel(p->game->image, ex, i, 0x000000FF); // Couleur du sol
 		i++;
 	}
 }
+
+
+
+
 
 //define draw start and draw end, its were we should drow on the y line (vertical line)
 static void	ft_define_print(t_player *p)

@@ -64,7 +64,6 @@ bonus: $(OBJS_BONUS)
 	fi
 
 
-
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 

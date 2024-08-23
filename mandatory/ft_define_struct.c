@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 01:38:17 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/23 22:51:29 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ static t_game	*ft_define_game()
 		mlx_terminate(game->mlx);
 		return (NULL);
 	}
+	game->north_texture = mlx_load_png("parsing/textures/mur.png");
+	if (!game->north_texture)
+	{
+		printf("Error: failed to load texture.\n"); // mayday printf
+		exit (1); //MAYDAY EXIT
+	}
+
+
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
 }
