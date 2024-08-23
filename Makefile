@@ -1,5 +1,18 @@
 NAME = cube
 
+PARS =  parsing/ft_pexit.c \
+		parsing/parsing/ft_parsing.c \
+		parsing/parsing/ft_arg_nbr.c \
+		parsing/parsing/ft_extension.c \
+		parsing/parsing/ft_get_text.c \
+		parsing/parsing/ft_init_data.c \
+		parsing/parsing/ft_cut_text.c \
+		parsing/parsing/ft_store_map.c \
+		parsing/parsing/ft_ids_good_path.c \
+		parsing/parsing/ft_map_only_good_char.c \
+		parsing/parsing/ft_map_closed.c \
+		parsing/parsing/ft_cut_end_spaces_split.c \
+
 SRCS = 	mandatory/main.c\
 		mandatory/ft_define_struct.c\
 		mandatory/ft_ultimate_free.c\
@@ -18,17 +31,18 @@ BONUS = bonus/main.c\
 		bonus/ft_key_hook.c
 
 
-OBJS=$(SRCS:.c=.o)
+OBJS=$(SRCS:.c=.o) $(PARS:.c=.o)
 
-OBJS_BONUS=$(BONUS:.c=.o)
+OBJS_BONUS=$(BONUS:.c=.o) $(PARS:.c=.o)
 
 RM =rm -f
 
 CC = clang
 
-CFLAGS= -I./MLX42/include -I./libft -I./includes -g
+CFLAGS= -I./MLX42/include -I./libft/include -I./includes -g
 
 MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
+
 all: $(NAME)
 
 $(NAME) : $(OBJS)

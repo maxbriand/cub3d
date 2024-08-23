@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/22 20:01:04 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/23 04:01:26 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	ft_find_side(t_player *p, char map[7][11])
 void	ft_ray_casting(void *param)
 {
 	//ex is like ecran x (horizontal value of pixel of the screen)
-	
+
 	t_player *p;
 	int	ex;
 	char map[7][11] = {"1111111111\0",

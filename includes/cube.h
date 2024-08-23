@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 02:44:26 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/23 03:25:24 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 //#include "MLX42/MLX42_Int.h"
 #include "MLX42/MLX42.h"
 #include <math.h>
-#include "../libft/libft.h"
+#include "../libft/include/libft.h"
+#include "cub3d.h"
 
 typedef struct s_ray_casting
 {

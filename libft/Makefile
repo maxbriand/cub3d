@@ -1,108 +1,111 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/20 02:01:45 by gmersch           #+#    #+#              #
-#    Updated: 2024/06/28 16:29:43 by gmersch          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = libft.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
 
-COMP		= gcc
-CFLAGS		= -Wall -Werror -Wextra
-NAME		= libft.a
-INCLUDES	= libft.h
+FT_CTYPE = src/ft_ctype/
+FT_PRINTF = src/ft_stdio/ft_printf/
+FT_STDIO = src/ft_stdio/
+FT_STDLIB = src/ft_stdlib/
+FT_STRING = src/ft_string/
+GNL = src/get_next_line/
+LIST = src/ft_list/
+ARRAY = src/ft_arrstr/
 
-SRC		= ft_atoi.c\
-		ft_isdigit.c\
-		ft_memmove.c\
-		ft_strlen.c\
-		ft_toupper.c\
-		ft_bzero.c\
-		ft_isprint.c\
-		ft_memset.c\
-		ft_strncmp.c\
-		ft_isalnum.c\
-		ft_memchr.c\
-		ft_strchr.c\
-		ft_strnstr.c\
-		ft_isalpha.c\
-		ft_memcmp.c\
-		ft_strlcat.c\
-		ft_strrchr.c\
-		ft_isascii.c\
-		ft_memcpy.c\
-		ft_strlcpy.c\
-		ft_tolower.c\
-		ft_calloc.c\
-		ft_strdup.c\
-		ft_substr.c\
-		ft_strtrim.c\
-		ft_itoa.c\
-		ft_strjoin.c\
-		ft_strmapi.c\
-		ft_split.c\
-		ft_putchar_fd.c\
-		ft_putstr_fd.c\
-		ft_putendl_fd.c\
-		ft_putnbr_fd.c\
-		ft_striteri.c\
-		ft_addback_array_free.c\
-		ft_addback_array.c\
-		ft_addback_char.c\
-		ft_addback_int.c\
-		ft_catch_env.c\
-		ft_is_only_space.c\
-		ft_remove_element.c\
-		ft_strdup_array.c\
-		ft_strdup_better.c\
-		ft_strjoin_free.c\
-		ft_strlen_array.c\
-		ft_strlen_better.c\
-		ft_free_array.c\
+SRC =	$(FT_CTYPE)ft_isalpha.c \
+		$(FT_CTYPE)ft_isdigit.c \
+		$(FT_CTYPE)ft_isalnum.c \
+		$(FT_CTYPE)ft_isascii.c \
+		$(FT_CTYPE)ft_isprint.c \
+		$(FT_CTYPE)ft_toupper.c \
+		$(FT_CTYPE)ft_tolower.c \
+		$(FT_CTYPE)ft_isspace.c \
+		\
+		$(FT_PRINTF)ft_printf.c \
+		$(FT_PRINTF)ft_parser.c \
+		$(FT_PRINTF)ft_print_char.c \
+		$(FT_PRINTF)ft_print_hexanbr.c \
+		$(FT_PRINTF)ft_print_nbr.c \
+		$(FT_PRINTF)ft_print_pt.c \
+		$(FT_PRINTF)ft_print_str.c \
+		$(FT_PRINTF)ft_print_unnbr.c \
+		$(FT_PRINTF)ft_up_or_low.c \
+		\
+		$(FT_STDIO)ft_putchar_fd.c \
+		$(FT_STDIO)ft_putstr_fd.c \
+		$(FT_STDIO)ft_putendl_fd.c \
+		$(FT_STDIO)ft_putnbr_fd.c \
+		\
+		$(FT_STDLIB)ft_atoi.c \
+		$(FT_STDLIB)ft_atol.c \
+		$(FT_STDLIB)ft_calloc.c \
+		$(FT_STDLIB)ft_itoa.c \
+		\
+		$(FT_STRING)ft_bzero.c \
+		$(FT_STRING)ft_memset.c \
+		$(FT_STRING)ft_memcpy.c \
+		$(FT_STRING)ft_memmove.c \
+		$(FT_STRING)ft_memchr.c \
+		$(FT_STRING)ft_memcmp.c \
+		$(FT_STRING)ft_split.c \
+		$(FT_STRING)ft_strchr.c \
+		$(FT_STRING)ft_strdup.c \
+		$(FT_STRING)ft_striteri.c \
+		$(FT_STRING)ft_strjoin.c \
+		$(FT_STRING)ft_strlcat.c \
+		$(FT_STRING)ft_strlcpy.c \
+		$(FT_STRING)ft_strlen.c \
+		$(FT_STRING)ft_strmapi.c \
+		$(FT_STRING)ft_strcmp.c \
+		$(FT_STRING)ft_strncmp.c \
+		$(FT_STRING)ft_strnstr.c \
+		$(FT_STRING)ft_strrchr.c \
+		$(FT_STRING)ft_substr.c \
+		$(FT_STRING)ft_strtrim.c \
+		$(FT_STRING)ft_count_char.c \
+		$(FT_STRING)ft_strcut.c \
+		\
+		$(GNL)get_next_line.c \
+		$(GNL)get_next_line_utils.c \
+		\
+		$(LIST)ft_create_elem.c \
+		$(LIST)ft_list_at.c \
+		$(LIST)ft_list_clear.c \
+		$(LIST)ft_list_last.c \
+		$(LIST)ft_list_push_back.c \
+		$(LIST)ft_list_push_front.c \
+		$(LIST)ft_list_push_strs.c \
+		$(LIST)ft_list_reverse.c \
+		$(LIST)ft_list_size.c \
+		\
+		$(ARRAY)ft_arrfree.c \
+		$(ARRAY)ft_arrcat.c \
+		$(ARRAY)ft_arrlen.c \
+		$(ARRAY)ft_arrprintf.c \
+		$(ARRAY)ft_arrjoin.c \
+		$(ARRAY)ft_arrcpy.c \
+		$(ARRAY)ft_arrfind.c \
+		$(ARRAY)ft_arrncpy.c \
 
+OBJ = $(patsubst %.c, %.o, $(SRC))
 
-
-
-
-BONUS		= ft_lstnew.c\
-		ft_lstadd_front.c\
-		ft_lstsize.c\
-		ft_lstlast.c\
-		ft_lstadd_back.c\
-		ft_lstdelone.c\
-		ft_lstclear.c\
-		ft_lstiter.c\
-		ft_lstmap.c
-
-
-OBJS = $(SRC:.c=.o)
-OBJS_BONUS = $(BONUS:.c=.o)
-
-ifdef value
-	SRC+=$(BONUS)
-endif
+PREPRO_FILES = $(patsubst %.c, %.txt, $(SRC))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 
-bonus:
-	@make value=1;
-
-%.o : %.c
-	$(COMP) $(CFLAGS) -c $< -o $@
-
+%.o: %.c $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I./include
 
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
+	@rm -f $(OBJ)
+	@rm -f $(PREPRO_FILES)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
-re: fclean $(NAME)
+re: fclean
+	@make
 
-.PHONY: clean fclean re all bonus
+.PHONY: all clean fclean re

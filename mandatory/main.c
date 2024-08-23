@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 02:07:48 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/23 03:37:46 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int main(int argc, char **argv)
 {
 	t_player *p;
+	//t_data	data;
 
+
+	//ft_parsing(&data, argc, argv);
 	p = ft_define_player();
 
 	//need to be define by parsing
