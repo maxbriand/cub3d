@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_closed.c                                    :+:      :+:    :+:   */
+/*   ft_check_map_closed.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 00:01:57 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 17:20:43 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 00:02:10 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,32 @@
 
 
 	// data->x_spoint, data->y_spoint;
-void	ft_map_closed(t_data *data, char **map, int y, int x)
+
+void	ft_floodfill(t_data *data, char **map, int y, int x)
 {
-	// check 
-
-	if (map[y][x] == '0')
-		
-
-	ft_map_closed(data, map, y - 1, x);
-	ft_map_closed(data, map, y, x + 1);
-	ft_map_closed(data, map, y + 1, x);
-	ft_map_closed(data, map, y, x - 1);
+	if (y < 0 || x < 0)
+		ft_pexit("map not closed by walls", data);
+	if (y >= data->map.lenmap || x >= ft_strlen(map[y]))
+		ft_pexit("map not closed by walls", data);	
+	if (map[y][x] == '1')
+		return ;
+	else
+		map[y][x] = '1';
+	ft_floodfill(data, map, y - 1, x);
+	ft_floodfill(data, map, y, x + 1);
+	ft_floodfill(data, map, y + 1, x);
+	ft_floodfill(data, map, y, x - 1);
 }
 
+void	ft_check_map_closed(t_data *data, char **map)
+{
+	char	**map_copy;
+	int		len;
+
+	data->map.lenmap = ft_arrlen(map);
+	map_copy = malloc(sizeof(char *) * len + 1);
+	if (!map_copy)
+		ft_pexit("malloc issue", data);
+	ft_arrcpy(map_copy, map);
+	ft_floodfill(data, map_copy, data->y_spoint, data->x_spoint);
+}

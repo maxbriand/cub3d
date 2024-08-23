@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:09:53 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 16:24:03 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/23 23:36:50 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_init_data(t_data *data)
 	data->map.ceil_r = -1;
 	data->map.ceil_g = -1;
 	data->map.ceil_b = -1;
+	data->map.len_counter = 0;
 	data->x_spoint = -1;
 	data->y_spoint = -1;
 }

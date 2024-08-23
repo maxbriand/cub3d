@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_only_good_char.c                            :+:      :+:    :+:   */
+/*   ft_check_map_one_good_char.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:54:35 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 16:48:57 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 00:03:30 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_only_one_spawn(int i, int j, t_data *data)
 	data->y_spoint = i;
 }
 
-void	ft_map_only_good_char(t_data *data, char **map)
+void	ft_check_map_one_good_char(t_data *data, char **map)
 {
 	int		i;
 	int		j;

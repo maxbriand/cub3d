@@ -13,10 +13,9 @@ SRC = 	main.c \
 		parsing/ft_init_data.c \
 		parsing/ft_cut_text.c \
 		parsing/ft_store_map.c \
-		parsing/ft_ids_good_path.c \
-		parsing/ft_map_only_good_char.c \
-		parsing/ft_map_closed.c \
-		parsing/ft_cut_end_spaces_split.c \
+		parsing/ft_check_ids_good_path.c \
+		parsing/ft_check_map_one_good_char.c \
+		parsing/ft_check_map_closed.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
