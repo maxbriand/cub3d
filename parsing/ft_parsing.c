@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 01:31:30 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/23 17:17:05 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	ft_parsing(t_data *data, int ac, char **av)
 	ft_cut_text(data);
 	ft_ids_good_path(data);
 	ft_map_only_good_char(data, data->map.map);
-	ft_map_closed(data, data->map.map);
+	ft_map_closed(data, data->map.map, data->y_spoint, data->x_spoint);
 
 	// check if all id are set
-	ft_arrprintf(data->map.map);
-	printf("%s\n", data->map.no_path);
-	printf("%s\n", data->map.so_path);
-	printf("%s\n", data->map.we_path);
-	printf("%s\n", data->map.ea_path);
-	printf("%d\n", data->map.floor_r);
-	printf("%d\n", data->map.floor_g);
-	printf("%d\n", data->map.floor_b);
-	printf("%d\n", data->map.ceil_r);
-	printf("%d\n", data->map.ceil_g);
-	printf("%d\n", data->map.ceil_b);
+	// ft_arrprintf(data->map.map);
+	// printf("%s\n", data->map.no_path);
+	// printf("%s\n", data->map.so_path);
+	// printf("%s\n", data->map.we_path);
+	// printf("%s\n", data->map.ea_path);
+	// printf("%d\n", data->map.floor_r);
+	// printf("%d\n", data->map.floor_g);
+	// printf("%d\n", data->map.floor_b);
+	// printf("%d\n", data->map.ceil_r);
+	// printf("%d\n", data->map.ceil_g);
+	// printf("%d\n", data->map.ceil_b);
 }

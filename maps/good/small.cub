@@ -1,0 +1,21 @@
+NO ./textures/titi.jpg
+SO ./textures/cow.jpg
+		EA          ./textures/panda.jpg
+
+F 220,100,0
+C 225,30,0
+WE ./textures/spider.jpg
+
+11111111111      
+10000001001
+10000000001
+1000S000001
+10000000001
+11111111111
+
+11111111111      
+1AA1AA01AA1
+1AAAAA1A0A1
+1AAASAAA001
+1AAAAA1A001
+11111111111

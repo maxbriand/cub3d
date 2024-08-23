@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 01:31:13 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/23 17:11:13 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@
 # include <errno.h>
 # include <sys/time.h>
 # include <stdbool.h>
-
-typedef struct s_dup
-{
-	bool	no;
-	bool	so;
-	bool	we;
-	bool	ea;
-	bool	f;
-	bool	c;
-}   t_dup;
 
 typedef struct s_map
 {
@@ -53,8 +43,9 @@ typedef struct s_map
 typedef struct s_data
 {
 	char	*text;
+	int		x_spoint;
+	int		y_spoint;
 	t_map	map;
-	t_dup	dup;
 }   t_data;
 
 
@@ -71,7 +62,7 @@ void 	ft_init_data(t_data *data);
 void	ft_store_map(t_data *data, char *text);
 void	ft_ids_good_path(t_data *data);
 void	ft_map_only_good_char(t_data *data, char **map);
-void	ft_map_closed(t_data *data, char **map);
-void	ft_cut_end_spaces_split(t_data *data, char **map);
+void	ft_map_closed(t_data *data, char **map, int y, int x);
+// void	ft_cut_end_spaces_split(t_data *data, char **map);
 
 #endif
