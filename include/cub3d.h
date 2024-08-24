@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 00:05:12 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 19:58:37 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 # include <errno.h>
 # include <sys/time.h>
 # include <stdbool.h>
+# include "MLX42/MLX42.h"
 
 typedef struct s_map
 {
 	char	**map;
+	char	**map_copy;
 	int		lenmap;
 	char	*no_path;
 	char	*so_path;
@@ -55,9 +57,9 @@ void	ft_pexit(char *msg, t_data *data);
 
 // PARSING
 void	ft_parsing(t_data *data, int ac, char **av);
-void	ft_arg_nbr(int ac);
-void	ft_extension(char *path);
-char	*ft_get_text(char *path);
+void	ft_check_arg_nbr(t_data *data, int ac);
+void	ft_check_map_file_extension(t_data *data, char *path);
+char	*ft_get_text(t_data *data, char *path);
 void 	ft_cut_text(t_data *data);
 void 	ft_init_data(t_data *data);
 void	ft_store_map(t_data *data, char *text);

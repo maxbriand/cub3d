@@ -8,7 +8,9 @@
     "vector": "c",
     "string_view": "c",
     "initializer_list": "c",
-    "libft.h": "c"
+    "libft.h": "c",
+    "stdlib.h": "c",
+    "unistd.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_nbr.c                                       :+:      :+:    :+:   */
+/*   ft_check_map_file_extension.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 17:14:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/06 18:01:19 by mbriand          ###   ########.fr       */
+/*   Created: 2024/08/01 17:13:18 by mbriand           #+#    #+#             */
+/*   Updated: 2024/08/24 19:58:07 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_arg_nbr(int ac)
+void	ft_check_map_file_extension(t_data *data, char *path)
 {
-	if (ac < 2)
-		ft_pexit("too few arguments", NULL);
-	if (ac > 2)
-		ft_pexit("too many arguments", NULL);
+	int	l;
+
+	l = ft_strlen(path);
+	if (path[l - 1] != 'b' || path[l - 2] != 'u' || path[l - 3] != 'c' || \
+		path[l - 4] != '.')
+		ft_pexit("the file extension isn't correct", data);
 }

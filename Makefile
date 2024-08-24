@@ -7,8 +7,8 @@ SRC = 	main.c \
 		ft_pexit.c \
 		\
 		parsing/ft_parsing.c \
-		parsing/ft_arg_nbr.c \
-		parsing/ft_extension.c \
+		parsing/ft_check_arg_nbr.c \
+		parsing/ft_check_map_file_extension.c \
 		parsing/ft_get_text.c \
 		parsing/ft_init_data.c \
 		parsing/ft_cut_text.c \
@@ -25,7 +25,7 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -Llibft -lft -lm ./MLX42/build/libmlx42.a -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(FLAGS) -g -c $< -o $@ -Iinclude -Ilibft/include 
+	@$(CC) $(FLAGS) -g -c $< -o $@ -Iinclude -Ilibft/include -IMLX42/include/
 
 $(LIBFT):
 	@make --no-print-directory -C libft

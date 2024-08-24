@@ -6,7 +6,7 @@
 /*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 18:12:52 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 19:11:03 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	ft_store_map(t_data *data, char *text)
 		else
 		{
 			data->map.map = ft_new_split(data, c_line, '\n');
+			free(data->text);
+			data->text = NULL;
 			return ;
 		}
 		text++;

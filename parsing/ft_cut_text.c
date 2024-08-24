@@ -6,7 +6,7 @@
 /*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 18:04:08 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 20:22:50 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ static void	ft_id_already_set(t_data *data, int nbr)
 	}
 }
 
+// char	*no_path;
+// char	*so_path;
+// char	*we_path;
+// char	*ea_path;
 static int ft_set_orientation(t_data *data, char *text, int nbr)
 {
 	int		len;
@@ -128,7 +132,7 @@ static int ft_set_orientation(t_data *data, char *text, int nbr)
 // identify ID
 int	ft_identify_id(t_data *data, char *text, int *counter)
 {
-	const char	*ids[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	const char	*ids[] = {"NO", "SO", "WE", "EA", "F", "C", "\0"};
 	int			i;
 	int			nbr;
 
@@ -157,6 +161,7 @@ int	ft_identify_id(t_data *data, char *text, int *counter)
 }
 
 // iterate line by line until counter = 6 or end of text
+// malloc map
 void	ft_cut_text(t_data *data)
 {
 	int		i;

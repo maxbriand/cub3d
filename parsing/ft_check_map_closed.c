@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map_closed.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 00:01:57 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 00:02:10 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 19:39:43 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@
 
 	// data->x_spoint, data->y_spoint;
 
+
+// 
 void	ft_floodfill(t_data *data, char **map, int y, int x)
 {
 	if (y < 0 || x < 0)
@@ -118,15 +120,15 @@ void	ft_floodfill(t_data *data, char **map, int y, int x)
 	ft_floodfill(data, map, y, x - 1);
 }
 
+// malloc data->map.map_copy and free
 void	ft_check_map_closed(t_data *data, char **map)
 {
-	char	**map_copy;
-	int		len;
-
 	data->map.lenmap = ft_arrlen(map);
-	map_copy = malloc(sizeof(char *) * len + 1);
-	if (!map_copy)
+	data->map.map_copy = malloc(sizeof(char *) * (data->map.lenmap + 1));
+	if (!data->map.map_copy)
 		ft_pexit("malloc issue", data);
-	ft_arrcpy(map_copy, map);
-	ft_floodfill(data, map_copy, data->y_spoint, data->x_spoint);
+	ft_arrcpy(data->map.map_copy, map);
+	ft_floodfill(data, data->map.map_copy, data->y_spoint, data->x_spoint);
+	ft_arrfree(data->map.map_copy);
+	data->map.map_copy = NULL;
 }
