@@ -6,7 +6,7 @@
 /*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 16:25:13 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 18:04:08 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void	ft_cut_text(t_data *data)
 		while (ft_isspace(data->text[i]))
 			i++;
 		if (!data->text[i])
-			break;
+			break ;
 		if (counter < 6)
 			i += ft_identify_id(data, data->text + i, &counter);
 		if (counter == 6)

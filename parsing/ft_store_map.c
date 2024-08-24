@@ -3,56 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_store_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 00:48:37 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/24 18:12:52 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_counter_no_empty_line(char **map)
-{
-	int		i;
-	int		j;
-	char	c;	
+// static int	ft_counter_no_empty_line(char **map)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	c;	
 
-	i = 0;
-	j = 0;
-	c = '\0';
-	while (map[i])
-	{
-		while (map[i][j])
-		{
-			if (!ft_isspace(c))
-			{
-				c = map[i][j];
-				break ;
-			}
-			j++;
-		}		
-		if (!c)
-			break ;
-		c = '\0';
-		j = 0;
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	j = 0;
+// 	c = '\0';
+// 	while (map[i])
+// 	{
+// 		while (map[i][j])
+// 		{
+// 			if (!ft_isspace(c))
+// 			{
+// 				c = map[i][j];
+// 				break ;
+// 			}
+// 			j++;
+// 		}		
+// 		if (!c)
+// 			break ;
+// 		c = '\0';
+// 		j = 0;
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
-static void	ft_remove_empty_line(t_data *data, char **map)
-{
-	int		n;
-	char	**clean_map;
+// static void	ft_remove_empty_line(t_data *data, char **map)
+// {
+// 	int		n;
+// 	char	**clean_map;
 
-	n = ft_counter_no_empty_line(map);
-	clean_map = malloc(sizeof(char *) * (n + 1));
-	if (!clean_map)
-		ft_pexit("malloc issue", data);
-	data->map.map = ft_arrncpy(clean_map, map, n);
-	ft_arrfree(map);
-}
+// 	n = ft_counter_no_empty_line(map);
+// 	clean_map = malloc(sizeof(char *) * (n + 1));
+// 	if (!clean_map)
+// 		ft_pexit("malloc issue", data);
+// 	data->map.map = ft_arrncpy(clean_map, map, n);
+// 	ft_arrfree(map);
+// }
 
 // add an extra space in case of nothing after \n 
 char	**ft_new_split(t_data *data, char *text, char c)
@@ -94,14 +94,12 @@ void	ft_store_map(t_data *data, char *text)
 		while (ft_isspace(*text) && *text != '\n')
 			text++;
 		if (*text == '\n')
-			c_line = text;
+			c_line = text + 1;
 		else if (!*text)
 			break ;
 		else
 		{
-			printf("the c_line is = \n%s", c_line);
 			data->map.map = ft_new_split(data, c_line, '\n');
-			// ft_remove_empty_line(data, data->map.map);
 			return ;
 		}
 		text++;
