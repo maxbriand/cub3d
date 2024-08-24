@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map_closed.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 00:01:57 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 19:39:43 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 01:04:29 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	ft_arrlongest()
-// {
-
-
-
-// }
 
 // static void	ft_top_closed(t_data *data, char **map)
 // {
@@ -25,7 +18,6 @@
 // 	int		j;
 // 	int		len;
 // 	bool	map_started;
-
 // 	i = -1;
 // 	j = 0;
 // 	map_started = 0;
@@ -41,19 +33,16 @@
 // 		}
 // 		if (map[i][j] == '1')
 // 			map_started = 1;
-// 		else if (!map[i][j] && map_started)
-			
+// 		else if (!map[i][j] && map_started)	
 // 		i = 0;
 // 		j++;
 // 	}
 // }
-
 // static void	ft_right_closed(t_data *data, char **map)
 // {
 // 	char	last_char;
 // 	int		i;
 // 	int		j;
-
 // 	i = 0;
 // 	j = 0;
 // 	map++;
@@ -71,12 +60,10 @@
 // 		i++;
 // 	}
 // }
-
 // static void	ft_left_closed(t_data *data, char **map)
 // {
 // 	int	i;
 // 	int	j;
-
 // 	i = 0;
 // 	j = 0;
 // 	while (map[i])
@@ -88,9 +75,7 @@
 // 		j = 0;
 // 		i++;
 // 	}
-
 // }
-
 // void	ft_map_closed(t_data *data, char **map)
 // {
 // 	// ft_left_closed(data, map);
@@ -98,18 +83,14 @@
 // 	// ft_top_closed(data, map);
 // 	printf("top side is closed\n");
 // }
-
-
 	// data->x_spoint, data->y_spoint;
-
-
 // 
 void	ft_floodfill(t_data *data, char **map, int y, int x)
 {
 	if (y < 0 || x < 0)
 		ft_pexit("map not closed by walls", data);
 	if (y >= data->map.lenmap || x >= ft_strlen(map[y]))
-		ft_pexit("map not closed by walls", data);	
+		ft_pexit("map not closed by walls", data);
 	if (map[y][x] == '1')
 		return ;
 	else

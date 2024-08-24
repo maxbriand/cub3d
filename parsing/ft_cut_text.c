@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cut_text.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 20:22:50 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 00:41:27 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,13 @@ static int ft_set_orientation(t_data *data, char *text, int nbr)
 // identify ID
 int	ft_identify_id(t_data *data, char *text, int *counter)
 {
-	const char	*ids[] = {"NO", "SO", "WE", "EA", "F", "C", "\0"};
+	const char	*ids[] = {"NO", "SO", "WE", "EA", "F", "C"};
 	int			i;
 	int			nbr;
 
 	i = 0;
 	nbr = 0;
-	while (ids[nbr])
+	while (1)
 	{
 		if (nbr >= 6)
 			ft_pexit("unknows identifier", data);

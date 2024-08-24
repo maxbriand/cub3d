@@ -3,56 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_store_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 19:11:03 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 01:05:55 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static int	ft_counter_no_empty_line(char **map)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	c;	
-
-// 	i = 0;
-// 	j = 0;
-// 	c = '\0';
-// 	while (map[i])
-// 	{
-// 		while (map[i][j])
-// 		{
-// 			if (!ft_isspace(c))
-// 			{
-// 				c = map[i][j];
-// 				break ;
-// 			}
-// 			j++;
-// 		}		
-// 		if (!c)
-// 			break ;
-// 		c = '\0';
-// 		j = 0;
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-// static void	ft_remove_empty_line(t_data *data, char **map)
-// {
-// 	int		n;
-// 	char	**clean_map;
-
-// 	n = ft_counter_no_empty_line(map);
-// 	clean_map = malloc(sizeof(char *) * (n + 1));
-// 	if (!clean_map)
-// 		ft_pexit("malloc issue", data);
-// 	data->map.map = ft_arrncpy(clean_map, map, n);
-// 	ft_arrfree(map);
-// }
 
 // add an extra space in case of nothing after \n 
 char	**ft_new_split(t_data *data, char *text, char c)
@@ -76,6 +34,8 @@ char	**ft_new_split(t_data *data, char *text, char c)
 		if (!map)
 			ft_pexit("malloc issue", data);
 		ft_strlcpy(*map, start_line, len_line + 1);
+		if (*text)
+			break ;
 		map++;
 		text++;
 	}
