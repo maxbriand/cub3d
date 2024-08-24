@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 03:37:46 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/24 18:16:31 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int main(int argc, char **argv)
 	mlx_delete_image(p->game->mlx, p->game->image);
 	mlx_terminate(p->game->mlx);
 	ft_ultimate_free(p);
+	
 	return (0);
 }

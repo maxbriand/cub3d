@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 22:58:41 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/24 19:28:52 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static void	ft_print_ray(t_player *p, int ex)
 	float wall_hit_position;
 	uint32_t color;
 
+	color = 0xB400B4FF; //define color of the wall
+	if (p->rc->side)
+		color = (color / 2) | 0xFF;
+
+	
 	if (p->rc->side == 0) // Mur vertical (nord-sud)
 		wall_hit_position = p->rc->x - floor(p->rc->x);
 	else // Mur horizontal (est-ouest)
@@ -62,7 +67,7 @@ static void	ft_print_ray(t_player *p, int ex)
 			pixel = p->game->north_texture->width * p->game->north_texture->height - 1;
 
 		//and now that we have the index of the pixel in our ray, lets get the color of it :
-		color = p->game->north_texture->pixels[pixel];
+		//color = p->game->north_texture->pixels[pixel];
 
 		// Afficher le pixel sur l'image finale
 		mlx_put_pixel(p->game->image, ex, i, color);
@@ -142,7 +147,21 @@ void	ft_ray_casting(void *param)
 					""};
 
 	p = (t_player *)param;
+	
+	struct timeval time; // add fps counter
+	suseconds_t usec;
+	time_t sec;
+	char *fps;
+
 	ex = 0;
+
+	if (p->game->pause)
+		return ;
+	gettimeofday(&time, NULL);
+	usec = time.tv_usec;
+	sec = time.tv_sec;
+
+	ft_move_wasd(p);//ici;
 	while (ex < p->game->width)
 	{
 		//we redefine rc every frame, because it set var needed by ray casting
@@ -156,5 +175,13 @@ void	ft_ray_casting(void *param)
 		//print ray, its here to change color :
 		ft_print_ray(p, ex);
 		ex++;
+	}
+	//print fps
+	gettimeofday(&time, NULL);
+	if (time.tv_sec == sec)
+	{
+		fps = ft_itoa((int)(1000000 / (time.tv_usec - usec)));
+		printf("%s\n", fps); //fps
+		//mlx_put_string(p->game->mlx, fps, 10, 10);
 	}
 }

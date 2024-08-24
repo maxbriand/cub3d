@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 22:51:29 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/24 18:20:35 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_player	*ft_define_player()
 	p->last_mouse_y = 0;
 
 
-	p->fov = 0.4 * M_PI;
+	p->fov = M_PI * 0.4;
 	p->or = 1 * M_PI;
 	p->rc = NULL;
 	return (p);

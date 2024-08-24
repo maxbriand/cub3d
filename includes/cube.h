@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/23 22:50:15 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/24 16:22:00 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void		ft_ultimate_free(t_player *p);
 void		ft_ray_casting(void *param);
 
 void	ft_move_hook(mlx_key_data_t keydata, t_player *p);
+void	ft_move_wasd(t_player *p);
 
 void	ft_mouse_move(double x, double y, void *param);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
