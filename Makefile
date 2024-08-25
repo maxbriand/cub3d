@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-FLAGS = -Wall -Werror -Wextra
+# FLAGS = -Wall -Werror -Wextra
 LIBFT = libft/libft.a
 
 SRC = 	main.c \
