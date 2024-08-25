@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:54:35 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 00:03:30 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:54:12 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_check_map_one_good_char(t_data *data, char **map)
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'N' && \
 				map[i][j] != 'S' && map[i][j] != 'W' && map[i][j] != 'E' && \
 				!ft_isspace(map[i][j]))
-				ft_pexit("map contains an impossible char", data);
+				ft_pexit("map contains an impossible character", data);
 			if (map[i][j] == 'N' || map[i][j] == 'S' || \
 				map[i][j] == 'W' || map[i][j] == 'E')
 				ft_only_one_spawn(i, j, data);

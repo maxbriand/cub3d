@@ -6,18 +6,25 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 01:05:55 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 18:33:30 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_add_map_line(t_data *data, char **map, char *text, char *start_line)
+{
+	*map = malloc(sizeof(char) * (text - start_line + 1));
+	if (!map)
+		ft_pexit("malloc issue", data);
+	ft_strlcpy(*map, start_line, text - start_line + 1);
+}
 
 // add an extra space in case of nothing after \n 
 char	**ft_new_split(t_data *data, char *text, char c)
 {
 	char	**map;
 	char	*start_line;
-	int		len_line;
 	char	**save_map;
 
 	map = malloc(sizeof(char *) * (ft_count_char(text, c) + 2));
@@ -27,16 +34,12 @@ char	**ft_new_split(t_data *data, char *text, char c)
 	while (*text)
 	{
 		start_line = text;
-		while (*text != '\n' && *text)
+		while (*text != c && *text)
 			text++;
-		len_line = text - start_line;
-		*map = malloc(sizeof(char) * (text - start_line + 1));
-		if (!map)
-			ft_pexit("malloc issue", data);
-		ft_strlcpy(*map, start_line, len_line + 1);
-		if (*text)
-			break ;
+		ft_add_map_line(data, map, text, start_line);
 		map++;
+		if (!*text)
+			break ;
 		text++;
 	}
 	*map = NULL;

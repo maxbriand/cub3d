@@ -6,66 +6,29 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 00:41:27 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:38:48 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_atol_color(t_data *data, char *text, int d)
+static void	ft_id_already_set2(t_data *data, int nbr)
 {
-	long	color;
-	char	*number;
-	int		i;
-
-	if (!text)
-		ft_pexit("missing information on the map", data);
-	i = 0;
-	while (text[i])
+	if (nbr == 3)
 	{
-		if (d == 1 && text[i] == ',')
-			break ;
-		if (d == 2 && ft_isspace(text[i]))
-			break ;
-		if (!ft_isdigit(text[i]))
-			ft_pexit("isn't a correct number", data);
-		i++;
+		if (data->map.ea_path)
+			ft_pexit("duplicate EA id", data);
 	}
-	data->map.len_counter = i + 1;
-	number = malloc(i + 1);
-	if (!number)
-		ft_pexit("malloc issue", data);
-	ft_strlcpy(number, text, i + 1);
-	color = ft_atol(number);
-	free(number);
-	if (color < 0 || color > 255)
-		ft_pexit("one rgb code isn't in a good scope", data);
-	return (color);
-}
-
-static int ft_set_color(t_data *data, char *text, int nbr)
-{
-	int	len;
-
 	if (nbr == 4)
 	{
-		data->map.floor_r = ft_atol_color(data, text, 1);
-		len = data->map.len_counter;
-		data->map.floor_g = ft_atol_color(data, text + len, 1);
-		len += data->map.len_counter;
-		data->map.floor_b = ft_atol_color(data, text + len, 2);
-		len += data->map.len_counter;
+		if (data->map.floor_r != -1)
+			ft_pexit("duplicate F id", data);
 	}
-	else if (nbr == 5)
+	if (nbr == 5)
 	{
-		data->map.ceil_r = ft_atol_color(data, text, 1);
-		len = data->map.len_counter;
-		data->map.ceil_g = ft_atol_color(data, text + len, 1);
-		len += data->map.len_counter;
-		data->map.ceil_b = ft_atol_color(data, text + len, 2);
-		len += data->map.len_counter;
+		if (data->map.ceil_r != -1)
+			ft_pexit("duplicate C id", data);
 	}
-	return (len - 1);
 }
 
 static void	ft_id_already_set(t_data *data, int nbr)
@@ -85,48 +48,24 @@ static void	ft_id_already_set(t_data *data, int nbr)
 		if (data->map.we_path)
 			ft_pexit("duplicate WE id", data);
 	}
-	if (nbr == 3)
-	{
-		if (data->map.ea_path)
-			ft_pexit("duplicate EA id", data);
-	}
-	if (nbr == 4)
-	{
-		if (data->map.floor_r != -1)
-			ft_pexit("duplicate F id", data);
-	}
-	if (nbr == 5)
-	{
-		if (data->map.ceil_r != -1)
-			ft_pexit("duplicate C id", data);
-	}
+	ft_id_already_set2(data, nbr);
 }
 
-// char	*no_path;
-// char	*so_path;
-// char	*we_path;
-// char	*ea_path;
-static int ft_set_orientation(t_data *data, char *text, int nbr)
+int	ft_select_id(t_data *data, char *text)
 {
-	int		len;
-	char	*info;
+	const char	*ids[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	int			nbr;
 
-	len = 0;
-	while (ft_isprint(text[len]) && text[len] != ' ')
-		len++;
-	info = malloc(len + 1);
-	if (!info)
-		ft_pexit("malloc issue", data);
-	ft_strlcpy(info, text, len + 1);
-	if (nbr == 0)
-		data->map.no_path = info;
-	if (nbr == 1)
-		data->map.so_path = info;
-	if (nbr == 2)
-		data->map.we_path = info;
-	if (nbr == 3)
-		data->map.ea_path = info;
-	return (len);
+	nbr = 0;
+	while (1)
+	{
+		if (nbr >= 6)
+			ft_pexit("unknows identifier", data);
+		if (!ft_strncmp(ids[nbr], text, ft_strlen(ids[nbr])))
+			break ;
+		nbr++;
+	}
+	return (nbr);
 }
 
 // identify ID
@@ -137,15 +76,7 @@ int	ft_identify_id(t_data *data, char *text, int *counter)
 	int			nbr;
 
 	i = 0;
-	nbr = 0;
-	while (1)
-	{
-		if (nbr >= 6)
-			ft_pexit("unknows identifier", data);
-		if (!ft_strncmp(ids[nbr], text, ft_strlen(ids[nbr])))
-			break ;
-		nbr++;
-	}
+	nbr = ft_select_id(data, text);
 	ft_id_already_set(data, nbr);
 	i += ft_strlen(ids[nbr]);
 	if (!ft_isspace(text[i]))
@@ -169,6 +100,8 @@ void	ft_cut_text(t_data *data)
 
 	i = 0;
 	counter = 0;
+	if (!data->text)
+		ft_pexit("empty file", data);
 	while (data->text[i])
 	{
 		while (ft_isspace(data->text[i]))

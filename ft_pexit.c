@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pexit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:17:43 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 20:08:58 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/25 18:39:23 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_free_struct(t_data *data)
 	if (data->map.map)
 		ft_arrfree(data->map.map);
 	if (data->map.map_copy)
-		ft_arrfree(data->map.map_copy);		
+		ft_arrfree(data->map.map_copy);
 	if (data->map.ea_path)
 		free(data->map.ea_path);
 	if (data->map.so_path)
