@@ -1,10 +1,11 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
-# FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 LIBFT = libft/libft.a
 
 SRC = 	main.c \
 		ft_pexit.c \
+		ft_init_png.c \
 		\
 		parsing/ft_parsing.c \
 		parsing/ft_check_arg_nbr.c \

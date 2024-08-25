@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 19:22:54 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/26 00:48:15 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,24 @@
 
 typedef struct s_map
 {
-	char	**map;
-	char	**map_copy;
-	int		height_map;
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		floor_r;
-	int		floor_g;
-	int		floor_b;
-	int		ceil_r;
-	int		ceil_g;
-	int		ceil_b;
-	int		len_counter;
+	char			**map;
+	char			**map_copy;
+	int				height_map;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	mlx_texture_t	*t_no_path;
+	mlx_texture_t	*t_so_path;
+	mlx_texture_t	*t_we_path;
+	mlx_texture_t	*t_ea_path;
+	int				floor_r;
+	int				floor_g;
+	int				floor_b;
+	int				ceil_r;
+	int				ceil_g;
+	int				ceil_b;
+	int				len_counter;
 }	t_map;
 
 typedef struct s_data
@@ -50,6 +54,9 @@ typedef struct s_data
 	int		y_spoint;
 	t_map	map;
 }	t_data;
+
+// EXE
+void	ft_init_png(t_data *data);
 
 // ERROR
 void	ft_pexit(char *msg, t_data *data);

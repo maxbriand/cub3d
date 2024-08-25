@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 19:38:05 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/26 00:36:23 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,4 @@ void	ft_parsing(t_data *data, int ac, char **av)
 	ft_check_map_size(data, data->map.map);
 	ft_check_map_one_good_char(data, data->map.map);
 	ft_check_map_closed(data, data->map.map);
-	free(data->map.no_path);
-	free(data->map.so_path);
-	free(data->map.ea_path);
-	free(data->map.we_path);
-	ft_arrfree(data->map.map);
 }

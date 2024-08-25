@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 18:33:30 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/26 00:26:29 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_add_map_line(t_data *data, char **map, char *text, char *start_line)
 {
 	*map = malloc(sizeof(char) * (text - start_line + 1));
-	if (!map)
+	if (!*map)
 		ft_pexit("malloc issue", data);
 	ft_strlcpy(*map, start_line, text - start_line + 1);
 }
