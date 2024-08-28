@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/24 18:20:35 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/28 20:06:31 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_define_rc(t_player *p, int ex)
 	p->rc->y = p->posY;
 	p->rc->x = p->posX;
 	//trouver la longueur du rayon
-	p->rc->angle = p->or - (p->fov / 2.0) + (p->fov * ((float)ex / p->game->width));
+	p->rc->angle = p->or - (p->fov / 2.0) + (p->fov * ((float)ex / (float)p->game->width));
 	p->rc->rayDirX = cos(p->rc->angle);
 	p->rc->rayDirY = sin(p->rc->angle);
 	p->rc->hit = 0;
@@ -81,8 +81,7 @@ static t_game	*ft_define_game()
 		printf("Error: failed to load texture.\n"); // mayday printf
 		exit (1); //MAYDAY EXIT
 	}
-
-
+	
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
 }

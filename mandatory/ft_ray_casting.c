@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/24 19:28:52 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/28 20:10:59 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@ static void	ft_print_ray(t_player *p, int ex)
 
 	
 	if (p->rc->side == 0) // Mur vertical (nord-sud)
-		wall_hit_position = p->rc->x - floor(p->rc->x);
+		wall_hit_position = p->posY + p->rc->perpWallDist * p->rc->rayDirY;
 	else // Mur horizontal (est-ouest)
-		wall_hit_position = p->rc->y - floor(p->rc->y);
+		wall_hit_position = p->posX + p->rc->perpWallDist * p->rc->rayDirX;
+	wall_hit_position -= floor(wall_hit_position);
 
-	texture_x = (int)(wall_hit_position * p->game->north_texture->width);
-	if (texture_x < 0)\
+	texture_x = (wall_hit_position * (float)(p->game->north_texture->width - 1));
+	if(p->rc->side == 0 && p->rc->rayDirX > 0.0)
+		texture_x = p->game->north_texture->width - texture_x - 1;
+    if(p->rc->side == 1 && p->rc->rayDirY < 0.0)
+		texture_x = p->game->north_texture->width - texture_x - 1;
+	
+	if (texture_x < 0)
 		texture_x = 0;
 	if (texture_x >= p->game->north_texture->width)
 		texture_x = p->game->north_texture->width - 1;
@@ -46,7 +52,7 @@ static void	ft_print_ray(t_player *p, int ex)
 	while (i < p->rc->drawEnd)
 	{
 		// Calculer la position Y sur la texture en fonction de la hauteur du mur
-		texture_y = (int)((i - p->rc->drawStart) * (p->game->north_texture->height / (float)(p->rc->drawEnd - p->rc->drawStart)));
+		texture_y = (int)((i - p->rc->drawStart) * (p->game->north_texture->height / (p->rc->drawEnd - p->rc->drawStart)));
 		if (texture_y < 0)
 			texture_y = 0;
 		if (texture_y >= p->game->north_texture->height)
@@ -58,16 +64,37 @@ static void	ft_print_ray(t_player *p, int ex)
 		//AND we add texture x for being not at the start of the line, but in the correct x pos.
 		//Put it on escalidraw or come see me (or discord) if explaination needed
 		//so it gives us this line :
-		pixel = texture_y * p->game->north_texture->width + texture_x;
+		
+		//pixel = ((texture_y * p->game->north_texture->width) + texture_x) * 4;
+		pixel = p->game->north_texture->width * texture_y * 4 + abs(texture_x - (int)p->game->north_texture->width + 1) * 4;
 
 		//verif if ok
 		if (pixel < 0)
 			pixel = 0;
-		if (pixel >= p->game->north_texture->width * p->game->north_texture->height)
-			pixel = p->game->north_texture->width * p->game->north_texture->height - 1;
-
+		//if (pixel >= p->game->north_texture->width * p->game->north_texture->height)
+		//	pixel = p->game->north_texture->width * p->game->north_texture->height - 1;
+		//printf("%d = pixel\n", pixel);
+		//printf("%d = width\n", p->game->north_texture->width);
+		//printf("%d = height\n", p->game->north_texture->height);
 		//and now that we have the index of the pixel in our ray, lets get the color of it :
 		//color = p->game->north_texture->pixels[pixel];
+		// color = ((u_int16_t)p->game->north_texture->pixels[pixel] << 24) |
+        //            (u_int16_t)(p->game->north_texture->pixels[pixel+ 1] << 16) |
+        //            (u_int16_t)(p->game->north_texture->pixels[pixel + 2] << 8) |
+        //         	(u_int16_t)p->game->north_texture->pixels[pixel + 3];
+
+		color = p->game->north_texture->pixels[pixel];
+		color = (color << 8) + p->game->north_texture->pixels[pixel+ 1];
+		color = (color << 8) + p->game->north_texture->pixels[pixel+ 2];
+		color = (color << 8) + p->game->north_texture->pixels[pixel+ 3];
+
+		//p->game->north_texture->pixels
+		//printf("%08X = hexa\n", color);
+		//printf("%X = hexa1\n", p->game->north_texture->pixels[pixel]);
+		//printf("%X = hex2a\n", (p->game->north_texture->pixels[pixel+ 1]));
+		//printf("%X = hexa3\n", p->game->north_texture->pixels[pixel + 2] << 2);
+		//printf("%X = hexa4\n", p->game->north_texture->pixels[pixel + 3]);
+		//printf("%d = pixel\n", pixel);
 
 		// Afficher le pixel sur l'image finale
 		mlx_put_pixel(p->game->image, ex, i, color);
@@ -76,14 +103,10 @@ static void	ft_print_ray(t_player *p, int ex)
 	// Afficher le sol en dessous du mur
 	while (i < p->game->height)
 	{
-		mlx_put_pixel(p->game->image, ex, i, 0x000000FF); // Couleur du sol
+		mlx_put_pixel(p->game->image, ex, i, 0x000000FF / 2); // Couleur du sol
 		i++;
 	}
 }
-
-
-
-
 
 //define draw start and draw end, its were we should drow on the y line (vertical line)
 static void	ft_define_print(t_player *p)
