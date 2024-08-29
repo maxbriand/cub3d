@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/29 02:35:56 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/29 03:25:38 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static int	ft_define_tx(t_player *p)
 	if(p->rc->side == 1 && p->rc->rayDirY < 0.0)
 		text_x = p->game->north_texture->width - text_x - 1;
 
-	if (text_x < 0)
-		text_x = 0;
-	if (text_x >= p->game->north_texture->width)
-		text_x = p->game->north_texture->width - 1;
+	//if (text_x < 0)
+	//	text_x = 0;
+	//if (text_x >= p->game->north_texture->width)
+	//	text_x = p->game->north_texture->width - 1;
 	return (text_x);
 }
 
@@ -97,8 +97,8 @@ void	ft_print_ray(t_player *p, int sx)
 		//pixel need to be multiplicate by 4, because pixel is a group of 4 pixel (R + G + B + A)
 
 		//verif if undo 0
-		if (pixel < 0)
-			pixel = 0;
+		//if (pixel < 0)
+			//pixel = 0;
 
 		//and now that we have the index of the pixel in our ray, lets get the color of it :
 
