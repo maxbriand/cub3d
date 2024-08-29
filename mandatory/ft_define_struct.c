@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/28 20:06:31 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/29 02:01:37 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	ft_define_rc(t_player *p, int ex)
 	p->rc->deltaDistX = sqrt(1.0 + (p->rc->rayDirY * p->rc->rayDirY) / (p->rc->rayDirX * p->rc->rayDirX));
 	p->rc->deltaDistY = sqrt(1.0 + (p->rc->rayDirX * p->rc->rayDirX) / (p->rc->rayDirY * p->rc->rayDirY));
 
+	if (p->rc->side == 0) // Mur vertical (nord-sud)
+		p->rc->wall_hit_position = p->posY + p->rc->perpWallDist * p->rc->rayDirY;
+	else // Mur horizontal (est-ouest)
+		p->rc->wall_hit_position = p->posX + p->rc->perpWallDist * p->rc->rayDirX;
+	p->rc->wall_hit_position -= floor(p->rc->wall_hit_position);
 
 	//calcule des rayon
 	ft_ray_calcul(p);
@@ -81,7 +86,7 @@ static t_game	*ft_define_game()
 		printf("Error: failed to load texture.\n"); // mayday printf
 		exit (1); //MAYDAY EXIT
 	}
-	
+
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
 }

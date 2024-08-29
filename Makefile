@@ -19,7 +19,9 @@ SRCS = 	mandatory/main.c\
 		mandatory/ft_ray_casting.c\
 		mandatory/ft_move.c\
 		mandatory/ft_mouse_move.c\
-		mandatory/ft_key_hook.c
+		mandatory/ft_key_hook.c\
+		mandatory/ft_print_ray.c\
+		mandatory/ft_move_hook.c
 
 
 BONUS = bonus/main.c\

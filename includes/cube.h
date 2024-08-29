@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/24 16:22:00 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/29 02:00:36 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_ray_casting
 	int drawStart;
 	int drawEnd;
 
+	float wall_hit_position;
+
 }t_ray_casting;
 
 
@@ -117,11 +119,12 @@ void		ft_define_rc(t_player *p, int ex);
 void		ft_ultimate_free(t_player *p);
 
 void		ft_ray_casting(void *param);
+void		ft_print_ray(t_player *p, int sx);
 
-void	ft_move_hook(mlx_key_data_t keydata, t_player *p);
-void	ft_move_wasd(t_player *p);
+void		ft_move_hook(mlx_key_data_t keydata, t_player *p);
+void		ft_move_wasd(t_player *p);
 
-void	ft_mouse_move(double x, double y, void *param);
-void	ft_key_hook(mlx_key_data_t keydata, void *param);
+void		ft_mouse_move(double x, double y, void *param);
+void		ft_key_hook(mlx_key_data_t keydata, void *param);
 
 #endif
