@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 01:07:29 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/28 23:56:44 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/08/29 19:09:56 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_mouse_move(double x, double y, void *param)
 		//p->last_mouse_x = p->game->width / 2;
 		p->or += (x - p->last_mouse_x) * 0.001;
 		mlx_set_mouse_pos(p->game->mlx, p->game->width / 2, p->game->height / 2);
-		//p->last_mouse_x = p->game->width / 2; //on linux
-		p->last_mouse_x = x;// in WSL2
+		p->last_mouse_x = p->game->width / 2; //on linux
+		//p->last_mouse_x = x;// in WSL2
 	}
 }
