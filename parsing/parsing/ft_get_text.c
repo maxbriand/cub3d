@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:41:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/06 18:01:05 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/26 00:20:59 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ft_new_full_text(char *full_text, char *buffer)
 	return (full_text);
 }
 
-char	*ft_get_text(char *path)
+char	*ft_get_text(t_data *data, char *path)
 {
 	int		fd;
 	char	*buffer;
@@ -30,7 +30,7 @@ char	*ft_get_text(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_pexit("open function issue", NULL);
+		ft_pexit("open function issue", data);
 	full_text = NULL;
 	while (1)
 	{
@@ -42,6 +42,8 @@ char	*ft_get_text(char *path)
 		else
 			full_text = ft_strdup(buffer);
 		free(buffer);
+		if (!full_text)
+			ft_pexit("malloc issue", data);
 	}
 	close(fd);
 	return (full_text);

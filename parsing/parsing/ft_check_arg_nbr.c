@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cut_end_spaces_split.c                          :+:      :+:    :+:   */
+/*   ft_check_arg_nbr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 01:26:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 03:27:38 by gmersch          ###   ########.fr       */
+/*   Created: 2024/08/01 17:14:39 by mbriand           #+#    #+#             */
+/*   Updated: 2024/08/24 19:57:38 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_cut_end_spaces_split(t_data *data, char **map)
+void	ft_check_arg_nbr(t_data *data, int ac)
 {
-	char	**new_map;
-
-	//ft_arrlen();
+	if (ac < 2)
+		ft_pexit("too few arguments", data);
+	if (ac > 2)
+		ft_pexit("too many arguments", data);
 }

@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/29 02:00:36 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 00:27:16 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ typedef struct s_ray_casting
 	float rayDirX; // la direction du rayon
 	float rayDirY;
 
-
-
-	float x; //commence a etre egale a la pos du joueur
-			//se sont les points dimpact du rayon sur un mur. permet de trouver si mur est vertical ou horizontal
-	float y;
 
 	//index of what tiles of the map we'r talking
 	int mapX;
@@ -82,6 +77,11 @@ typedef struct s_game
 	bool	pause;
 
 	mlx_texture_t *north_texture;
+	mlx_texture_t *south_texture;
+	mlx_texture_t *west_texture;
+	mlx_texture_t *east_texture;
+	mlx_texture_t *text;
+
 
 }t_game;
 

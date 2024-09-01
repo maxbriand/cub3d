@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 13:48:53 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 18:45:32 by mbriand          ###   ########.fr       */
+/*   Created: 2024/08/01 16:24:05 by mbriand           #+#    #+#             */
+/*   Updated: 2024/08/26 00:54:51 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+// don't know the function to protect free mlx_texture_t
+// so we have to add protections on if mlx_load_png failed
+int	main(int ac, char **av)
 {
-	size_t	i;
+	t_data	data;
 
-	i = 0;
-	while ((s1[i] || s2[i]))
-	{
-		if ((unsigned char) s1[i] != (unsigned char) s2[i])
-			return ((unsigned char) s1[i] - (unsigned char) s2[i]);
-		i++;
-	}
+	ft_parsing(&data, ac, av);
+	ft_init_png(&data);
+	ft_arrfree(data.map.map);
 	return (0);
 }

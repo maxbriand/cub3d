@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/24 18:16:31 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:00:32 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,15 @@
 
 int main(int argc, char **argv)
 {
-	t_player *p;
+	t_player	*p;
+	t_data		data;
 	//t_data	data;
 
 
-	//ft_parsing(&data, argc, argv);
+	ft_parsing(&data, argc, argv);
+	ft_init_png(&data);
 	p = ft_define_player();
 
-	//need to be define by parsing
-	char map[7][11] = {"1111111111\0",
-					   "1000100011\0",
-					   "1000000001\0",
-					   "1000000001\0",
-					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					   "1111111111\0",
-					   ""};
 
 	//ray casting and print on screen
 	mlx_loop_hook(p->game->mlx, ft_ray_casting, p); //map will be in struct set by pars ?
@@ -44,6 +38,6 @@ int main(int argc, char **argv)
 	mlx_delete_image(p->game->mlx, p->game->image);
 	mlx_terminate(p->game->mlx);
 	ft_ultimate_free(p);
-	
+
 	return (0);
 }

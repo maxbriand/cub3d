@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/29 02:01:37 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 00:27:21 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_define_rc(t_player *p, int ex)
 {
 	if (!p->rc)
 		p->rc = malloc(sizeof(*p->rc));
-	p->rc->y = p->posY;
-	p->rc->x = p->posX;
 	//trouver la longueur du rayon
 	p->rc->angle = p->or - (p->fov / 2.0) + (p->fov * ((float)ex / (float)p->game->width));
 	p->rc->rayDirX = cos(p->rc->angle);
@@ -60,6 +58,10 @@ void	ft_define_rc(t_player *p, int ex)
 	else // Mur horizontal (est-ouest)
 		p->rc->wall_hit_position = p->posX + p->rc->perpWallDist * p->rc->rayDirX;
 	p->rc->wall_hit_position -= floor(p->rc->wall_hit_position);
+
+
+
+
 
 	//calcule des rayon
 	ft_ray_calcul(p);
@@ -80,12 +82,39 @@ static t_game	*ft_define_game()
 		mlx_terminate(game->mlx);
 		return (NULL);
 	}
+
+
+
 	game->north_texture = mlx_load_png("parsing/textures/mur.png");
 	if (!game->north_texture)
 	{
 		printf("Error: failed to load texture.\n"); // mayday printf
 		exit (1); //MAYDAY EXIT
 	}
+
+	game->south_texture = mlx_load_png("parsing/textures/murm.png");
+	if (!game->south_texture)
+	{
+		printf("Error: failed to load texture.\n"); // mayday printf
+		exit (1); //MAYDAY EXIT
+	}
+	game->east_texture = mlx_load_png("parsing/textures/cobblestone.png");
+	if (!game->east_texture)
+	{
+		printf("Error: failed to load texture.\n"); // mayday printf
+		exit (1); //MAYDAY EXIT
+	}
+	game->west_texture = mlx_load_png("parsing/textures/cat.png");
+	if (!game->west_texture)
+	{
+		printf("Error: failed to load texture.\n"); // mayday printf
+		exit (1); //MAYDAY EXIT
+	}
+	game->text = NULL;
+
+
+
+
 
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);

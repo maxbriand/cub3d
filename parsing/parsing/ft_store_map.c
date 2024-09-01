@@ -6,54 +6,47 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/23 01:32:26 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/26 00:26:29 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_counter_no_empty_line(char **map)
+void	ft_add_map_line(t_data *data, char **map, char *text, char *start_line)
 {
-	int		i;
-	int		j;
-	char	c;	
-
-	i = 0;
-	j = 0;
-	c = '\0';
-	while (map[i])
-	{
-		while (map[i][j])
-		{
-			if (!ft_isspace(c))
-			{
-				c = map[i][j];
-				break ;
-			}
-			j++;
-		}		
-		if (!c)
-			break ;
-		c = '\0';
-		j = 0;
-		i++;
-	}
-	return (i);
-}
-
-static void	ft_remove_empty_line(t_data *data, char **map)
-{
-	int		n;
-	char	**clean_map;
-
-	n = ft_counter_no_empty_line(map);
-	clean_map = malloc(sizeof(char *) * (n + 1));
-	if (!clean_map)
+	*map = malloc(sizeof(char) * (text - start_line + 1));
+	if (!*map)
 		ft_pexit("malloc issue", data);
-	data->map.map = ft_arrncpy(clean_map, map, n);
-	ft_arrfree(map);
+	ft_strlcpy(*map, start_line, text - start_line + 1);
 }
 
+// add an extra space in case of nothing after \n 
+char	**ft_new_split(t_data *data, char *text, char c)
+{
+	char	**map;
+	char	*start_line;
+	char	**save_map;
+
+	map = malloc(sizeof(char *) * (ft_count_char(text, c) + 2));
+	if (!map)
+		ft_pexit("malloc issue", data);
+	save_map = map;
+	while (*text)
+	{
+		start_line = text;
+		while (*text != c && *text)
+			text++;
+		ft_add_map_line(data, map, text, start_line);
+		map++;
+		if (!*text)
+			break ;
+		text++;
+	}
+	*map = NULL;
+	return (save_map);
+}
+
+// remove the first empty line
 void	ft_store_map(t_data *data, char *text)
 {
 	char	*c_line;
@@ -64,13 +57,14 @@ void	ft_store_map(t_data *data, char *text)
 		while (ft_isspace(*text) && *text != '\n')
 			text++;
 		if (*text == '\n')
-			c_line = text;
+			c_line = text + 1;
 		else if (!*text)
 			break ;
 		else
 		{
-			data->map.map = ft_split(c_line, '\n');
-			// ft_remove_empty_line(data, data->map.map);
+			data->map.map = ft_new_split(data, c_line, '\n');
+			free(data->text);
+			data->text = NULL;
 			return ;
 		}
 		text++;

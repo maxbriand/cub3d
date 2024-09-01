@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/29 02:41:42 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 00:40:53 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ static void	ft_define_print(t_player *p)
 		p->rc->drawStart = 0;
 	if (p->rc->drawEnd >= p->game->height)
 		p->rc->drawEnd = p->game->height - 1.0;
+
+	//define text
+		if (p->rc->side == 1)
+		{
+			if (p->rc->stepY == -1)
+				p->game->text = p->game->north_texture;
+			else
+				p->game->text = p->game->south_texture;
+		}
+		else
+		{
+			if (p->rc->stepX == -1)
+				p->game->text = p->game->west_texture;
+			else
+				p->game->text = p->game->east_texture;
+		}
 }
 
 static void ft_calcul_wall(t_player *p)
@@ -111,6 +127,7 @@ void	ft_ray_casting(void *param)
 		ft_calcul_wall(p);
 		//define draw start and draw end
 		ft_define_print(p);
+	
 		//print ray, its here to change color :
 		ft_print_ray(p, sx);
 		sx++;
