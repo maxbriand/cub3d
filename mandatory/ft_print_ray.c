@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 00:12:43 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:22:20 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,13 @@ void	ft_print_ray(t_player *p, int sx)
 	sy = 0;
 	while (sy < p->rc->drawStart)
 	{
-		mlx_put_pixel(p->game->image, sx, sy, 0x0000B4FF); // Couleur du ciel
+		color = p->data->map.ceil_r;
+		color = (color << 8) + p->data->map.ceil_g;
+		color = (color << 8) + p->data->map.ceil_b;
+		color = (color << 8) + 0xFF;
+
+
+		mlx_put_pixel(p->game->image, sx, sy, color); // Couleur du ciel
 		sy++;
 	}
 	while (sy < p->rc->drawEnd)
@@ -120,7 +126,11 @@ void	ft_print_ray(t_player *p, int sx)
 	// Afficher le sol en dessous du mur
 	while (sy < p->game->height)
 	{
-		mlx_put_pixel(p->game->image, sx, sy, 0x000000FF / 2); // Couleur du sol
+		color = p->data->map.floor_r;
+		color = (color << 8) + p->data->map.floor_g;
+		color = (color << 8) + p->data->map.floor_b;
+		color = (color << 8) + 0xFF;
+		mlx_put_pixel(p->game->image, sx, sy, color); // Couleur du sol
 		sy++;
 	}
 }

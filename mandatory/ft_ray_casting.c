@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 00:40:53 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:18:10 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ static void	ft_define_print(t_player *p)
 		if (p->rc->side == 1)
 		{
 			if (p->rc->stepY == -1)
-				p->game->text = p->game->north_texture;
+				p->game->text = p->data->map.t_no_path;
 			else
-				p->game->text = p->game->south_texture;
+				p->game->text =  p->data->map.t_so_path;
 		}
 		else
 		{
 			if (p->rc->stepX == -1)
-				p->game->text = p->game->west_texture;
+				p->game->text =  p->data->map.t_we_path;
 			else
-				p->game->text = p->game->east_texture;
+				p->game->text =  p->data->map.t_ea_path;
 		}
 }
 
@@ -64,7 +64,7 @@ static void ft_calcul_wall(t_player *p)
 }
 
 //know what side of the wall we'r talking
-static void	ft_find_side(t_player *p, char map[7][11])
+static void	ft_find_side(t_player *p)
 {
 	while (p->rc->hit == 0)
 	{
@@ -80,9 +80,9 @@ static void	ft_find_side(t_player *p, char map[7][11])
 			p->rc->mapY += p->rc->stepY;
 			p->rc->side = 1;
 		}
-		if (p->rc->mapY < 0 || p->rc->mapY >= 7 || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(map[p->rc->mapY]))
+		if (p->rc->mapY < 0 || p->rc->mapY >= 7 || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(p->data->map.map[p->rc->mapY]))
 			p->rc->hit = 1;
-		if (map[p->rc->mapY][p->rc->mapX] == '1')
+		if (p->data->map.map[p->rc->mapY][p->rc->mapX] == '1')
 			p->rc->hit = 1;
 	}
 }
@@ -96,14 +96,6 @@ void	ft_ray_casting(void *param)
 	struct timeval time; // add fps counter
 	suseconds_t usec;
 	time_t sec;
-
-	char map[7][11] = {"1111111111\0",
-					"1000100011\0",
-					"1000000001\0",
-					"1000000001\0",
-					"1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					"1111111111\0",
-					""};
 
 	p = (t_player *)param;
 
@@ -122,12 +114,12 @@ void	ft_ray_casting(void *param)
 		//we redefine rc every frame, because it set var needed by ray casting
 		ft_define_rc(p, sx);
 		//know what side of the wall we'r talking
-		ft_find_side(p, map);
+		ft_find_side(p);
 		//calcul wall height and remove fishy
 		ft_calcul_wall(p);
 		//define draw start and draw end
 		ft_define_print(p);
-	
+
 		//print ray, its here to change color :
 		ft_print_ray(p, sx);
 		sx++;

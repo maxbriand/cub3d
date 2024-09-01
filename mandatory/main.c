@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:00:32 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:08:41 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 int main(int argc, char **argv)
 {
 	t_player	*p;
-	t_data		data;
-	//t_data	data;
+	t_data		*data;
 
-
-	ft_parsing(&data, argc, argv);
-	ft_init_png(&data);
+	ft_parsing(data, argc, argv);
+	ft_init_png(data);
 	p = ft_define_player();
+	p->data = data;
 
 
 	//ray casting and print on screen

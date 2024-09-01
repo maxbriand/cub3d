@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 00:27:16 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:15:48 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ typedef struct s_game
 
 	bool	pause;
 
-	mlx_texture_t *north_texture;
-	mlx_texture_t *south_texture;
-	mlx_texture_t *west_texture;
-	mlx_texture_t *east_texture;
 	mlx_texture_t *text;
 
 
@@ -109,6 +105,7 @@ typedef struct s_player
 
 	t_ray_casting	*rc;
 	t_game			*game;
+	t_data			*data;
 
 }t_player;
 

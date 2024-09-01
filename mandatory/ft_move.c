@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:01:46 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/29 03:08:02 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:35:13 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 static void	ft_move_right(t_player *p)
 {
-	char map[7][11] = {"1111111111\0",
-					   "1000100011\0",
-					   "1000000001\0",
-					   "1000000001\0",
-					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					   "1111111111\0",
-					   ""};
 	int	newPosX;
 	int	newPosY;
 
@@ -28,7 +21,7 @@ static void	ft_move_right(t_player *p)
 	newPosX = (int)(p->posX + cos(p->or+ (M_PI / 2)) * p->move_speed);
 	newPosY = (int)(p->posY + sin(p->or + (M_PI / 2)) * p->move_speed);
 
-	if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+	if (p->data->map.map[newPosY][(int)p->posX] != '1' && p->data->map.map[(int)p->posY][newPosX] != '1')
 	{
 		p->posX += cos(p->or + (M_PI / 2)) * p->move_speed;
 		p->posY += sin(p->or + (M_PI / 2)) * p->move_speed;
@@ -37,13 +30,6 @@ static void	ft_move_right(t_player *p)
 
 static void	ft_move_left(t_player *p)
 {
-	char map[7][11] = {"1111111111\0",
-					   "1000100011\0",
-					   "1000000001\0",
-					   "1000000001\0",
-					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					   "1111111111\0",
-					   ""};
 	int	newPosX;
 	int	newPosY;
 
@@ -51,7 +37,7 @@ static void	ft_move_left(t_player *p)
 	newPosX = (int)(p->posX + cos(p->or - (M_PI / 2)) * p->move_speed);
 	newPosY = (int)(p->posY + sin(p->or - (M_PI / 2)) * p->move_speed);
 
-	if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+	if (p->data->map.map[newPosY][(int)p->posX] != '1' && p->data->map.map[(int)p->posY][newPosX] != '1')
 	{
 		p->posX += cos(p->or - (M_PI / 2)) * p->move_speed;
 		p->posY += sin(p->or - (M_PI / 2)) * p->move_speed;
@@ -60,13 +46,6 @@ static void	ft_move_left(t_player *p)
 
 static void	ft_move_backward(t_player *p)
 {
-	char map[7][11] = {"1111111111\0",
-					   "1000100011\0",
-					   "1000000001\0",
-					   "1000000001\0",
-					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					   "1111111111\0",
-					   ""};
 	int	newPosX;
 	int	newPosY;
 
@@ -74,7 +53,7 @@ static void	ft_move_backward(t_player *p)
 	newPosX = (int)(p->posX - cos(p->or) * p->move_speed);
 	newPosY = (int)(p->posY - sin(p->or) * p->move_speed);
 
-	if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+	if (p->data->map.map[newPosY][(int)p->posX] != '1' && p->data->map.map[(int)p->posY][newPosX] != '1')
 	{
 		p->posX -= cos(p->or) * p->move_speed;
 		p->posY -= sin(p->or) * p->move_speed;
@@ -83,13 +62,6 @@ static void	ft_move_backward(t_player *p)
 
 static void	ft_move_forward(t_player *p)
 {
-	char map[7][11] = {"1111111111\0",
-					   "1000100011\0",
-					   "1000000001\0",
-					   "1000000001\0",
-					   "1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					   "1111111111\0",
-					   ""};
 	int	newPosX;
 	int	newPosY;
 
@@ -97,7 +69,7 @@ static void	ft_move_forward(t_player *p)
 	newPosX = (int)(p->posX + cos(p->or) * p->move_speed);
 	newPosY = (int)(p->posY + sin(p->or) * p->move_speed);
 
-	if (map[newPosY][(int)p->posX] == '0' && map[(int)p->posY][newPosX] == '0')
+	if (p->data->map.map[newPosY][(int)p->posX] != '1' && p->data->map.map[(int)p->posY][newPosX] != '1')
 	{
 		p->posX += cos(p->or) * p->move_speed;
 		p->posY += sin(p->or) * p->move_speed;

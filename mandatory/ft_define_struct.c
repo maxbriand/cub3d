@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 00:27:21 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 01:16:19 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,34 +81,6 @@ static t_game	*ft_define_game()
 	{
 		mlx_terminate(game->mlx);
 		return (NULL);
-	}
-
-
-
-	game->north_texture = mlx_load_png("parsing/textures/mur.png");
-	if (!game->north_texture)
-	{
-		printf("Error: failed to load texture.\n"); // mayday printf
-		exit (1); //MAYDAY EXIT
-	}
-
-	game->south_texture = mlx_load_png("parsing/textures/murm.png");
-	if (!game->south_texture)
-	{
-		printf("Error: failed to load texture.\n"); // mayday printf
-		exit (1); //MAYDAY EXIT
-	}
-	game->east_texture = mlx_load_png("parsing/textures/cobblestone.png");
-	if (!game->east_texture)
-	{
-		printf("Error: failed to load texture.\n"); // mayday printf
-		exit (1); //MAYDAY EXIT
-	}
-	game->west_texture = mlx_load_png("parsing/textures/cat.png");
-	if (!game->west_texture)
-	{
-		printf("Error: failed to load texture.\n"); // mayday printf
-		exit (1); //MAYDAY EXIT
 	}
 	game->text = NULL;
 
