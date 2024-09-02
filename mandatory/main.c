@@ -6,13 +6,13 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:08:41 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:18:32 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_player	*p;
 	t_data		*data;
@@ -22,13 +22,10 @@ int main(int argc, char **argv)
 	p = ft_define_player();
 	p->data = data;
 
-
 	//ray casting and print on screen
 	mlx_loop_hook(p->game->mlx, ft_ray_casting, p); //map will be in struct set by pars ?
 	mlx_image_to_window(p->game->mlx, p->game->image, 0, 0);
 	mlx_set_cursor_mode(p->game->mlx, MLX_MOUSE_HIDDEN);
-
-	//mlx_set_mouse_pos(p->game->mlx, p->game->width / 2,p->game->height / 2);
 
 	//mlx_key_hook(p->game->mlx, &ft_move_hook, p);
 	mlx_key_hook(p->game->mlx, &ft_key_hook, p);

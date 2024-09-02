@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/28 19:59:50 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:16:55 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_define_rc(t_player *p, int ex)
 {
 	if (!p->rc)
 		p->rc = malloc(sizeof(*p->rc));
-	p->rc->y = p->posY;
-	p->rc->x = p->posX;
 	//trouver la longueur du rayon
 	p->rc->angle = p->or - (p->fov / 2.0) + (p->fov * ((float)ex / (float)p->game->width));
 	p->rc->rayDirX = cos(p->rc->angle);
@@ -55,6 +53,13 @@ void	ft_define_rc(t_player *p, int ex)
 	p->rc->deltaDistX = sqrt(1.0 + (p->rc->rayDirY * p->rc->rayDirY) / (p->rc->rayDirX * p->rc->rayDirX));
 	p->rc->deltaDistY = sqrt(1.0 + (p->rc->rayDirX * p->rc->rayDirX) / (p->rc->rayDirY * p->rc->rayDirY));
 
+	if (p->rc->side == 0) // Mur vertical (nord-sud)
+		p->rc->wall_hit_position = p->posY + p->rc->perpWallDist * p->rc->rayDirY;
+	else // Mur horizontal (est-ouest)
+		p->rc->wall_hit_position = p->posX + p->rc->perpWallDist * p->rc->rayDirX;
+	p->rc->wall_hit_position -= floor(p->rc->wall_hit_position);
+
+
 
 	//calcule des rayon
 	ft_ray_calcul(p);
@@ -62,7 +67,7 @@ void	ft_define_rc(t_player *p, int ex)
 
 static t_game	*ft_define_game()
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(*game));
 	game->width = 1920;
@@ -75,6 +80,12 @@ static t_game	*ft_define_game()
 		mlx_terminate(game->mlx);
 		return (NULL);
 	}
+	game->text = NULL;
+
+
+
+
+
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
 }
@@ -83,7 +94,7 @@ static t_game	*ft_define_game()
 t_player	*ft_define_player()
 {
 	//PLAYER NEED TO BE SET WITH PARSING, NOT LIKE THIS
-	t_player *p;
+	t_player	*p;
 
 	p = malloc(sizeof(*p));
 	p->game = ft_define_game();
@@ -102,7 +113,7 @@ t_player	*ft_define_player()
 	p->last_mouse_y = 0;
 
 
-	p->fov = 0.4 * M_PI;
+	p->fov = M_PI * 0.4;
 	p->or = 1 * M_PI;
 	p->rc = NULL;
 	return (p);

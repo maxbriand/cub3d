@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 02:01:32 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:18:04 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timeval time)
 {
-	char *fps;
+	char	*fps;
 
 	if (time.tv_sec == sec)
 	{
@@ -35,23 +35,23 @@ static void	ft_define_print(t_player *p)
 		p->rc->drawEnd = p->game->height - 1.0;
 
 	//define text
-		if (p->rc->side == 1)
-		{
-			if (p->rc->stepY == -1)
-				p->game->text = p->data->map.t_no_path;
-			else
-				p->game->text =  p->data->map.t_so_path;
-		}
+	if (p->rc->side == 1)
+	{
+		if (p->rc->stepY == -1)
+			p->game->text = p->data->map.t_no_path;
 		else
-		{
-			if (p->rc->stepX == -1)
-				p->game->text =  p->data->map.t_we_path;
-			else
-				p->game->text =  p->data->map.t_ea_path;
-		}
+			p->game->text =  p->data->map.t_so_path;
+	}
+	else
+	{
+		if (p->rc->stepX == -1)
+			p->game->text =  p->data->map.t_we_path;
+		else
+			p->game->text =  p->data->map.t_ea_path;
+	}
 }
 
-static void ft_calcul_wall(t_player *p)
+static void	ft_calcul_wall(t_player *p)
 {
 	//calcul to remove fishy
 	if(p->rc->side == 0)
@@ -89,11 +89,11 @@ static void	ft_find_side(t_player *p)
 
 void	ft_ray_casting(void *param)
 {
-	t_player *p;
-	int	sx; //screen x
-	struct timeval time; // add fps counter
-	suseconds_t usec;
-	time_t sec;
+	t_player		*p;
+	int				sx; //screen x
+	struct timeval	time; // add fps counter
+	suseconds_t		usec;
+	time_t			sec;
 
 	p = (t_player *)param;
 	sx = 0;

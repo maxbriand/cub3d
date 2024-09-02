@@ -6,36 +6,21 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/08/22 20:01:04 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:18:04 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static void	ft_print_ray(t_player *p, int ex)
+static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timeval time)
 {
-	int i;
+	char	*fps;
 
-	i = 0;
-	int	color = 0xB400B4FF;
-	if (p->rc->side)
-		color = (color / 2) | 0xFF;
-	while (i < p->rc->drawStart)
+	if (time.tv_sec == sec)
 	{
-		mlx_put_pixel(p->game->image, ex, i, 0x0000B4FF); // Violet pour le mur
-		i++;
-	}
-	while (i < p->rc->drawEnd)
-	{
-		mlx_put_pixel(p->game->image, ex, i, color); // Violet pour le mur
-		i++;
-	}
-	//remove grain under wall ??? test other value like , or 3, or other idk
-	i -= 2;
-	while (i < p->game->height)
-	{
-		mlx_put_pixel(p->game->image, ex, i, 0x000000FF); // Violet pour le mur
-		i++;
+		fps = ft_itoa((int)(1000000 / (time.tv_usec - usec)));
+		printf("%s\n", fps); //fps
+		//mlx_put_string(p->game->mlx, fps, 10, 10);
 	}
 }
 
@@ -48,9 +33,25 @@ static void	ft_define_print(t_player *p)
 		p->rc->drawStart = 0;
 	if (p->rc->drawEnd >= p->game->height)
 		p->rc->drawEnd = p->game->height - 1.0;
+
+	//define text
+	if (p->rc->side == 1)
+	{
+		if (p->rc->stepY == -1)
+			p->game->text = p->data->map.t_no_path;
+		else
+			p->game->text =  p->data->map.t_so_path;
+	}
+	else
+	{
+		if (p->rc->stepX == -1)
+			p->game->text =  p->data->map.t_we_path;
+		else
+			p->game->text =  p->data->map.t_ea_path;
+	}
 }
 
-static void ft_calcul_wall(t_player *p)
+static void	ft_calcul_wall(t_player *p)
 {
 	//calcul to remove fishy
 	if(p->rc->side == 0)
@@ -63,7 +64,7 @@ static void ft_calcul_wall(t_player *p)
 }
 
 //know what side of the wall we'r talking
-static void	ft_find_side(t_player *p, char map[7][11])
+static void	ft_find_side(t_player *p)
 {
 	while (p->rc->hit == 0)
 	{
@@ -79,41 +80,44 @@ static void	ft_find_side(t_player *p, char map[7][11])
 			p->rc->mapY += p->rc->stepY;
 			p->rc->side = 1;
 		}
-		if (p->rc->mapY < 0 || p->rc->mapY >= 7 || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(map[p->rc->mapY]))
+		if (p->rc->mapY < 0 || p->rc->mapY >= 7 || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(p->data->map.map[p->rc->mapY]))
 			p->rc->hit = 1;
-		if (map[p->rc->mapY][p->rc->mapX] == '1')
+		if (p->data->map.map[p->rc->mapY][p->rc->mapX] == '1')
 			p->rc->hit = 1;
 	}
 }
 
 void	ft_ray_casting(void *param)
 {
-	//ex is like ecran x (horizontal value of pixel of the screen)
-	
-	t_player *p;
-	int	ex;
-	char map[7][11] = {"1111111111\0",
-					"1000100011\0",
-					"1000000001\0",
-					"1000000001\0",
-					"1000000001\0",// le perso est au deuxieme 0 de cette ligne et regarde vers le nord
-					"1111111111\0",
-					""};
+	t_player		*p;
+	int				sx; //screen x
+	struct timeval	time; // add fps counter
+	suseconds_t		usec;
+	time_t			sec;
 
 	p = (t_player *)param;
-	ex = 0;
-	while (ex < p->game->width)
+	sx = 0;
+	if (p->game->pause)
+		return ;
+	gettimeofday(&time, NULL);
+	usec = time.tv_usec;
+	sec = time.tv_sec;
+	ft_move_wasd(p);//ici;
+	while (sx < p->game->width)
 	{
 		//we redefine rc every frame, because it set var needed by ray casting
-		ft_define_rc(p, ex);
+		ft_define_rc(p, sx);
 		//know what side of the wall we'r talking
-		ft_find_side(p, map);
+		ft_find_side(p);
 		//calcul wall height and remove fishy
 		ft_calcul_wall(p);
 		//define draw start and draw end
 		ft_define_print(p);
 		//print ray, its here to change color :
-		ft_print_ray(p, ex);
-		ex++;
+		ft_print_ray(p, sx);
+		sx++;
 	}
+	//print fps
+	gettimeofday(&time, NULL);
+	ft_print_fps(p, usec, sec, time);
 }

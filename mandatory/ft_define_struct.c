@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 02:18:07 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:16:55 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_define_rc(t_player *p, int ex)
 
 static t_game	*ft_define_game()
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(*game));
 	game->width = 1920;
@@ -94,7 +94,7 @@ static t_game	*ft_define_game()
 t_player	*ft_define_player()
 {
 	//PLAYER NEED TO BE SET WITH PARSING, NOT LIKE THIS
-	t_player *p;
+	t_player	*p;
 
 	p = malloc(sizeof(*p));
 	p->game = ft_define_game();

@@ -33,7 +33,9 @@ BONUS = bonus/main.c\
 		bonus/ft_ray_casting.c\
 		bonus/ft_move.c\
 		bonus/ft_mouse_move.c\
-		bonus/ft_key_hook.c
+		bonus/ft_key_hook.c\
+		bonus/ft_print_ray.c\
+		bonus/ft_move_hook.c
 
 
 OBJS=$(SRCS:.c=.o) $(PARS:.c=.o)
