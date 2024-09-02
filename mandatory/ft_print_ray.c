@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:22:20 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 02:14:21 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,41 +64,15 @@ static int	ft_define_tx(t_player *p)
 	return (text_x);
 }
 
-void	ft_print_ray(t_player *p, int sx)
+static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 {
-	int			sy;
-	int			text_y;
-	int			text_x;
-	int			pixel;
 	uint32_t	color;
+	int			pixel;
 
-	color = 0xB400B4FF; //define color of the wall
-	if (p->rc->side)
-		color = (color / 2) | 0xFF;
-	//TO REMOVE
-
-	//text_x is the coordinate of the wall we want to put texture
-
-
-
-	text_x = ft_define_tx(p);
-
-	sy = 0;
-	while (sy < p->rc->drawStart)
-	{
-		color = p->data->map.ceil_r;
-		color = (color << 8) + p->data->map.ceil_g;
-		color = (color << 8) + p->data->map.ceil_b;
-		color = (color << 8) + 0xFF;
-
-
-		mlx_put_pixel(p->game->image, sx, sy, color); // Couleur du ciel
-		sy++;
-	}
-	while (sy < p->rc->drawEnd)
+	while (s[0] < p->rc->drawEnd)
 	{
 		// Calculer la position Y sur la texture en fonction de la hauteur du mur
-		text_y = ft_define_ty(p, sy);
+		text_y = ft_define_ty(p, s[0]);
 
 		//Because pixel is store in a char* and not a ray of ray (char**), we do :
 		//text_y (wich is the y of pixel we want to put)
@@ -114,23 +88,52 @@ void	ft_print_ray(t_player *p, int sx)
 			//pixel = 0;
 
 		//and now that we have the index of the pixel in our ray, lets get the color of it :
-
 		//we define the color of the pixel we'r gonna print
 		color = ft_define_color(p, pixel);
 
-
 		//Add pixel to the image : (sx is screen x, sy is screen y)
-		mlx_put_pixel(p->game->image, sx, sy, color);
-		sy++;
+		mlx_put_pixel(p->game->image, s[1], s[0], color);
+		s[0]++;
 	}
 	// Afficher le sol en dessous du mur
-	while (sy < p->game->height)
+	while (s[0] < p->game->height)
 	{
 		color = p->data->map.floor_r;
 		color = (color << 8) + p->data->map.floor_g;
 		color = (color << 8) + p->data->map.floor_b;
 		color = (color << 8) + 0xFF;
-		mlx_put_pixel(p->game->image, sx, sy, color); // Couleur du sol
-		sy++;
+		mlx_put_pixel(p->game->image, s[1], s[0], color); // Couleur du sol
+		s[0]++;
 	}
+}
+
+void	ft_print_ray(t_player *p, int sx)
+{
+	int			s[2];
+	int			text_y;
+	int			text_x;
+	uint32_t	color;
+
+	color = 0xB400B4FF; //define color of the wall
+	if (p->rc->side)
+		color = (color / 2) | 0xFF;
+	//TO REMOVE
+
+	//text_x is the coordinate of the wall we want to put texture
+	text_x = ft_define_tx(p);
+
+	s[0] = 0; //y
+	s[1] = sx; //x
+	while (s[0] < p->rc->drawStart)
+	{
+		color = p->data->map.ceil_r;
+		color = (color << 8) + p->data->map.ceil_g;
+		color = (color << 8) + p->data->map.ceil_b;
+		color = (color << 8) + 0xFF;
+
+
+		mlx_put_pixel(p->game->image, s[1], s[0], color); // Couleur du ciel
+		s[0]++;
+	}
+	ft_put_floor_wall(p, text_y, text_x, s);
 }

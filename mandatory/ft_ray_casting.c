@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:18:10 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 02:01:32 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ static void	ft_find_side(t_player *p)
 
 void	ft_ray_casting(void *param)
 {
-	//ex is like ecran x (horizontal value of pixel of the screen)
-
 	t_player *p;
 	int	sx; //screen x
 	struct timeval time; // add fps counter
@@ -98,16 +96,12 @@ void	ft_ray_casting(void *param)
 	time_t sec;
 
 	p = (t_player *)param;
-
-
 	sx = 0;
-
 	if (p->game->pause)
 		return ;
 	gettimeofday(&time, NULL);
 	usec = time.tv_usec;
 	sec = time.tv_sec;
-
 	ft_move_wasd(p);//ici;
 	while (sx < p->game->width)
 	{
@@ -119,7 +113,6 @@ void	ft_ray_casting(void *param)
 		ft_calcul_wall(p);
 		//define draw start and draw end
 		ft_define_print(p);
-
 		//print ray, its here to change color :
 		ft_print_ray(p, sx);
 		sx++;
