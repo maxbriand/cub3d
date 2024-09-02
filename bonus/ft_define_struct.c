@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 21:26:02 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 22:58:19 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static t_game	*ft_define_game()
 	game->dark_t =  mlx_load_png("parsing/textures/dark.png");
 	if (!game->dark_t)
 		printf("coucou\n");
-	game->flash_t =  mlx_load_png("parsing/textures/flashlight.png");
+	game->flash_t =  mlx_load_png("parsing/textures/lampe85.png");
 	if (!game->flash_t)
 		printf("coucou\n");
 	else
@@ -132,7 +132,7 @@ t_player	*ft_define_player()
 	p->player_move_b = false;
 	p->player_move_l = false;
 	p->player_move_r = false;
-	p->light_on = false;
+	p->light_on = true;
 
 	p->last_mouse_x = 0;
 	p->last_mouse_y = 0;
