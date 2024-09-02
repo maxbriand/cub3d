@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 15:12:54 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 21:26:02 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static t_game	*ft_define_game()
 	game = malloc(sizeof(*game));
 	game->width = 1920;
 	game->height = 1080;
+	game->mid_sx = game->width / 2;
+	game->mid_sy = game->height / 2;
 	game->pause = false;
 	game->mlx = mlx_init(game->width, game->height, "Cube3D", true);
 	game->image = mlx_new_image(game->mlx, game->width, game->height);
@@ -82,15 +84,34 @@ static t_game	*ft_define_game()
 	}
 	game->text = NULL;
 
-	game->brightness = 0.2; //sombre ??
+	game->brightness = 1.0; //sombre ??
 
+	game->dark_t =  mlx_load_png("parsing/textures/dark.png");
+	if (!game->dark_t)
+		printf("coucou\n");
+	game->flash_t =  mlx_load_png("parsing/textures/flashlight.png");
+	if (!game->flash_t)
+		printf("coucou\n");
+	else
+		printf("ouiii\n");
 
+	game->dark = mlx_texture_to_image(game->mlx, game->dark_t);
+	if (!game->dark)
+		printf("error\n");
+	else
+		printf("nonnn\n");
 
-
+	game->flash = mlx_texture_to_image(game->mlx, game->flash_t);
+	if (!game->flash)
+		printf("error\n");
+	else
+		printf("nonnn\n");
 
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
 }
+
+
 
 
 t_player	*ft_define_player()
@@ -106,10 +127,12 @@ t_player	*ft_define_player()
 	p->posY = 3.50; //x and y start position
 
 	p->move_speed = 0.05;
+	p->player_run = false;
 	p->player_move_f = false;
 	p->player_move_b = false;
 	p->player_move_l = false;
 	p->player_move_r = false;
+	p->light_on = false;
 
 	p->last_mouse_x = 0;
 	p->last_mouse_y = 0;

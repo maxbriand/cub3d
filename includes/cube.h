@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 03:32:38 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 21:19:24 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,21 @@ typedef struct s_game
 	int width;
 	int height;
 
+	//mid screen x
+	int mid_sx;
+	int mid_sy;
+
 	bool	pause;
 
 	float	brightness; //pour la luminosite
 
 	mlx_texture_t *text;
 
+	mlx_texture_t* dark_t;
+	mlx_texture_t* flash_t;
+
+	mlx_image_t* dark;
+	mlx_image_t* flash;
 
 }t_game;
 
@@ -101,11 +110,16 @@ typedef struct s_player
 	bool			player_move_r;
 	bool			player_move_l;
 
+	bool			light_on;
+
 	bool			player_look_left;
 	bool			player_look_right;
 
+	bool			player_run;
+
 	float			last_mouse_x;
 	float			last_mouse_y;
+
 
 
 	t_ray_casting	*rc;

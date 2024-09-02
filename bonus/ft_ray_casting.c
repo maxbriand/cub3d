@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 03:18:04 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 19:37:12 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timev
 //define draw start and draw end, its were we should drow on the y line (vertical line)
 static void	ft_define_print(t_player *p)
 {
-	p->rc->drawStart = - p->rc->wall_height / 2.0 + (float)p->game->height / 2.0;
-	p->rc->drawEnd = p->rc->wall_height / 2.0 + (float)p->game->height / 2.0;
+	p->rc->drawStart = - p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
+	p->rc->drawEnd = p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
 	if (p->rc->drawStart < 0)
 		p->rc->drawStart = 0;
 	if (p->rc->drawEnd >= p->game->height)

@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 03:18:32 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 21:15:30 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	//ray casting and print on screen
 	mlx_loop_hook(p->game->mlx, ft_ray_casting, p); //map will be in struct set by pars ?
 	mlx_image_to_window(p->game->mlx, p->game->image, 0, 0);
+	mlx_image_to_window(p->game->mlx, p->game->flash, 0, 0); //change to dark
 	mlx_set_cursor_mode(p->game->mlx, MLX_MOUSE_HIDDEN);
 
 	//mlx_key_hook(p->game->mlx, &ft_move_hook, p);
