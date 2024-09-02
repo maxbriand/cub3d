@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 04:02:16 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:12:54 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static t_game	*ft_define_game()
 	}
 	game->text = NULL;
 
-	game->brightness = 0.5; //sombre ??
+	game->brightness = 0.2; //sombre ??
 
 
 
