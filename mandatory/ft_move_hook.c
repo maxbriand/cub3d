@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 02:54:50 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:10:28 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:13:12 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ void	ft_move_hook(mlx_key_data_t keydata, t_player *p)
 		p->player_move_r = true;
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
 		p->player_move_r = false;
+
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		p->player_look_left = true;
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
+		p->player_look_left = false;
+
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		p->player_look_right = true;
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
+		p->player_look_right = false;
+
 }

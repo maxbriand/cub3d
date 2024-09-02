@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:16:19 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 02:18:07 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	ft_define_rc(t_player *p, int ex)
 	else // Mur horizontal (est-ouest)
 		p->rc->wall_hit_position = p->posX + p->rc->perpWallDist * p->rc->rayDirX;
 	p->rc->wall_hit_position -= floor(p->rc->wall_hit_position);
-
-
 
 
 

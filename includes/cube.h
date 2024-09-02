@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:15:48 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:10:45 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ typedef struct s_player
 	bool			player_move_b;
 	bool			player_move_r;
 	bool			player_move_l;
+
+	bool			player_look_left;
+	bool			player_look_right;
 
 	float			last_mouse_x;
 	float			last_mouse_y;

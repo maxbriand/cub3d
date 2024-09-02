@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:01:46 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 01:35:13 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 03:14:25 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,9 @@ void	ft_move_wasd(t_player *p)
 	//move right
 	if (p->player_move_r)
 		ft_move_right(p);
+
+	if (p->player_look_left)
+		p->or -= 0.04;
+	if (p->player_look_right)
+		p->or += 0.04;
 }
