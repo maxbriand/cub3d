@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 02:14:21 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/02 04:07:51 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,54 @@ static uint32_t	ft_define_color(t_player *p, int pixel)
 {
 	uint32_t	color;
 
-	color = *(uint32_t*)(p->game->text->pixels + pixel);
+	//color = (uint8_t)(p->game->text->pixels[pixel] + p->game->brightness);
+	color = (uint8_t)(p->game->text->pixels[pixel] * );
 	//now the color is set to the R (red). we need now to add to him GBA, by increment the adress of pixel one by one :
 	//pixel is a uint8_t, and color is a uint32_t. So we add 8 bites each time we whant to add a color
 		//NOTE : color is like this : 00(RED) 00(GREEN) 00(BLUE) 00(transparence but idk in english)
 		//so color is = to 00000000 in hexa, and you add here the color :
-	color = (color << 8) + p->game->text->pixels[pixel+ 1];
-	color = (color << 8) + p->game->text->pixels[pixel+ 2];
-	color = (color << 8) + p->game->text->pixels[pixel+ 3];
+	color = (color << 8) + (uint8_t)(p->game->text->pixels[pixel+ 1]);
+	color = (color << 8) + (uint8_t)(p->game->text->pixels[pixel+ 2]);
+	color = (color << 8) + (uint8_t)(p->game->text->pixels[pixel+ 3]);
 	//up here we move to 8 bites the bites of color to the letf, then we add the G, then we move again to 8, add B etc..
 	//if not clear come see me or in discord (galadou)
 
 	return (color);
 }
+
+// static uint32_t	ft_define_color(t_player *p, int pixel)
+// {
+// 	uint32_t color;
+// 	float    distance_factor;
+// 	uint8_t  red, green, blue, alpha;
+// 	float    r, g, b, a;
+
+// 	// Calculer le facteur de distance pour ajuster la luminosité
+// 	distance_factor = 1.0 / (p->rc->perpWallDist + 1.0);
+
+// 	// Extraire les composantes de couleur
+// 	r = p->game->text->pixels[pixel];
+// 	g = p->game->text->pixels[pixel + 1];
+// 	b = p->game->text->pixels[pixel + 2];
+// 	a = p->game->text->pixels[pixel + 3];
+
+// 	// Ajuster les composantes de couleur en tenant compte du facteur de distance
+// 	r = r * p->game->brightness * distance_factor;
+// 	g = g * p->game->brightness * distance_factor;
+// 	b = b * p->game->brightness * distance_factor;
+// 	a = a * p->game->brightness;
+
+// 	// Limiter les valeurs à 255 pour éviter les débordements
+// 	red = (r > 255.0f) ? 255 : (uint8_t)r;
+// 	green = (g > 255.0f) ? 255 : (uint8_t)g;
+// 	blue = (b > 255.0f) ? 255 : (uint8_t)b;
+// 	alpha = (a > 255.0f) ? 255 : (uint8_t)a;
+
+// 	// Combiner les composantes de couleur en une seule valeur 32 bits
+// 	color = (red << 24) | (green << 16) | (blue << 8) | alpha;
+
+// 	return color;
+// }
 
 // Calculer la position Y sur la texture en fonction de la hauteur du mur
 static int	ft_define_ty(t_player *p, int sy)

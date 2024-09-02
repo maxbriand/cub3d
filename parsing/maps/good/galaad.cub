@@ -3,8 +3,8 @@ SO ./parsing/textures/cat.png
 EA ./parsing/textures/milouche.png
 WE ./parsing/textures/cobblestone.png
 
-F 128,0,128
-C 0,0,255
+F 0,0,0
+C 0,0,0
 
 11111111111
 10100101001
