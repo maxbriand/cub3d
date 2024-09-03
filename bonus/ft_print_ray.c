@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 19:21:03 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 20:21:10 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 // 	return (0x000000FF);
 // }
 
-static uint32_t ft_define_color(t_player *p, uint32_t color)
+/*static uint32_t ft_define_color(t_player *p, uint32_t color)
 {
 	float		brightness;
 
@@ -87,43 +87,7 @@ static uint32_t ft_define_color(t_player *p, uint32_t color)
 	// color & 0xFF
 	// ((((color >> 24) & 0xFF) * brightness) << 24) | ((((color >> 16) & 0xFF) * brightness) << 16) | (((color >> 8) & 0xFF) * brightness << 8) | a
 	
-}
-
-
-
-// Calculer la position Y sur la texture en fonction de la hauteur du mur
-static int	ft_define_ty(t_player *p, int sy)
-{
-	int	text_y;
-
-	text_y = (int)((sy - p->rc->drawStart) * /*(float)*/p->game->text->height / (p->rc->drawEnd - p->rc->drawStart));
-	//if (text_y < 0)
-	//	text_y = 0;
-
-	//secure
-	//if (text_y >= p->game->text->height)
-	//	text_y = p->game->text->height - 1; //if point is too big or too small : resize to smaller point or bigger from the texture.
-	return (text_y);
-}
-
-//text_x is the coordinate of the wall we want to put texture
-static int	ft_define_tx(t_player *p)
-{
-	int	text_x;
-
-
-	text_x = (p->rc->wall_hit_position * (float)(p->game->text->width - 1));
-
-	//if(p->rc->side == 0 && p->rc->rayDirX > 0.0)
-	//	text_x = p->game->text->width - text_x - 1;
-	//if(p->rc->side == 1 && p->rc->rayDirY < 0.0)
-	//	text_x = p->game->text->width - text_x - 1;
-	//if (text_x < 0)
-	//	text_x = 0;
-	//if (text_x >= p->game->north_texture->width)
-	//	text_x = p->game->north_texture->width - 1;
-	return (text_x);
-}
+}*/
 
 static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 {
@@ -140,7 +104,10 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 
 		
 		// Calculer la position Y sur la texture en fonction de la hauteur du mur
-		text_y = ft_define_ty(p, s[0]);
+		//text_y = ft_define_ty(p, s[0]);
+		text_y = (int)((s[0] - p->rc->drawStart) * (float)p->game->text->height / (p->rc->drawEnd - p->rc->drawStart));
+
+
 
 		//Because pixel is store in a char* and not a ray of ray (char**), we do :
 		//text_y (wich is the y of pixel we want to put)
@@ -164,25 +131,13 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 		
 		//Add pixel to the image : (sx is screen x, sy is screen y)
 		if (p->game->text == p->data->map.t_no_path)
-		{
-			
 			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_north[pixel]);
-		}
 		else if (p->game->text == p->data->map.t_so_path)
-		{
-
 			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_south[pixel]);
-		}
 		else if (p->game->text == p->data->map.t_we_path)
-		{
-
 			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_west[pixel]);
-		}
 		else if (p->game->text == p->data->map.t_ea_path)
-		{
-			
 			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_east[pixel]);
-		}
 		s[0]++;
 	}
 	// Afficher le sol en dessous du mur
@@ -210,7 +165,9 @@ void	ft_print_ray(t_player *p, int sx)
 	//TO REMOVE
 
 	//text_x is the coordinate of the wall we want to put texture
-	text_x = ft_define_tx(p);
+	//text_x = ft_define_tx(p);
+	text_x = (p->rc->wall_hit_position * (float)(p->game->text->width - 1));
+
 
 	s[0] = 0; //y
 	s[1] = sx; //x

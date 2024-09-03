@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 17:07:21 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 19:44:35 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ typedef struct s_game
 	mlx_image_t* dark;
 	mlx_image_t* flash;
 	mlx_image_t* fps;
+	mlx_image_t* fps_min;
+	mlx_image_t* fps_max;
+	char	*fps_mini;
+	char	*fps_maxi;
+
 
 	uint32_t	*color_north;
 	uint32_t	*color_south;

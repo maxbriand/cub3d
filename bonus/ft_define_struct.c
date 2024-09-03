@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 18:57:24 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 20:03:42 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ static t_game	*ft_define_game()
 	}
 	game->text = NULL;
 	game->fps = NULL;
+	game->fps_max = NULL;
+	game->fps_min = NULL;
+	game->fps_mini = NULL;
+	game->fps_maxi = NULL;
+	
+
 	
 	game->brightness = 1.0; //sombre ??
 
