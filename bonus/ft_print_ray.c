@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 18:44:54 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 19:21:03 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,19 @@ static uint32_t ft_define_color(t_player *p, uint32_t color)
 
 	brightness = p->game->brightness * p->rc->distance_factor;
     // Extraire les composants de couleur
-    uint8_t r = (color >> 24) & 0xFF; // Alpha
-    uint8_t g = (color >> 16) & 0xFF; // Rouge
-    uint8_t b = (color >> 8) & 0xFF;  // Vert
+    uint8_t r = ((color >> 24) & 0xFF) * brightness; // Alpha
+    uint8_t g = ((color >> 16) & 0xFF) * brightness; // Rouge
+    uint8_t b = ((color >> 8) & 0xFF) * brightness;  // Vert
     uint8_t a = color & 0xFF;         // Bleu
 
-    // Appliquer le facteur de luminosité
-    r = (uint8_t)(r *brightness);
-    g = (uint8_t)(g *brightness);
-    b = (uint8_t)(b *brightness);
-
     // Recombiner les composants
-    return ((r << 24) | (g << 16) | (b << 8) | a);
+    return (((uint8_t)(((color >> 24) & 0xFF) * brightness) << 24) | ((uint8_t)(((color >> 16) & 0xFF) * brightness) << 16) | ((uint8_t)(((color >> 8) & 0xFF) * brightness) << 8) | a);
+	// ((color >> 24) & 0xFF) * brightness
+	// (((color >> 16) & 0xFF) * brightness)
+	// ((color >> 8) & 0xFF) * brightness
+	// color & 0xFF
+	// ((((color >> 24) & 0xFF) * brightness) << 24) | ((((color >> 16) & 0xFF) * brightness) << 16) | (((color >> 8) & 0xFF) * brightness << 8) | a
+	
 }
 
 
@@ -164,89 +165,24 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 		//Add pixel to the image : (sx is screen x, sy is screen y)
 		if (p->game->text == p->data->map.t_no_path)
 		{
-			float		brightness;
-
-			brightness = p->game->brightness * p->rc->distance_factor;
-			// Extraire les composants de couleur
-			uint8_t r = (p->game->color_north[pixel] >> 24) & 0xFF; // Alpha
-			uint8_t g = (p->game->color_north[pixel] >> 16) & 0xFF; // Rouge
-			uint8_t b = (p->game->color_north[pixel] >> 8) & 0xFF;  // Vert
-			uint8_t a = p->game->color_north[pixel] & 0xFF;         // Bleu
-
-			// Appliquer le facteur de luminosité
-			r = (uint8_t)(r *brightness);
-			g = (uint8_t)(g *brightness);
-			b = (uint8_t)(b *brightness);
-
-			color = (r << 24) | (g << 16) | (b << 8) | a;
-			mlx_put_pixel(p->game->image, s[1], s[0], color);
+			
+			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_north[pixel]);
 		}
 		else if (p->game->text == p->data->map.t_so_path)
 		{
-			float		brightness;
 
-			brightness = p->game->brightness * p->rc->distance_factor;
-			// Extraire les composants de couleur
-			uint8_t r = (p->game->color_south[pixel] >> 24) & 0xFF; // Alpha
-			uint8_t g = (p->game->color_south[pixel] >> 16) & 0xFF; // Rouge
-			uint8_t b = (p->game->color_south[pixel] >> 8) & 0xFF;  // Vert
-			uint8_t a = p->game->color_south[pixel] & 0xFF;         // Bleu
-
-			// Appliquer le facteur de luminosité
-			r = (uint8_t)(r *brightness);
-			g = (uint8_t)(g *brightness);
-			b = (uint8_t)(b *brightness);
-
-			color = (r << 24) | (g << 16) | (b << 8) | a;
-			mlx_put_pixel(p->game->image, s[1], s[0], color);
+			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_south[pixel]);
 		}
 		else if (p->game->text == p->data->map.t_we_path)
 		{
-			float		brightness;
 
-			brightness = p->game->brightness * p->rc->distance_factor;
-			// Extraire les composants de couleur
-			uint8_t r = (p->game->color_west[pixel] >> 24) & 0xFF; // Alpha
-			uint8_t g = (p->game->color_west[pixel] >> 16) & 0xFF; // Rouge
-			uint8_t b = (p->game->color_west[pixel] >> 8) & 0xFF;  // Vert
-			uint8_t a = p->game->color_west[pixel] & 0xFF;         // Bleu
-
-			// Appliquer le facteur de luminosité
-			r = (uint8_t)(r *brightness);
-			g = (uint8_t)(g *brightness);
-			b = (uint8_t)(b *brightness);
-
-			color = (r << 24) | (g << 16) | (b << 8) | a;
-			mlx_put_pixel(p->game->image, s[1], s[0], color);
+			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_west[pixel]);
 		}
 		else if (p->game->text == p->data->map.t_ea_path)
 		{
-			float		brightness;
-
-			brightness = p->game->brightness * p->rc->distance_factor;
-			// Extraire les composants de couleur
-			uint8_t r = (p->game->color_east[pixel] >> 24) & 0xFF; // Alpha
-			uint8_t g = (p->game->color_east[pixel] >> 16) & 0xFF; // Rouge
-			uint8_t b = (p->game->color_east[pixel] >> 8) & 0xFF;  // Vert
-			uint8_t a = p->game->color_east[pixel] & 0xFF;         // Bleu
-
-			// Appliquer le facteur de luminosité
-			r = (uint8_t)(r *brightness);
-			g = (uint8_t)(g *brightness);
-			b = (uint8_t)(b *brightness);
-
-			color = (r << 24) | (g << 16) | (b << 8) | a;
-			mlx_put_pixel(p->game->image, s[1], s[0], color);
+			
+			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_east[pixel]);
 		}
-
-
-
-
-
-
-
-
-		
 		s[0]++;
 	}
 	// Afficher le sol en dessous du mur
@@ -278,14 +214,12 @@ void	ft_print_ray(t_player *p, int sx)
 
 	s[0] = 0; //y
 	s[1] = sx; //x
+	color = p->data->map.ceil_r;
+	color = (color << 8) + p->data->map.ceil_g;
+	color = (color << 8) + p->data->map.ceil_b;
+	color = (color << 8) + 0xFF;
 	while (s[0] < p->rc->drawStart)
 	{
-		color = p->data->map.ceil_r;
-		color = (color << 8) + p->data->map.ceil_g;
-		color = (color << 8) + p->data->map.ceil_b;
-		color = (color << 8) + 0xFF;
-
-
 		mlx_put_pixel(p->game->image, s[1], s[0], color); // Couleur du ciel
 		s[0]++;
 	}

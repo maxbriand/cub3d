@@ -1,7 +1,7 @@
-NO ./parsing/textures/milouche.png
-SO ./parsing/textures/Z.png
-EA ./parsing/textures/Z.png
-WE ./parsing/textures/Z.png
+NO ./parsing/textures/cobblestone.png
+SO ./parsing/textures/cobblestone.png
+EA ./parsing/textures/cobblestone.png
+WE ./parsing/textures/cobblestone.png
 
 F 0,0,0
 C 0,0,0
