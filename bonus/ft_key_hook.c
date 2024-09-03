@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 01:30:11 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 02:17:58 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:51:15 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS && p->game->pause == true)
 	{
 		mlx_set_cursor_mode(p->game->mlx, MLX_MOUSE_HIDDEN);
-		mlx_set_mouse_pos(p->game->mlx, p->game->width / 2, p->game->height / 2);
+		//mlx_set_mouse_pos(p->game->mlx, p->game->width / 2, p->game->height / 2);
 		p->game->pause = false;
 	}
 

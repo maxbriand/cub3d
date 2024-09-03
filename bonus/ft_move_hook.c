@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 02:54:50 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 21:40:23 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:47:38 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,4 @@ void	ft_move_hook(mlx_key_data_t keydata, t_player *p)
 			printf("error\n"); //mayday error
 		mlx_image_to_window(p->game->mlx, p->game->dark, 0, 0); //change to dark
 	}
-
-
 }

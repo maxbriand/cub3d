@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 22:58:19 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 15:27:57 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ static void	ft_ray_calcul(t_player *p)
 void	ft_define_rc(t_player *p, int ex)
 {
 	if (!p->rc)
+	{
 		p->rc = malloc(sizeof(*p->rc));
+		p->rc->last_pwd = 0;
+		p->rc->distance_factor = 0;
+	}
 	//trouver la longueur du rayon
 	p->rc->angle = p->or - (p->fov / 2.0) + (p->fov * ((float)ex / (float)p->game->width));
 	p->rc->rayDirX = cos(p->rc->angle);
@@ -77,13 +81,15 @@ static t_game	*ft_define_game()
 	game->pause = false;
 	game->mlx = mlx_init(game->width, game->height, "Cube3D", true);
 	game->image = mlx_new_image(game->mlx, game->width, game->height);
+	
 	if (!game->image)
 	{
 		mlx_terminate(game->mlx);
 		return (NULL);
 	}
 	game->text = NULL;
-
+	game->fps = NULL;
+	
 	game->brightness = 1.0; //sombre ??
 
 	game->dark_t =  mlx_load_png("parsing/textures/dark.png");
@@ -93,19 +99,19 @@ static t_game	*ft_define_game()
 	if (!game->flash_t)
 		printf("coucou\n");
 	else
-		printf("ouiii\n");
+		//printf("ouiii\n");
 
 	game->dark = mlx_texture_to_image(game->mlx, game->dark_t);
 	if (!game->dark)
 		printf("error\n");
 	else
-		printf("nonnn\n");
+		//printf("nonnn\n");
 
 	game->flash = mlx_texture_to_image(game->mlx, game->flash_t);
 	if (!game->flash)
 		printf("error\n");
 	else
-		printf("nonnn\n");
+		//printf("nonnn\n");
 
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
@@ -132,6 +138,8 @@ t_player	*ft_define_player()
 	p->player_move_b = false;
 	p->player_move_l = false;
 	p->player_move_r = false;
+	p->player_look_left = false;
+	p->player_look_right = false;
 	p->light_on = true;
 
 	p->last_mouse_x = 0;

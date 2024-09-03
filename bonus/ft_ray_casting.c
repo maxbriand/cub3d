@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 19:37:12 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 16:50:35 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timeval time)
 {
 	char	*fps;
-
+	if (p->game->fps)
+		mlx_delete_image(p->game->mlx, p->game->fps);
 	if (time.tv_sec == sec)
 	{
 		fps = ft_itoa((int)(1000000 / (time.tv_usec - usec)));
-		printf("%s\n", fps); //fps
-		//mlx_put_string(p->game->mlx, fps, 10, 10);
+		//printf("%s\n", fps); //fps
+		p->game->fps = mlx_put_string(p->game->mlx, fps, 10, 10);
 	}
 }
 
@@ -28,11 +29,11 @@ static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timev
 static void	ft_define_print(t_player *p)
 {
 	p->rc->drawStart = - p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
-	p->rc->drawEnd = p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
-	if (p->rc->drawStart < 0)
-		p->rc->drawStart = 0;
-	if (p->rc->drawEnd >= p->game->height)
-		p->rc->drawEnd = p->game->height - 1.0;
+	p->rc->drawEnd = (int)(p->rc->wall_height / 2.0 + (float)p->game->mid_sy);
+	//if (p->rc->drawStart < 0)
+	//	p->rc->drawStart = 0;
+	//if (p->rc->drawEnd >= p->game->height)
+	//	p->rc->drawEnd = p->game->height - 1;
 
 	//define text
 	if (p->rc->side == 1)
@@ -59,8 +60,8 @@ static void	ft_calcul_wall(t_player *p)
 	else
 		p->rc->perpWallDist = (p->rc->sideDistY - p->rc->deltaDistY);
 	//find wallheight
-	p->rc->wall_height = (p->game->height / (p->rc->perpWallDist * cos(p->or - p->rc->angle))); // change
-	p->rc->wall_height = floor(p->rc->wall_height * 10.0) / 10.0;
+	p->rc->wall_height = ((float)p->game->height / (p->rc->perpWallDist * (float)cos(p->or - p->rc->angle))); // change
+	p->rc->wall_height = (float)floor(p->rc->wall_height * 10.0) / 10.0;
 }
 
 //know what side of the wall we'r talking
@@ -120,4 +121,22 @@ void	ft_ray_casting(void *param)
 	//print fps
 	gettimeofday(&time, NULL);
 	ft_print_fps(p, usec, sec, time);
+
+
+
+	//mouse move
+	int32_t x;
+	int32_t y;
+
+	if (!p->last_mouse_x)
+		p->last_mouse_x = p->game->width / 2;
+	mlx_get_mouse_pos(p->game->mlx, &x, &y);
+	if (p->game->pause == false)
+	{
+		//p->last_mouse_x = p->game->width / 2;
+		p->or += (x - p->last_mouse_x) * 0.001;
+		mlx_set_mouse_pos(p->game->mlx, p->game->width / 2, p->game->height / 2);
+		p->last_mouse_x = p->game->width / 2; //on linux
+		//p->last_mouse_x = x;// in WSL2
+	}
 }

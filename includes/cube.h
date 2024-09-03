@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 21:19:24 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 15:28:24 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct s_ray_casting
 	//distance to the player from the mid of the wall, for remove fishy due to distance
 	float perpWallDist;
 
+	float	last_pwd;
+	float	distance_factor;
+
 	//height of the wall, calculated with the distance from player
 	float wall_height;
 
@@ -89,6 +92,7 @@ typedef struct s_game
 
 	mlx_image_t* dark;
 	mlx_image_t* flash;
+	mlx_image_t* fps;
 
 }t_game;
 

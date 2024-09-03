@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 21:15:30 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:43:31 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 
 	//mlx_key_hook(p->game->mlx, &ft_move_hook, p);
 	mlx_key_hook(p->game->mlx, &ft_key_hook, p);
-	mlx_cursor_hook(p->game->mlx, &ft_mouse_move, p);
+	//mlx_cursor_hook(p->game->mlx, &ft_mouse_move, p);
 	mlx_loop(p->game->mlx);
 	mlx_delete_image(p->game->mlx, p->game->image);
 	mlx_terminate(p->game->mlx);
