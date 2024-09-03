@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 20:21:10 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 21:08:34 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // 	// distance factor is if more loin = more sombre
 // 	//if (sx > screen_center_x / 2 && sx < screen_center_x + screen_center_x / 2
 // 		//&& sy > screen_center_y / 2 && sy < screen_center_y + screen_center_y / 2)
-// 	
+//
 //brightness = p->game->brightness * p->rc->distance_factor;
 // 		//else
 // 	//	distance_factor = 1.0;
@@ -33,7 +33,7 @@
 // 	color = ((uint8_t)(pixels[pixel] /** brightness*/) << 24) |  // Rouge
 // 		((uint8_t)(pixels[pixel + 1] /** brightness*/) << 16) |  // Vert
 // 		((uint8_t)(pixels[pixel + 2] /** brightness*/) << 8)  |  // Bleu
-// 		(pixels[pixel + 3]); 
+// 		(pixels[pixel + 3]);
 
 // 	// final color
 
@@ -68,7 +68,7 @@
 // 	return (0x000000FF);
 // }
 
-/*static uint32_t ft_define_color(t_player *p, uint32_t color)
+static uint32_t ft_define_color(t_player *p, uint32_t color)
 {
 	float		brightness;
 
@@ -86,8 +86,8 @@
 	// ((color >> 8) & 0xFF) * brightness
 	// color & 0xFF
 	// ((((color >> 24) & 0xFF) * brightness) << 24) | ((((color >> 16) & 0xFF) * brightness) << 16) | (((color >> 8) & 0xFF) * brightness << 8) | a
-	
-}*/
+
+}
 
 static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 {
@@ -102,7 +102,7 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 			p->rc->distance_factor =  1.0 / (p->rc->perpWallDist + 1.0);
 		}
 
-		
+
 		// Calculer la position Y sur la texture en fonction de la hauteur du mur
 		//text_y = ft_define_ty(p, s[0]);
 		text_y = (int)((s[0] - p->rc->drawStart) * (float)p->game->text->height / (p->rc->drawEnd - p->rc->drawStart));
@@ -128,16 +128,25 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 		//color = ft_define_color(p, pixel);
 		//color = 0x0000FFFF;
 
-		
+
 		//Add pixel to the image : (sx is screen x, sy is screen y)
+		// if (p->game->text == p->data->map.t_no_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_north[pixel]);
+		// else if (p->game->text == p->data->map.t_so_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_south[pixel]);
+		// else if (p->game->text == p->data->map.t_we_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_west[pixel]);
+		// else if (p->game->text == p->data->map.t_ea_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_east[pixel]);
+
 		if (p->game->text == p->data->map.t_no_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_north[pixel]);
+			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_north[pixel]));
 		else if (p->game->text == p->data->map.t_so_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_south[pixel]);
+			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_south[pixel]));
 		else if (p->game->text == p->data->map.t_we_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_west[pixel]);
+			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_west[pixel]));
 		else if (p->game->text == p->data->map.t_ea_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_east[pixel]);
+			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_east[pixel]));
 		s[0]++;
 	}
 	// Afficher le sol en dessous du mur
