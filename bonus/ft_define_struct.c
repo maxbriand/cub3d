@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 15:27:57 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:09:23 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,25 +93,11 @@ static t_game	*ft_define_game()
 	game->brightness = 1.0; //sombre ??
 
 	game->dark_t =  mlx_load_png("parsing/textures/dark.png");
-	if (!game->dark_t)
-		printf("coucou\n");
 	game->flash_t =  mlx_load_png("parsing/textures/lampe85.png");
-	if (!game->flash_t)
-		printf("coucou\n");
-	else
-		//printf("ouiii\n");
-
 	game->dark = mlx_texture_to_image(game->mlx, game->dark_t);
-	if (!game->dark)
-		printf("error\n");
-	else
-		//printf("nonnn\n");
-
 	game->flash = mlx_texture_to_image(game->mlx, game->flash_t);
-	if (!game->flash)
-		printf("error\n");
-	else
-		//printf("nonnn\n");
+	//PROCTECT IMAGE !!!
+
 
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	return (game);
