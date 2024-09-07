@@ -48,7 +48,7 @@ CC = clang
 
 CFLAGS= -I./MLX42/include -I./libft/include -I./includes -g
 
-MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
+MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -O3 #Ofast is supposed to have better performance, but i can remove it
 
 all: $(NAME)
 

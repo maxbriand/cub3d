@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 17:35:39 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/07 19:14:09 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	main(int argc, char **argv)
 {
 	t_player	*p;
-	t_data		*data;
+	t_data		data;
 
-	ft_parsing(data, argc, argv);
-	ft_init_png(data);
+	ft_parsing(&data, argc, argv);
+	ft_init_png(&data);
 	p = ft_define_player();
-	p->data = data;
+	p->data = &data;
 
 	p->game->color_north = malloc(sizeof(uint32_t) * (p->data->map.t_no_path->height * p->data->map.t_no_path->width));
 	p->game->color_south = malloc(sizeof(uint32_t) * (p->data->map.t_so_path->height * p->data->map.t_so_path->width));
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 		p->game->color_east[i] = ((uint8_t)(p->data->map.t_ea_path->pixels[i * 4]) << 24) |  // Rouge
 		((uint8_t)(p->data->map.t_ea_path->pixels[(i * 4) + 1]) << 16) |  // Vert
 		((uint8_t)(p->data->map.t_ea_path->pixels[(i * 4) + 2]) << 8)  |  // Bleu
-		(p->data->map.t_ea_path->pixels[(i * 4) + 3]); 
+		(p->data->map.t_ea_path->pixels[(i * 4) + 3]);
 		i++;
 	}
 	
