@@ -48,7 +48,9 @@ CC = clang
 
 CFLAGS= -I./MLX42/include -I./libft/include -I./includes -g
 
-MLXFLAGS= -Iinclude -ldl -lglfw -pthread -lm -O3 #Ofast is supposed to have better performance, but i can remove it
+MLXFLAGS= -Iinclude -L./MLX42/build -lmlx42 -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
+
+MLX_INCLUDE_FLAGS = -I/usr/include -Imlx_linux -O3 -c
 
 all: $(NAME)
 
@@ -64,7 +66,7 @@ $(NAME) : $(OBJS)
 bonus: $(OBJS_BONUS)
 	@make --directory=./libft
 	@cd MLX42 && cmake -B build
-	@cd MLX42 && cmake --build build -j4
+	@cd MLX42 && cmake --build build -j16
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLXFLAGS) ./libft/libft.a ./MLX42/build/libmlx42.a -o $(NAME)_bonus
 	@if [ $$? -eq 0 ]; then \
 		echo "\033[32;1mBonus compilation successful!\033[0m"; \
@@ -72,7 +74,7 @@ bonus: $(OBJS_BONUS)
 
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_INCLUDES_FLAGS) -c $< -o $@
 
 
 clean:

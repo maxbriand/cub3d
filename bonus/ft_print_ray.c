@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:47:18 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/07 19:27:24 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/08 20:15:36 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static uint32_t ft_define_color(t_player *p, uint32_t color)
 
 }
 
-static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
+static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int s[2])
 {
 	uint32_t	color;
 	int			pixel;
@@ -38,13 +38,13 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 		//text_y = p->game->text->height / (p->rc->drawEnd - p->rc->drawStart);
 		//pixel = (p->game->text->width * text_y + text_x); // remove *4
 
+	if (p->rc->perpWallDist != p->rc->last_pwd) //erreur par ici
+	{
+		p->rc->last_pwd = p->rc->perpWallDist;
+		p->rc->distance_factor =  1.0 / (p->rc->perpWallDist + 1.0);
+	}
 	while (s[0] < p->rc->drawEnd && s[0] != p->game->height - 1)
 	{
-		if (p->rc->perpWallDist != p->rc->last_pwd) //erreur par ici
-		{
-			p->rc->last_pwd = p->rc->perpWallDist;
-			p->rc->distance_factor =  1.0 / (p->rc->perpWallDist + 1.0);
-		}
 
 
 		text_y = (int)((s[0] - p->rc->drawStart) * (float)p->game->text->height / (p->rc->drawEnd - p->rc->drawStart));
@@ -63,23 +63,27 @@ static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int *s)
 		//pixel need to be multiplicate by 4, because pixel is a group of 4 pixel (R + G + B + A)
 
 		//verif if undo 0
-		//if (pixel < 0)
-			//pixel = 0;
+		if (pixel < 0)
+			pixel = 0;
 
 		//and now that we have the index of the pixel in our ray, lets get the color of it :
 		//we define the color of the pixel we'r gonna print
 		//color = ft_define_color(p, pixel);
-		//color = 0x0000FFFF;
+		color = 0x0000FFFF;
+		//mlx_put_pixel(p->game->image, s[1], s[0], p->game->color_ray_text[pixel]);
+		if (s[0] > 0  && s[0] < p->game->height && s[1] > 0 && s[1] < p->game->width)
+			mlx_put_pixel(p->game->image, s[1], s[0], color);
+			//mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_ray_text[pixel]));
 
 
-		if (p->game->text == p->data->map.t_no_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_north[pixel]));
-		else if (p->game->text == p->data->map.t_so_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_south[pixel]));
-		else if (p->game->text == p->data->map.t_we_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_west[pixel]));
-		else if (p->game->text == p->data->map.t_ea_path)
-			mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_east[pixel]));
+		// if (p->game->text == p->data->map.t_no_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_north[pixel]));
+		// else if (p->game->text == p->data->map.t_so_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_south[pixel]));
+		// else if (p->game->text == p->data->map.t_we_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_west[pixel]));
+		// else if (p->game->text == p->data->map.t_ea_path)
+		// 	mlx_put_pixel(p->game->image, s[1], s[0], ft_define_color(p, p->game->color_east[pixel]));
 		
 		s[0]++;
 	}

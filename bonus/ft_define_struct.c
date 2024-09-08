@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 20:03:42 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/08 20:24:06 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_define_rc(t_player *p, int ex)
 {
 	if (!p->rc)
 	{
-		p->rc = malloc(sizeof(*p->rc));
+		p->rc = ft_calloc(sizeof(*p->rc), 1);
 		p->rc->last_pwd = 0;
 		p->rc->distance_factor = 0;
 	}
@@ -54,8 +54,13 @@ void	ft_define_rc(t_player *p, int ex)
 	p->rc->mapY = (int)p->posY;
 
 
-	p->rc->deltaDistX = sqrt(1.0 + (p->rc->rayDirY * p->rc->rayDirY) / (p->rc->rayDirX * p->rc->rayDirX));
-	p->rc->deltaDistY = sqrt(1.0 + (p->rc->rayDirX * p->rc->rayDirX) / (p->rc->rayDirY * p->rc->rayDirY));
+	//p->rc->deltaDistX = sqrt(1.0 + (p->rc->rayDirY * p->rc->rayDirY) / (p->rc->rayDirX * p->rc->rayDirX));
+	//p->rc->deltaDistY = sqrt(1.0 + (p->rc->rayDirX * p->rc->rayDirX) / (p->rc->rayDirY * p->rc->rayDirY));
+
+	p->rc->deltaDistX = fabs(1 / p->rc->rayDirX);
+	p->rc->deltaDistY = fabs(1 / p->rc->rayDirY);
+	//deltadist = abs(1/sidedist)
+
 
 	if (p->rc->side == 0) // Mur vertical (nord-sud)
 		p->rc->wall_hit_position = p->posY + p->rc->perpWallDist * p->rc->rayDirY;
@@ -79,7 +84,7 @@ static t_game	*ft_define_game()
 	game->mid_sx = game->width / 2;
 	game->mid_sy = game->height / 2;
 	game->pause = false;
-	game->mlx = mlx_init(game->width, game->height, "Cube3D", true);
+	game->mlx = mlx_init(game->width, game->height, "Cube3D", false);
 	game->image = mlx_new_image(game->mlx, game->width, game->height);
 	
 	if (!game->image)

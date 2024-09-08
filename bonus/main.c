@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/07 19:14:09 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/08 20:17:21 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	main(int argc, char **argv)
 	p = ft_define_player();
 	p->data = &data;
 
-	p->game->color_north = malloc(sizeof(uint32_t) * (p->data->map.t_no_path->height * p->data->map.t_no_path->width));
-	p->game->color_south = malloc(sizeof(uint32_t) * (p->data->map.t_so_path->height * p->data->map.t_so_path->width));
-	p->game->color_west = malloc(sizeof(uint32_t) * (p->data->map.t_we_path->height * p->data->map.t_we_path->width));
-	p->game->color_east = malloc(sizeof(uint32_t) * (p->data->map.t_ea_path->height * p->data->map.t_ea_path->width));
+	p->game->color_north = ft_calloc(sizeof(uint32_t), (p->data->map.t_no_path->height * p->data->map.t_no_path->width) + 1);
+	p->game->color_south = ft_calloc(sizeof(uint32_t), (p->data->map.t_so_path->height * p->data->map.t_so_path->width) + 1);
+	p->game->color_west = ft_calloc(sizeof(uint32_t), (p->data->map.t_we_path->height * p->data->map.t_we_path->width) + 1);
+	p->game->color_east = ft_calloc(sizeof(uint32_t), (p->data->map.t_ea_path->height * p->data->map.t_ea_path->width) + 1);
 	//MAYDAY FREE
 
 	int i = 0;

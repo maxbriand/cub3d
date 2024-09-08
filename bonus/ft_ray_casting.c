@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/07 19:31:36 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/08 20:23:20 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,37 @@ static void	ft_define_print(t_player *p)
 {
 	p->rc->drawStart = - p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
 	p->rc->drawEnd = p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
-	//if (p->rc->drawStart < 0)
-	//	p->rc->drawStart = 0;
-	//if (p->rc->drawEnd >= p->game->height)
-	//	p->rc->drawEnd = p->game->height - 1;
+	if (p->rc->drawStart < 0)
+		p->rc->drawStart = 0;
+	if (p->rc->drawEnd >= p->game->height)
+		p->rc->drawEnd = p->game->height - 1;
 
 	//define text
 	if (p->rc->side == 1)
 	{
 		if (p->rc->stepY == -1)
+		{
 			p->game->text = p->data->map.t_no_path;
+			p->game->color_ray_text = p->game->color_north;
+		}
 		else
+		{
 			p->game->text =  p->data->map.t_so_path;
+			p->game->color_ray_text = p->game->color_south;
+		}
 	}
 	else
 	{
 		if (p->rc->stepX == -1)
+		{
 			p->game->text =  p->data->map.t_we_path;
+			p->game->color_ray_text = p->game->color_west;
+		}
 		else
+		{
 			p->game->text =  p->data->map.t_ea_path;
+			p->game->color_ray_text = p->game->color_east;
+		}
 	}
 }
 
@@ -115,9 +127,10 @@ static void	ft_find_side(t_player *p)
 			p->rc->mapY += p->rc->stepY;
 			p->rc->side = 1;
 		}
-		if (p->rc->mapY < 0 || p->rc->mapY >= 7 || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(p->data->map.map[p->rc->mapY]))
+		//change//if (p->rc->mapY < 0 || p->rc->mapY >= 7 || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(p->data->map.map[p->rc->mapY]))
+		if (p->rc->mapY < 0 || p->rc->mapY >= p->data->map.height_map || p->rc->mapX < 0 || p->rc->mapX >= (int)ft_strlen(p->data->map.map[p->rc->mapY]))
 			p->rc->hit = 1;
-		if (p->data->map.map[p->rc->mapY][p->rc->mapX] == '1')
+		if (!p->rc->hit && p->data->map.map[p->rc->mapY][p->rc->mapX] == '1')
 			p->rc->hit = 1;
 	}
 }

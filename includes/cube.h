@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 19:44:35 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/08 18:53:13 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_game
 	float	brightness; //pour la luminosite
 
 	mlx_texture_t *text;
+	uint32_t	*color_ray_text;
 
 	mlx_texture_t* dark_t;
 	mlx_texture_t* flash_t;
