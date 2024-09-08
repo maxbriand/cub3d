@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/26 00:48:15 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/07 22:28:58 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 typedef struct s_map
 {
+	char			spawning_orientation;
 	char			**map;
 	char			**map_copy;
 	int				height_map;
@@ -56,7 +57,7 @@ typedef struct s_data
 }	t_data;
 
 // EXE
-void	ft_init_png(t_data *data);
+// void	ft_init_png(t_data *data);
 
 // ERROR
 void	ft_pexit(char *msg, t_data *data);

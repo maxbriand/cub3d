@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:24:05 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/26 00:54:51 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/07 22:33:33 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	ft_parsing(&data, ac, av);
-	ft_init_png(&data);
+	// ft_init_png(&data);
+	printf("the char is: %c\n", data.map.spawning_orientation);
 	ft_arrfree(data.map.map);
 	return (0);
 }

@@ -5,7 +5,6 @@ LIBFT = libft/libft.a
 
 SRC = 	main.c \
 		ft_pexit.c \
-		ft_init_png.c \
 		\
 		parsing/ft_parsing.c \
 		parsing/ft_check_arg_nbr.c \
@@ -18,7 +17,8 @@ SRC = 	main.c \
 		parsing/ft_check_map_size.c \
 		parsing/ft_check_map_one_good_char.c \
 		parsing/ft_check_map_closed.c \
-		parsing/ft_utils.c \
+		parsing/ft_utils.c
+#ft_init_png.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
