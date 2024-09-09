@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/08 20:23:20 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/09 02:54:24 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timev
 
 	if (p->game->fps)
 		mlx_delete_image(p->game->mlx, p->game->fps);
-		
+
 	if (time.tv_sec == sec)
 	{
 		fps = ft_itoa((int)(1000000 / (time.tv_usec - usec)));
-		
-		
-		//printf("%s\n", p->game->fps_mini);          
+
+
+		//printf("%s\n", p->game->fps_mini);
 		if (!p->game->fps_mini || ft_atoi(p->game->fps_mini) > ft_atoi(fps))
 		{
 
@@ -51,7 +51,7 @@ static void	ft_print_fps(t_player *p, suseconds_t usec, time_t sec, struct timev
 			p->game->fps_max = mlx_put_string(p->game->mlx, p->game->fps_maxi, 80, 10);
 		}
 
-		
+
 		//printf("%s\n", fps); //fps
 		p->game->fps = mlx_put_string(p->game->mlx, fps, 10, 10);
 		free(fps);
@@ -63,10 +63,10 @@ static void	ft_define_print(t_player *p)
 {
 	p->rc->drawStart = - p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
 	p->rc->drawEnd = p->rc->wall_height / 2.0 + (float)p->game->mid_sy;
-	if (p->rc->drawStart < 0)
-		p->rc->drawStart = 0;
-	if (p->rc->drawEnd >= p->game->height)
-		p->rc->drawEnd = p->game->height - 1;
+	//if (p->rc->drawStart < 0)
+	//	p->rc->drawStart = 0;
+	//if (p->rc->drawEnd >= p->game->height)
+	//	p->rc->drawEnd = p->game->height - 1;
 
 	//define text
 	if (p->rc->side == 1)
@@ -105,7 +105,7 @@ static void	ft_calcul_wall(t_player *p)
 	else
 		p->rc->perpWallDist = (p->rc->sideDistY - p->rc->deltaDistY);
 	//find wallheight
-	
+
 	p->rc->wall_height = ((float)p->game->height / (p->rc->perpWallDist * (float)cos(p->or - p->rc->angle))); // change
 	p->rc->wall_height = (float)floor(p->rc->wall_height * 10.0) / 10.0;
 }

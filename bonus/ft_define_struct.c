@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/08 20:24:06 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/09 02:55:01 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,16 @@ static t_game	*ft_define_game()
 	t_game	*game;
 
 	game = malloc(sizeof(*game));
-	game->width = 1920;
-	game->height = 1080;
+	//game->width = 1920;
+	game->width = 720;
+	//game->height = 1080;
+	game->height = 480;
 	game->mid_sx = game->width / 2;
 	game->mid_sy = game->height / 2;
 	game->pause = false;
 	game->mlx = mlx_init(game->width, game->height, "Cube3D", false);
 	game->image = mlx_new_image(game->mlx, game->width, game->height);
-	
+
 	if (!game->image)
 	{
 		mlx_terminate(game->mlx);
@@ -98,9 +100,9 @@ static t_game	*ft_define_game()
 	game->fps_min = NULL;
 	game->fps_mini = NULL;
 	game->fps_maxi = NULL;
-	
 
-	
+
+
 	game->brightness = 1.0; //sombre ??
 
 	game->dark_t =  mlx_load_png("parsing/textures/dark.png");

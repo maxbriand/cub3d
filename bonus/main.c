@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/08 20:17:21 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/09 02:46:43 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		p->game->color_north[i] = ((uint8_t)(p->data->map.t_no_path->pixels[i * 4]) << 24) |  // Rouge
 		((uint8_t)(p->data->map.t_no_path->pixels[(i * 4) + 1]) << 16) |  // Vert
 		((uint8_t)(p->data->map.t_no_path->pixels[(i * 4) + 2]) << 8)  |  // Bleu
-		(p->data->map.t_no_path->pixels[(i * 4) + 3]); 
+		(p->data->map.t_no_path->pixels[(i * 4) + 3]);
 		i++;
 	}
 	i = 0;
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 		p->game->color_south[i] = ((uint8_t)(p->data->map.t_so_path->pixels[i * 4]) << 24) |  // Rouge
 		((uint8_t)(p->data->map.t_so_path->pixels[(i * 4) + 1]) << 16) |  // Vert
 		((uint8_t)(p->data->map.t_so_path->pixels[(i * 4) + 2]) << 8)  |  // Bleu
-		(p->data->map.t_so_path->pixels[(i * 4) + 3]); 
+		(p->data->map.t_so_path->pixels[(i * 4) + 3]);
 		i++;
 	}
 	i = 0;
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 		p->game->color_west[i] = ((uint8_t)(p->data->map.t_we_path->pixels[i * 4]) << 24) |  // Rouge
 		((uint8_t)(p->data->map.t_we_path->pixels[(i * 4) + 1]) << 16) |  // Vert
 		((uint8_t)(p->data->map.t_we_path->pixels[(i * 4) + 2]) << 8)  |  // Bleu
-		(p->data->map.t_we_path->pixels[(i * 4) + 3]); 
+		(p->data->map.t_we_path->pixels[(i * 4) + 3]);
 		i++;
 	}
 	i = 0;
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 		(p->data->map.t_ea_path->pixels[(i * 4) + 3]);
 		i++;
 	}
-	
+
 
 
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	//ray casting and print on screen
 	mlx_loop_hook(p->game->mlx, ft_ray_casting, p); //map will be in struct set by pars ?
 	mlx_image_to_window(p->game->mlx, p->game->image, 0, 0);
-	mlx_image_to_window(p->game->mlx, p->game->flash, 0, 0); //change to dark
+	//mlx_image_to_window(p->game->mlx, p->game->flash, 0, 0); //change to dark
 	mlx_set_cursor_mode(p->game->mlx, MLX_MOUSE_HIDDEN);
 
 	//mlx_key_hook(p->game->mlx, &ft_move_hook, p);
