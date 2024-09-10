@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 01:30:11 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 14:51:15 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/10 15:44:09 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 	if (p->game->pause == false)
 		ft_move_hook(keydata, p);
 
-	
 	//HANDLE PAUSE GAME
 	//if I put escape, then mause is show
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS && p->game->pause == false)
@@ -36,5 +35,4 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 		//mlx_set_mouse_pos(p->game->mlx, p->game->width / 2, p->game->height / 2);
 		p->game->pause = false;
 	}
-
 }

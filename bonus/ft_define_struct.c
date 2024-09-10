@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/09 02:55:01 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/10 15:43:45 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_define_rc(t_player *p, int ex)
 	//p->rc->deltaDistX = sqrt(1.0 + (p->rc->rayDirY * p->rc->rayDirY) / (p->rc->rayDirX * p->rc->rayDirX));
 	//p->rc->deltaDistY = sqrt(1.0 + (p->rc->rayDirX * p->rc->rayDirX) / (p->rc->rayDirY * p->rc->rayDirY));
 
-	p->rc->deltaDistX = fabs(1 / p->rc->rayDirX);
+	p->rc->deltaDistX = fabs(1 / p->rc->rayDirX);//mayday
 	p->rc->deltaDistY = fabs(1 / p->rc->rayDirY);
 	//deltadist = abs(1/sidedist)
 
@@ -74,79 +74,55 @@ void	ft_define_rc(t_player *p, int ex)
 	ft_ray_calcul(p);
 }
 
-static t_game	*ft_define_game()
+static void	ft_define_game(t_player *p)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(*game));
-	//game->width = 1920;
-	game->width = 720;
-	//game->height = 1080;
-	game->height = 480;
-	game->mid_sx = game->width / 2;
-	game->mid_sy = game->height / 2;
-	game->pause = false;
-	game->mlx = mlx_init(game->width, game->height, "Cube3D", false);
-	game->image = mlx_new_image(game->mlx, game->width, game->height);
-
-	if (!game->image)
-	{
-		mlx_terminate(game->mlx);
-		return (NULL);
-	}
-	game->text = NULL;
-	game->fps = NULL;
-	game->fps_max = NULL;
-	game->fps_min = NULL;
-	game->fps_mini = NULL;
-	game->fps_maxi = NULL;
-
-
-
-	game->brightness = 1.0; //sombre ??
-
-	game->dark_t =  mlx_load_png("parsing/textures/dark.png");
-	game->flash_t =  mlx_load_png("parsing/textures/lampe85.png");
-	game->dark = mlx_texture_to_image(game->mlx, game->dark_t);
-	game->flash = mlx_texture_to_image(game->mlx, game->flash_t);
-	//PROCTECT IMAGE !!!
-
-
+	game = ft_calloc(1, sizeof(*game));
+	if (!game)
+		ft_ultimate_free(p);
+	p->game = game;
+	//480p
+	p->game->width = 854;
+	p->game->height = 480;
+	p->game->mid_sx = p->game->width / 2;
+	p->game->mid_sy = p->game->height / 2;
+	p->game->mlx = mlx_init(p->game->width, p->game->height, "Cube3D", true);
+	if (!p->game->mlx)
+		ft_ultimate_free(p);
+	p->game->brightness = 1.0; //sombre ??
+	p->game->image = mlx_new_image(p->game->mlx, p->game->width, p->game->height);
+	p->game->dark_t =  mlx_load_png("parsing/textures/dark480p.png");
+	p->game->flash_t =  mlx_load_png("parsing/textures/lampe480p.png");
+	p->game->dark = mlx_texture_to_image(p->game->mlx, p->game->dark_t);
+	p->game->flash = mlx_texture_to_image(p->game->mlx, p->game->flash_t);
+	if (!p->game->dark_t || !p->game->flash_t || !p->game->dark
+		|| !p->game->flash || !p->game->image)
+		ft_ultimate_free(p);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	return (game);
+	mlx_set_setting(MLX_FULLSCREEN, 1);
 }
 
-
-
-
-t_player	*ft_define_player()
+t_player	*ft_define_player(t_data *data)
 {
 	//PLAYER NEED TO BE SET WITH PARSING, NOT LIKE THIS
 	t_player	*p;
 
-	p = malloc(sizeof(*p));
-	p->game = ft_define_game();
-		//if (!mlx_game) need to put pointer
-		//return (-1);
-	p->posX = 8.50;
-	p->posY = 3.50; //x and y start position
-
+	p = ft_calloc(sizeof(*p), 1);
+	p->data = data;
+	ft_define_game(p);
+	p->posX = (float)p->data->x_spoint + 0.5;
+	p->posY = (float)p->data->y_spoint + 0.5;; //x and y start position
 	p->move_speed = 0.05;
-	p->player_run = false;
-	p->player_move_f = false;
-	p->player_move_b = false;
-	p->player_move_l = false;
-	p->player_move_r = false;
-	p->player_look_left = false;
-	p->player_look_right = false;
 	p->light_on = true;
-
-	p->last_mouse_x = 0;
-	p->last_mouse_y = 0;
-
-
-	p->fov = M_PI * 0.4;
-	p->or = 1 * M_PI;
-	p->rc = NULL;
+	p->fov = 0.5 * M_PI;
+	if (p->data->map.spawning_orientation == 'N')
+		p->or = 1.5 * M_PI;
+	if (p->data->map.spawning_orientation == 'E')
+		p->or = 0.0 * M_PI;
+	if (p->data->map.spawning_orientation == 'S')
+		p->or = 0.5 * M_PI;
+	if (p->data->map.spawning_orientation == 'W')
+		p->or = 1.0 * M_PI;
 	return (p);
 }

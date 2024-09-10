@@ -6,18 +6,20 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 01:07:29 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/03 14:41:05 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/10 15:23:32 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	ft_mouse_move(double x, double y, void *param)
+void	ft_mouse_move(t_player *p)
 {
-	t_player	*p;
+	int32_t x;
+	int32_t y;
 
-	p = (t_player *)param;
-
+	if (!p->last_mouse_x)
+		p->last_mouse_x = p->game->width / 2;
+	mlx_get_mouse_pos(p->game->mlx, &x, &y);
 	if (p->game->pause == false)
 	{
 		//p->last_mouse_x = p->game->width / 2;

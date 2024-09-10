@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:01:46 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/02 21:13:48 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/10 12:09:47 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_move_right(t_player *p)
 	int	newPosY;
 
 	//calcul if there is a wall on left
-	newPosX = (int)(p->posX + cos(p->or+ (M_PI / 2)) * p->move_speed);
+	newPosX = (int)(p->posX + cos(p->or + (M_PI / 2)) * p->move_speed);
 	newPosY = (int)(p->posY + sin(p->or + (M_PI / 2)) * p->move_speed);
 
 	if (p->data->map.map[newPosY][(int)p->posX] != '1' && p->data->map.map[(int)p->posY][newPosX] != '1')

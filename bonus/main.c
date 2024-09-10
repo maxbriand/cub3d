@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/09 02:46:43 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/10 14:09:00 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	main(int argc, char **argv)
 
 	ft_parsing(&data, argc, argv);
 	ft_init_png(&data);
-	p = ft_define_player();
-	p->data = &data;
+	p = ft_define_player(&data);
 
 	p->game->color_north = ft_calloc(sizeof(uint32_t), (p->data->map.t_no_path->height * p->data->map.t_no_path->width) + 1);
 	p->game->color_south = ft_calloc(sizeof(uint32_t), (p->data->map.t_so_path->height * p->data->map.t_so_path->width) + 1);
@@ -72,15 +71,13 @@ int	main(int argc, char **argv)
 	//ray casting and print on screen
 	mlx_loop_hook(p->game->mlx, ft_ray_casting, p); //map will be in struct set by pars ?
 	mlx_image_to_window(p->game->mlx, p->game->image, 0, 0);
-	//mlx_image_to_window(p->game->mlx, p->game->flash, 0, 0); //change to dark
+	mlx_image_to_window(p->game->mlx, p->game->flash, 0, 0); //change to dark
 	mlx_set_cursor_mode(p->game->mlx, MLX_MOUSE_HIDDEN);
 
 	//mlx_key_hook(p->game->mlx, &ft_move_hook, p);
 	mlx_key_hook(p->game->mlx, &ft_key_hook, p);
 	//mlx_cursor_hook(p->game->mlx, &ft_mouse_move, p);
 	mlx_loop(p->game->mlx);
-	mlx_delete_image(p->game->mlx, p->game->image);
-	mlx_terminate(p->game->mlx);
 	ft_ultimate_free(p);
 
 	return (0);
