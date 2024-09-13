@@ -49,7 +49,7 @@ CC = cc
 
 CFLAGS= -I./MLX42/include -I./libft/include -I./includes -Wall -Werror -Wextra -g
 
-MLXFLAGS= -Iinclude -L./MLX42/build -lmlx42 -ldl -lglfw -pthread -lm -Ofast #Ofast is supposed to have better performance, but i can remove it
+MLXFLAGS= -Iinclude -L./MLX42/build -lmlx42 -ldl -lglfw -pthread -lm -Ofast
 
 MLX_INCLUDE_FLAGS = -I/usr/include -Imlx_linux -O3 -c
 
