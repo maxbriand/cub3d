@@ -1,4 +1,4 @@
-NAME = cube
+NAME = cub3D
 
 PARS =  parsing/ft_pexit.c \
 		parsing/ft_init_png.c \
@@ -49,7 +49,7 @@ OBJS_BONUS=$(BONUS:.c=.o) $(PARS:.c=.o)
 
 RM =rm -f
 
-CC = clang
+CC = cc
 
 CFLAGS= -I./MLX42/include -I./libft/include -I./includes -Wall -Werror -Wextra -g
 
