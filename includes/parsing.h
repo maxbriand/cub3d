@@ -6,12 +6,12 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 14:26:44 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:18:16 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include "libft.h"
 # include <sys/types.h>

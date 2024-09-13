@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:13:18 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 15:44:18 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:07:39 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	ft_check_map_file_extension(t_data *data, char *path)
 	if (path[l - 1] != 'b' || path[l - 2] != 'u' || path[l - 3] != 'c' || \
 		path[l - 4] != '.')
 		ft_pexit("the file extension isn't correct", data);
-    if (l == 4 || path[l - 5] == '/')
-        ft_pexit(".cub is a hidden file", data);
+	if (l == 4 || path[l - 5] == '/')
+		ft_pexit(".cub is a hidden file", data);
 }

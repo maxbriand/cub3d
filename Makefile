@@ -32,9 +32,9 @@ BONUS = bonus/main.c \
 		bonus/ft_define_struct_bonus.c \
 		bonus/ft_ultimate_free_bonus.c \
 		bonus/ft_ray_casting_bonus.c \
+		bonus/ft_key_hook_bonus.c \
 		bonus/ft_move_bonus.c \
 		bonus/ft_mouse_move_bonus.c \
-		bonus/ft_key_hook_bonus.c \
 		bonus/ft_print_ray_bonus.c \
 		bonus/ft_move_hook_bonus.c \
 		bonus/ft_print_fps_bonus.c \
@@ -80,10 +80,11 @@ $(NAME_BONUS): $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(MLX_INCLUDES_FLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME) $(NAME_BONUS)
+	@$(RM) $(NAME) $(NAME_BONUS)
+	@echo "\033[32;1mfcleaned\033[0m"
 
 re: fclean $(NAME)
 

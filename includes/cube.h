@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 14:28:04 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:16:43 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		ft_ultimate_free(t_player *p);
 void		ft_ray_casting(void *param);
 void		ft_print_ray(t_player *p, int sx);
 void		ft_print_fps(t_player *p, suseconds_t usec,
-			time_t sec, struct timeval time);
+				time_t sec, struct timeval time);
 
 void		ft_move_hook(mlx_key_data_t keydata, t_player *p);
 void		ft_move_wasd(t_player *p);

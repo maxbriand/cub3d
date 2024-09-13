@@ -6,25 +6,25 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 00:43:01 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 14:50:03 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:09:04 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void    ft_free_load_png(int i, t_data *data)
+static void	ft_free_load_png(int i, t_data *data)
 {
 	if (i == 1)
 		mlx_delete_texture(data->map.t_no_path);
 	if (i == 2)
 	{
 		mlx_delete_texture(data->map.t_no_path);
-		mlx_delete_texture(data->map.t_so_path);		
+		mlx_delete_texture(data->map.t_so_path);
 	}
 	if (i == 3)
 	{
 		mlx_delete_texture(data->map.t_no_path);
-		mlx_delete_texture(data->map.t_so_path);		
+		mlx_delete_texture(data->map.t_so_path);
 		mlx_delete_texture(data->map.t_ea_path);
 	}
 	ft_pexit("empty images", data);

@@ -6,11 +6,27 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:37:35 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 14:38:06 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:15:02 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static long	ft_check_error(t_data *data, char *number)
+{
+	long	color;
+
+	if (!number[0])
+	{
+		free(number);
+		ft_pexit("rgb number issue", data);
+	}
+	color = ft_atol(number);
+	free(number);
+	if (color < 0 || color > 255)
+		ft_pexit("one rgb code isn't in a good scope", data);
+	return (color);
+}
 
 static bool	ft_shorter_atol_color(int d, char c)
 {
@@ -23,9 +39,9 @@ static bool	ft_shorter_atol_color(int d, char c)
 
 int	ft_atol_color(t_data *data, char *text, int d)
 {
-	long	color;
 	char	*number;
 	int		i;
+	long	color;
 
 	if (!text)
 		ft_pexit("missing information on the map", data);
@@ -43,15 +59,7 @@ int	ft_atol_color(t_data *data, char *text, int d)
 	if (!number)
 		ft_pexit("malloc issue", data);
 	ft_strlcpy(number, text, i + 1);
-	if (!number[0])
-    {
-        free(number);
-        ft_pexit("rgb number issue", data);
-    }
-	color = ft_atol(number);
-	free(number);
-	if (color < 0 || color > 255)
-		ft_pexit("one rgb code isn't in a good scope", data);
+	color = ft_check_error(data, number);
 	return (color);
 }
 
@@ -81,10 +89,6 @@ int	ft_set_color(t_data *data, char *text, int nbr)
 	return (len - 1);
 }
 
-// char	*no_path;
-// char	*so_path;
-// char	*we_path;
-// char	*ea_path;
 int	ft_set_orientation(t_data *data, char *text, int nbr)
 {
 	int		len;
