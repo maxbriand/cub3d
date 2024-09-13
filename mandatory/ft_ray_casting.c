@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:25:10 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 11:33:39 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:52:54 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	ft_ray_casting(void *param)
 
 	p = (t_player *)param;
 	sx = 0;
+	if (p->game->pause)
+		return ;
 	gettimeofday(&time, NULL);
 	usec = time.tv_usec;
 	sec = time.tv_sec;

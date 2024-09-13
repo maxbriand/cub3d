@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_define_struct.c                                 :+:      :+:    :+:   */
+/*   ft_define_struct_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 14:13:01 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:53:10 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_define_rc(t_player *p, int ex)
 
 void	ft_check_and_resize(t_player *p)
 {
+	p->game->pause = false;
 	p->game->color_north = ft_calloc(sizeof(uint32_t), \
 	(p->data->map.t_no_path->height * p->data->map.t_no_path->width) + 1);
 	p->game->color_south = ft_calloc(sizeof(uint32_t), \
@@ -77,7 +78,10 @@ void	ft_check_and_resize(t_player *p)
 		|| !p->game->color_east || !p->game->dark || !p->game->flash
 		|| !p->game->image)
 		ft_ultimate_free(p);
-	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	mlx_set_window_size(p->game->mlx, 1920, 1080);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	mlx_set_setting(MLX_FULLSCREEN, true);
+	mlx_set_setting(MLX_MAXIMIZED, true);
 }
 
 static void	ft_define_game(t_player *p)
@@ -95,8 +99,8 @@ static void	ft_define_game(t_player *p)
 	p->game->mlx = mlx_init(p->game->width, p->game->height, "Cube3D", true);
 	if (!p->game->mlx)
 		ft_ultimate_free(p);
-	p->game->dark_t = mlx_load_png("textures/dark480p.png");
-	p->game->flash_t = mlx_load_png("textures/lampe480p.png");
+	p->game->dark_t = mlx_load_png("textures/flashlight/dark480p.png");
+	p->game->flash_t = mlx_load_png("textures/flashlight/lampe480p.png");
 	if (!p->game->dark_t || !p->game->flash_t)
 		ft_ultimate_free(p);
 	p->game->image = mlx_new_image(p->game->mlx, p->game->width, \
