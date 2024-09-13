@@ -1,4 +1,5 @@
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
 PARS =  parsing/ft_pexit.c \
 		parsing/ft_init_png.c \
@@ -56,7 +57,7 @@ MLX_INCLUDE_FLAGS = -I/usr/include -Imlx_linux -O3 -c
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	@make --directory=./libft
+	@make --no-print-directory --directory=./libft
 	@cd MLX42 && cmake -B build
 	@cd MLX42 && cmake --build build -j4
 	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) ./libft/libft.a ./MLX42/build/libmlx42.a -o $@
@@ -64,24 +65,25 @@ $(NAME) : $(OBJS)
 		echo "\033[32;1mCompilation successful!\033[0m"; \
 	fi
 
-bonus: $(OBJS_BONUS)
-	@make --directory=./libft
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS)
+	@make --no-print-directory --directory=./libft
 	@cd MLX42 && cmake -B build
 	@cd MLX42 && cmake --build build -j16
-	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLXFLAGS) ./libft/libft.a ./MLX42/build/libmlx42.a -o $(NAME)_bonus
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLXFLAGS) ./libft/libft.a ./MLX42/build/libmlx42.a -o $(NAME_BONUS)
 	@if [ $$? -eq 0 ]; then \
 		echo "\033[32;1mBonus compilation successful!\033[0m"; \
 	fi
 
-
 %.o: %.c
 	$(CC) $(CFLAGS) $(MLX_INCLUDES_FLAGS) -c $< -o $@
 
-
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
+
 fclean: clean
-	$(RM) $(NAME) $(NAME)_bonus
+	$(RM) $(NAME) $(NAME_BONUS)
 
 re: fclean $(NAME)
 
