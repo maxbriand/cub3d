@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_arg_nbr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:14:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/24 19:57:38 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:03 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 void	ft_check_arg_nbr(t_data *data, int ac)
 {

@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:17:43 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 18:39:23 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:39 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 static void	ft_free_struct(t_data *data)
 {

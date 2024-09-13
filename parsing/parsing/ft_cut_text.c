@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 19:38:48 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:20 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 static void	ft_id_already_set2(t_data *data, int nbr)
 {

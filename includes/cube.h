@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 11:31:03 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:28:04 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 # include "../libft/include/libft.h"
-# include "cub3d.h"
+# include "parsing.h"
 
 typedef struct s_ray_casting
 {

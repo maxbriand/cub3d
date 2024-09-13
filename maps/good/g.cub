@@ -1,7 +1,7 @@
-NO ./parsing/textures/netherite.png
-SO ./parsing/textures/netherite.png
-EA ./parsing/textures/netherite.png
-WE ./parsing/textures/netherite.png
+NO ./textures/netherite.png
+SO ./textures/netherite.png
+EA ./textures/netherite.png
+WE ./textures/netherite.png
 
 F 0,0,0
 C 0,0,0

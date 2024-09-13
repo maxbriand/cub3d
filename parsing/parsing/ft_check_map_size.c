@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:12:31 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/26 00:31:02 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:17 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 void	ft_check_map_size(t_data *data, char **map)
 {

@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:09:53 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/25 19:23:20 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:24 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 void	ft_init_data(t_data *data)
 {

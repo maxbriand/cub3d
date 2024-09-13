@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:23:13 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/10 12:02:04 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:26:44 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ typedef struct s_data
 	int		y_spoint;
 	t_map	map;
 }	t_data;
-
-// EXE
-// void	ft_init_png(t_data *data);
 
 // ERROR
 void	ft_pexit(char *msg, t_data *data);

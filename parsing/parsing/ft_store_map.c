@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:31:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/26 00:26:29 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:32 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 void	ft_add_map_line(t_data *data, char **map, char *text, char *start_line)
 {

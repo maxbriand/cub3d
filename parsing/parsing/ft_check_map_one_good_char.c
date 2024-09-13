@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:54:35 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/07 22:32:52 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:15 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 static void	ft_only_one_spawn(char **map, int i, int j, t_data *data)
 {

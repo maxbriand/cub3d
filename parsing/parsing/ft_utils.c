@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:37:35 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/26 00:27:53 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:34 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 static bool	ft_shorter_atol_color(int d, char c)
 {

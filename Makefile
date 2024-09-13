@@ -30,18 +30,16 @@ SRCS = 	mandatory/main.c\
 
 
 BONUS = bonus/main.c\
-		bonus/ft_define_struct.c\
-		bonus/ft_ultimate_free.c\
-		bonus/ft_ray_casting.c\
-		bonus/ft_move.c\
-		bonus/ft_mouse_move.c\
-		bonus/ft_key_hook.c\
-		bonus/ft_print_ray.c\
-		bonus/ft_move_hook.c\
-		bonus/ft_print_fps.c\
-		bonus/ft_define_color_text.c
-
-
+		bonus/ft_define_struct_bonus.c\
+		bonus/ft_ultimate_free_bonus.c\
+		bonus/ft_ray_casting_bonus.c\
+		bonus/ft_move_bonus.c\
+		bonus/ft_mouse_move_bonus.c\
+		bonus/ft_key_hook_bonus.c\
+		bonus/ft_print_ray_bonus.c\
+		bonus/ft_move_hook_bonus.c\
+		bonus/ft_print_fps_bonus.c\
+		bonus/ft_define_color_text_bonus.c
 
 OBJS=$(SRCS:.c=.o) $(PARS:.c=.o)
 

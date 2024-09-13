@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_define_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/10 18:36:26 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:13:01 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static void	ft_define_game(t_player *p)
 	p->game->mlx = mlx_init(p->game->width, p->game->height, "Cube3D", true);
 	if (!p->game->mlx)
 		ft_ultimate_free(p);
-	p->game->dark_t = mlx_load_png("parsing/textures/dark480p.png");
-	p->game->flash_t = mlx_load_png("parsing/textures/lampe480p.png");
+	p->game->dark_t = mlx_load_png("textures/dark480p.png");
+	p->game->flash_t = mlx_load_png("textures/lampe480p.png");
 	if (!p->game->dark_t || !p->game->flash_t)
 		ft_ultimate_free(p);
 	p->game->image = mlx_new_image(p->game->mlx, p->game->width, \

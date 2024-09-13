@@ -6,11 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:41:39 by mbriand           #+#    #+#             */
-/*   Updated: 2024/08/26 00:20:59 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:27:22 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 static char	*ft_new_full_text(char *full_text, char *buffer)
 {
