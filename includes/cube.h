@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:35:32 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/10 19:48:10 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/13 11:31:03 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_game
 	int				height;
 	int				mid_sx;
 	int				mid_sy;
-	bool			pause;
 	mlx_texture_t	*text;
 	uint32_t		*color_ray_text;
 	mlx_texture_t	*dark_t;
