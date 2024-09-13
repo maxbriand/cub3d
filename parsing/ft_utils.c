@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:37:35 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 14:27:34 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:38:06 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int	ft_atol_color(t_data *data, char *text, int d)
 	if (!number)
 		ft_pexit("malloc issue", data);
 	ft_strlcpy(number, text, i + 1);
+	if (!number[0])
+    {
+        free(number);
+        ft_pexit("rgb number issue", data);
+    }
 	color = ft_atol(number);
 	free(number);
 	if (color < 0 || color > 255)

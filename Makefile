@@ -2,43 +2,41 @@ NAME = cub3D
 
 PARS =  parsing/ft_pexit.c \
 		parsing/ft_init_png.c \
-		parsing/parsing/ft_check_arg_nbr.c \
-		parsing/parsing/ft_check_ids_good_path.c \
-		parsing/parsing/ft_check_map_closed.c \
-		parsing/parsing/ft_check_map_file_extension.c \
-		parsing/parsing/ft_check_map_one_good_char.c \
-		parsing/parsing/ft_check_map_size.c \
-		parsing/parsing/ft_cut_text.c \
-		parsing/parsing/ft_get_text.c \
-		parsing/parsing/ft_init_data.c \
-		parsing/parsing/ft_parsing.c \
-		parsing/parsing/ft_store_map.c \
-		parsing/parsing/ft_utils.c \
+		parsing/ft_check_arg_nbr.c \
+		parsing/ft_check_ids_good_path.c \
+		parsing/ft_check_map_closed.c \
+		parsing/ft_check_map_file_extension.c \
+		parsing/ft_check_map_one_good_char.c \
+		parsing/ft_check_map_size.c \
+		parsing/ft_cut_text.c \
+		parsing/ft_get_text.c \
+		parsing/ft_init_data.c \
+		parsing/ft_parsing.c \
+		parsing/ft_store_map.c \
+		parsing/ft_utils.c
 
-
-SRCS = 	mandatory/main.c\
-		mandatory/ft_define_struct.c\
-		mandatory/ft_ultimate_free.c\
-		mandatory/ft_ray_casting.c\
-		mandatory/ft_move.c\
-		mandatory/ft_mouse_move.c\
-		mandatory/ft_key_hook.c\
-		mandatory/ft_print_ray.c\
-		mandatory/ft_move_hook.c\
-		mandatory/ft_print_fps.c\
+SRCS = 	mandatory/main.c \
+		mandatory/ft_define_struct.c \
+		mandatory/ft_ultimate_free.c \
+		mandatory/ft_ray_casting.c \
+		mandatory/ft_move.c \
+		mandatory/ft_mouse_move.c \
+		mandatory/ft_key_hook.c \
+		mandatory/ft_print_ray.c \
+		mandatory/ft_move_hook.c \
+		mandatory/ft_print_fps.c \
 		mandatory/ft_define_color_text.c
 
-
-BONUS = bonus/main.c\
-		bonus/ft_define_struct_bonus.c\
-		bonus/ft_ultimate_free_bonus.c\
-		bonus/ft_ray_casting_bonus.c\
-		bonus/ft_move_bonus.c\
-		bonus/ft_mouse_move_bonus.c\
-		bonus/ft_key_hook_bonus.c\
-		bonus/ft_print_ray_bonus.c\
-		bonus/ft_move_hook_bonus.c\
-		bonus/ft_print_fps_bonus.c\
+BONUS = bonus/main.c \
+		bonus/ft_define_struct_bonus.c \
+		bonus/ft_ultimate_free_bonus.c \
+		bonus/ft_ray_casting_bonus.c \
+		bonus/ft_move_bonus.c \
+		bonus/ft_mouse_move_bonus.c \
+		bonus/ft_key_hook_bonus.c \
+		bonus/ft_print_ray_bonus.c \
+		bonus/ft_move_hook_bonus.c \
+		bonus/ft_print_fps_bonus.c \
 		bonus/ft_define_color_text_bonus.c
 
 OBJS=$(SRCS:.c=.o) $(PARS:.c=.o)
