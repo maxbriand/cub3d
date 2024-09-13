@@ -80,9 +80,11 @@ $(NAME_BONUS): $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(MLX_INCLUDES_FLAGS) -c $< -o $@
 
 clean:
+	@make --no-print-directory clean -C libft
 	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
+	@make --no-print-directory fclean -C libft
 	@$(RM) $(NAME) $(NAME_BONUS)
 	@echo "\033[32;1mfcleaned\033[0m"
 
