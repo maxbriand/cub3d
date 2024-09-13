@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cut_text.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 21:28:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 14:27:20 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 17:03:20 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_select_id(t_data *data, char *text)
 	while (1)
 	{
 		if (nbr >= 6)
-			ft_pexit("unknows identifier", data);
+			ft_pexit("invalid identifier", data);
 		if (!ft_strncmp(ids[nbr], text, ft_strlen(ids[nbr])))
 			break ;
 		nbr++;
@@ -80,7 +80,7 @@ int	ft_identify_id(t_data *data, char *text, int *counter)
 	ft_id_already_set(data, nbr);
 	i += ft_strlen(ids[nbr]);
 	if (!ft_isspace(text[i]))
-		ft_pexit("unknows identifier", data);
+		ft_pexit("invalid identifier", data);
 	while (ft_isspace(text[i]))
 		i++;
 	if (ft_strlen(ids[nbr]) == 2)
