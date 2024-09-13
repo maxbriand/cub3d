@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:52:21 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 14:13:01 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 14:51:22 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,14 @@ t_player	*ft_define_player(t_data *data)
 	p->posy = (float)p->data->y_spoint + 0.5;
 	p->move_speed = 0.05;
 	p->light_on = true;
-	p->fov = 0.5 * M_PI;
+	p->fov = 0.51 * M_PI;
 	if (p->data->map.spawning_orientation == 'N')
-		p->or = 1.5 * M_PI;
+		p->or = 1.51 * M_PI;
 	if (p->data->map.spawning_orientation == 'E')
-		p->or = 0.0 * M_PI;
+		p->or = 0.01 * M_PI;
 	if (p->data->map.spawning_orientation == 'S')
-		p->or = 0.5 * M_PI;
+		p->or = 0.51 * M_PI;
 	if (p->data->map.spawning_orientation == 'W')
-		p->or = 1.0 * M_PI;
+		p->or = 1.01 * M_PI;
 	return (p);
 }
