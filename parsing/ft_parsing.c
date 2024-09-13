@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:02:06 by mbriand           #+#    #+#             */
-/*   Updated: 2024/09/13 14:27:29 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/09/13 17:09:34 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-// have to reset to NULL
 void	ft_parsing(t_data *data, int ac, char **av)
 {
 	ft_init_data(data);
