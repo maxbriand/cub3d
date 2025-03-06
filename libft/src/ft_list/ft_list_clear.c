@@ -6,32 +6,32 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:02:32 by mbriand           #+#    #+#             */
-/*   Updated: 2024/04/02 18:02:46 by mbriand          ###   ########.fr       */
+/*   Updated: 2025/03/06 13:47:58 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+// #include "libft.h"
 
-/*// free all node data
-void	free_fct(void *pt_value)
-{
-	*(int *)pt_value = 0;
-}*/
+// /*// free all node data
+// void	free_fct(void *pt_value)
+// {
+// 	*(int *)pt_value = 0;
+// }*/
 
-// free all node link
-void	ft_list_clear(t_list *begin_list, void (*free_fct)(void *))
-{
-	t_list	*store;
+// // free all node link
+// void	ft_list_clear(t_list *begin_list, void (*free_fct)(void *))
+// {
+// 	t_list	*store;
 
-	while (begin_list != NULL)
-	{
-		free_fct(begin_list->data);
-		store = begin_list;
-		begin_list = begin_list->next;
-		free(store);
-		store->next = NULL;
-	}
-}
+// 	while (begin_list != NULL)
+// 	{
+// 		free_fct(begin_list->data);
+// 		store = begin_list;
+// 		begin_list = begin_list->next;
+// 		free(store);
+// 		store->next = NULL;
+// 	}
+// }
 
 /*// create a linked list of 3 nodes
 int	main(void)

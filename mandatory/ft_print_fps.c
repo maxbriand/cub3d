@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:22:04 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 16:52:44 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/10 19:52:15 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_print_maxi_fps(t_player *p, char *fps)
 		if (!p->game->fps_maxi)
 			ft_ultimate_free(p);
 		p->game->fps_max = mlx_put_string(p->game->mlx, \
-				p->game->fps_maxi, 90, 10);
+				p->game->fps_maxi, 80, 10);
 	}
 	p->game->fps = mlx_put_string(p->game->mlx, fps, 10, 10);
 	if (!p->game->fps_max || !p->game->fps)

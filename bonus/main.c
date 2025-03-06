@@ -6,7 +6,7 @@
 /*   By: gmersch <gmersch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:36:49 by gmersch           #+#    #+#             */
-/*   Updated: 2024/09/13 16:53:39 by gmersch          ###   ########.fr       */
+/*   Updated: 2024/09/11 12:19:41 by gmersch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char **argv)
 	ft_init_png(&data);
 	p = ft_define_player(&data);
 	ft_define_color_text(p);
+
+	ft_define_cinematic(p);
 	mlx_loop_hook(p->game->mlx, ft_ray_casting, p);
 	mlx_image_to_window(p->game->mlx, p->game->image, 0, 0);
 	mlx_image_to_window(p->game->mlx, p->game->flash, 0, 0);

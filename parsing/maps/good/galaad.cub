@@ -1,0 +1,15 @@
+NO ./parsing/textures/mur.png
+SO ./parsing/textures/cat.png
+EA ./parsing/textures/milouche.png
+WE ./parsing/textures/cobblestone.png
+
+F 0,0,0
+C 0,0,0
+
+11111111111
+10100101001
+10000000001
+10000100001
+1000S000001
+10000000001
+11111111111
